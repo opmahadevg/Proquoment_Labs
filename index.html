@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script>
+      (function() {
+        try {
+          var saved = localStorage.getItem('proquoment-theme');
+          if (saved === 'dark') {
+            document.documentElement.classList.add('dark');
+            document.documentElement.setAttribute('data-theme', 'dark');
+          } else {
+            document.documentElement.classList.remove('dark');
+            document.documentElement.setAttribute('data-theme', 'light');
+          }
+        } catch (e) {}
+      })();
+    </script>
+    <title>Proquoment Labs | Build AI-Native Products &amp; Automate Operations</title>
+    <meta name="description" content="Proquoment Labs helps startups and growing businesses design, build and deploy AI-powered products, automation systems and intelligent workflows." />
+    <link rel="canonical" href="https://labs.proquoment.in/" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- Open Graph / Facebook / LinkedIn -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://labs.proquoment.in/" />
+    <meta property="og:site_name" content="Proquoment Labs" />
+    <meta property="og:locale" content="en_US" />
+    <meta property="og:title" content="Proquoment Labs | Build AI-Native Products & Automate Operations" />
+    <meta property="og:description" content="Proquoment Labs helps startups and growing businesses design, build and deploy AI-powered products, automation systems and intelligent workflows." />
+    <meta property="og:image" content="https://labs.proquoment.in/opengraph.jpg" />
+    <meta property="og:image:type" content="image/jpeg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:image:alt" content="Proquoment Labs | Build AI-Native Products & Automate Operations" />
+
+    <!-- Twitter / X -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@proquoment" />
+    <meta name="twitter:creator" content="@proquoment" />
+    <meta name="twitter:url" content="https://labs.proquoment.in/" />
+    <meta name="twitter:title" content="Proquoment Labs | Build AI-Native Products & Automate Operations" />
+    <meta name="twitter:description" content="Proquoment Labs helps startups and growing businesses design, build and deploy AI-powered products, automation systems and intelligent workflows." />
+    <meta name="twitter:image" content="https://labs.proquoment.in/opengraph.jpg" />
+    <meta name="twitter:image:alt" content="Proquoment Labs | Build AI-Native Products & Automate Operations" />
+
+    <!-- Favicon & Icons -->
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/x-icon" href="/favicon.ico" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+    <link rel="manifest" href="/site.webmanifest" />
+    <meta name="theme-color" content="#000EEF" />
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+  </head>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+  </body>
+</html>
