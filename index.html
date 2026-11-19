@@ -58,6 +58,118 @@
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet" />
+
+    <!-- Structured Data (JSON-LD) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "Organization",
+          "@id": "https://labs.proquoment.in/#organization",
+          "name": "Proquoment Labs",
+          "url": "https://labs.proquoment.in",
+          "logo": "https://labs.proquoment.in/logo.png",
+          "description": "Proquoment Labs helps startups and growing businesses design, build and deploy AI-powered products, automation systems and intelligent workflows.",
+          "parentOrganization": {
+            "@type": "Organization",
+            "name": "Proquoment",
+            "url": "https://proquoment.in"
+          },
+          "contactPoint": {
+            "@type": "ContactPoint",
+            "contactType": "Sales and Consulting",
+            "email": "contact@proquoment.in"
+          },
+          "sameAs": [
+            "https://www.linkedin.com/company/proquoment",
+            "https://x.com/proquoment",
+            "https://www.youtube.com/@Proquoment",
+            "https://www.instagram.com/proquoment"
+          ],
+          "knowsAbout": [
+            "AI Product Engineering",
+            "AI Agents & Business Automation",
+            "AI Transformation & Technology Partnership",
+            "LLM Applications",
+            "Intelligent Workflows",
+            "Full-Stack AI Development"
+          ],
+          "hasOfferCatalog": {
+            "@type": "OfferCatalog",
+            "name": "Proquoment Labs AI Engineering & Automation Services",
+            "itemListElement": [
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@id": "https://labs.proquoment.in/#service-ai-product-engineering"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@id": "https://labs.proquoment.in/#service-ai-agents-automation"
+                }
+              },
+              {
+                "@type": "Offer",
+                "itemOffered": {
+                  "@id": "https://labs.proquoment.in/#service-ai-transformation"
+                }
+              }
+            ]
+          }
+        },
+        {
+          "@type": "WebSite",
+          "@id": "https://labs.proquoment.in/#website",
+          "url": "https://labs.proquoment.in",
+          "name": "Proquoment Labs",
+          "description": "Proquoment Labs helps startups and growing businesses design, build and deploy AI-powered products, automation systems and intelligent workflows.",
+          "publisher": {
+            "@id": "https://labs.proquoment.in/#organization"
+          },
+          "inLanguage": "en"
+        },
+        {
+          "@type": "Service",
+          "@id": "https://labs.proquoment.in/#service-ai-product-engineering",
+          "name": "AI Product Engineering",
+          "serviceType": "AI Software Development",
+          "url": "https://labs.proquoment.in/#service-ai-product-engineering",
+          "provider": {
+            "@id": "https://labs.proquoment.in/#organization"
+          },
+          "areaServed": "Worldwide",
+          "description": "End-to-end design, prototyping, and production engineering of AI-native applications, LLM interfaces, and custom AI products."
+        },
+        {
+          "@type": "Service",
+          "@id": "https://labs.proquoment.in/#service-ai-agents-automation",
+          "name": "AI Agents & Business Automation",
+          "serviceType": "Intelligent Automation",
+          "url": "https://labs.proquoment.in/#service-ai-agents-automation",
+          "provider": {
+            "@id": "https://labs.proquoment.in/#organization"
+          },
+          "areaServed": "Worldwide",
+          "description": "Autonomous AI agent workflows, operational pipeline automation, document intelligence, and enterprise system integrations."
+        },
+        {
+          "@type": "Service",
+          "@id": "https://labs.proquoment.in/#service-ai-transformation",
+          "name": "AI Transformation & Technology Partnership",
+          "serviceType": "Technology Consulting",
+          "url": "https://labs.proquoment.in/#service-ai-transformation",
+          "provider": {
+            "@id": "https://labs.proquoment.in/#organization"
+          },
+          "areaServed": "Worldwide",
+          "description": "Strategic advisory, technical fractional CTO guidance, architecture design, and long-term engineering partnership."
+        }
+      ]
+    }
+    </script>
   </head>
   <body>
     <div id="root"></div>
