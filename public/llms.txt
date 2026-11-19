@@ -1,0 +1,23 @@
+# Proquoment Labs
+
+> Proquoment Labs helps startups and growing businesses design, build and deploy AI-powered products, automation systems and intelligent workflows.
+
+## Core Pillars & Capabilities
+- AI Product Engineering: End-to-end design, rapid prototyping, and production engineering of custom AI-native applications, LLM interfaces, and full-stack AI solutions.
+- AI Agents & Business Automation: Autonomous multi-agent workflows, operational pipeline automation, document intelligence, and enterprise system integrations.
+- AI Transformation & Technology Partnership: Strategic advisory, fractional CTO guidance, cloud AI infrastructure architecture, and long-term co-engineering partnerships.
+
+## Canonical Public Pages
+- [Home](https://labs.proquoment.in/): Overview of Proquoment Labs AI engineering and automation services.
+- [Services](https://labs.proquoment.in/services): Full-stack AI product engineering, autonomous multi-agent pipelines, and enterprise transformation partnerships.
+- [Work](https://labs.proquoment.in/work): Production case studies including autonomous agent swarms, SaaS MVP sprints, and workflow automation.
+- [About](https://labs.proquoment.in/about): The dedicated AI engineering and innovation studio of Proquoment Private Limited.
+- [Contact](https://labs.proquoment.in/contact): Start an AI project with direct engineering review and <24h response SLA.
+- [Insights & Industry AI Dispatches](https://labs.proquoment.in/blog): Deep-dive case studies, playbooks, and architectures for enterprise AI implementation.
+- [Privacy Policy](https://labs.proquoment.in/privacy-policy): Privacy and data governance policy compliant with IT and DPDP Acts.
+- [Terms of Service](https://labs.proquoment.in/terms-of-service): Commercial terms and intellectual property ownership standards.
+
+## Organization Details
+- Parent Organization: Proquoment (https://proquoment.in)
+- Website: https://labs.proquoment.in
+- Contact: contact@proquoment.in
