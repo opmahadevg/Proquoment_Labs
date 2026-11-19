@@ -65,14 +65,16 @@ export function EtchedCard({
   className,
   as: Component = "div",
   hoverLift = true,
+  ...props
 }: {
   children: React.ReactNode;
   className?: string;
   as?: React.ElementType;
   hoverLift?: boolean;
-}) {
+} & React.HTMLAttributes<HTMLElement>) {
   return (
     <Component
+      {...props}
       className={cn(
         "relative bg-[var(--ctl-paper)] border border-[var(--ctl-line)] p-6 sm:p-8 rounded-[2px]",
         "transition-all duration-300",
