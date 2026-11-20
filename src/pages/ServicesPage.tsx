@@ -54,6 +54,14 @@ export const SERVICES_PRODUCT_ENGINEERING: CapabilityItem[] = [
     benchmark: "<100ms First Contentful Paint and 99.9% uptime across production clusters.",
   },
   {
+    icon: Layers,
+    title: "SaaS MVP Development",
+    description: "From concept to live production software in 4 to 6 weeks. Complete with authentication, multi-tenant DB, Stripe billing, and telemetry.",
+    tag: "MVP Sprint",
+    deliverable: "Complete greenfield SaaS codebase, multi-tenant Postgres schemas, Stripe customer portal integration, and product analytics.",
+    benchmark: "Production launch within 28 calendar days with 100% test passing rate.",
+  },
+  {
     icon: Bot,
     title: "Generative AI & Copilot Interfaces",
     description: "Custom conversational copilots, multimodal inputs, canvas-style interfaces, and token-streaming UI with resilient client-side state machines.",
@@ -62,20 +70,12 @@ export const SERVICES_PRODUCT_ENGINEERING: CapabilityItem[] = [
     benchmark: "<250ms time-to-first-token streaming latency on Claude 3.5 Sonnet and GPT-4o.",
   },
   {
-    icon: Layers,
-    title: "SaaS MVP Sprint Acceleration",
-    description: "From concept to live production software in 4 to 6 weeks. Complete with authentication, Stripe billing, telemetry, and scalable DB schemas.",
-    tag: "MVP Sprint",
-    deliverable: "Complete greenfield SaaS codebase, multi-tenant Postgres schemas, Stripe customer portal integration, and PostHog product analytics.",
-    benchmark: "Production launch within 28 calendar days with 100% test passing rate.",
-  },
-  {
     icon: Database,
     title: "Hybrid Vector Search & RAG Architecture",
     description: "Sub-second hybrid search combining dense vector embeddings (pgvector, Pinecone) with BM25 keyword matching and cross-encoder rerankers.",
     tag: "Vector & RAG",
     deliverable: "Deterministic document indexing pipeline with semantic chunking, metadata filters, and Cohere/BGE cross-encoder reranking.",
-    benchmark: "98.4% retrieval recall with sub-400ms end-to-end query turnaround.",
+    benchmark: "High retrieval recall with sub-400ms end-to-end query turnaround.",
   },
   {
     icon: Server,
@@ -83,12 +83,12 @@ export const SERVICES_PRODUCT_ENGINEERING: CapabilityItem[] = [
     description: "Node.js (Fastify) and Python (FastAPI) backend services engineered for Server-Sent Events (SSE), WebSockets, and strict schema validation.",
     tag: "Backend APIs",
     deliverable: "Distributed backend microservices with automatic OpenAPI/Swagger specs, Pydantic/Zod runtime validation, and Redis Pub/Sub.",
-    benchmark: "Handles 12,000 concurrent streaming connections with zero dropped frames.",
+    benchmark: "Engineered for high concurrent streaming connections with zero dropped frames.",
   },
   {
     icon: Lock,
     title: "Enterprise Auth, RBAC & Multi-Tenancy",
-    description: "Bank-grade authentication, row-level security (RLS), team permission hierarchies, audit logging, and single sign-on (SAML/OAuth).",
+    description: "Robust authentication, row-level security (RLS), team permission hierarchies, audit logging, and single sign-on (SAML/OAuth).",
     tag: "Security & Auth",
     deliverable: "Enterprise SSO integration (Okta, Azure AD, Google Workspace), cryptographically signed JWT sessions, and granular RBAC policies.",
     benchmark: "Zero data leakage between tenant schemas, verified by automated penetration tests.",
@@ -99,7 +99,7 @@ export const SERVICES_PRODUCT_ENGINEERING: CapabilityItem[] = [
     description: "Tailored operational dashboards, admin workspaces, and data moderation consoles connecting multiple fragmented backend databases.",
     tag: "Internal Tools",
     deliverable: "Role-specific operational control panels with live database editors, audit trails, and bulk CSV export/import workflows.",
-    benchmark: "Consolidates 6 fragmented internal tools into one console, saving 18 hours weekly per operator.",
+    benchmark: "Consolidates fragmented internal tools into one console, cutting manual operator turnaround.",
   },
   {
     icon: Activity,
@@ -107,7 +107,7 @@ export const SERVICES_PRODUCT_ENGINEERING: CapabilityItem[] = [
     description: "End-to-end tracing with OpenTelemetry, prompt caching, token spend analytics, hallucination detection, and automated eval suites.",
     tag: "Observability",
     deliverable: "Helicone/Langfuse observability cluster with prompt versioning, semantic caching, and regression evaluation harnesses.",
-    benchmark: "42% average reduction in monthly LLM token expenditures through prompt optimization.",
+    benchmark: "Substantial reduction in monthly LLM token expenditures through prompt optimization.",
   },
   {
     icon: GitBranch,
@@ -122,11 +122,19 @@ export const SERVICES_PRODUCT_ENGINEERING: CapabilityItem[] = [
 export const SERVICES_AGENTS_AUTOMATION: CapabilityItem[] = [
   {
     icon: Workflow,
+    title: "Business Process Automation",
+    description: "Automating repetitive operational workflows, manual data entry, order reconciliation, and multi-step back-office procedures.",
+    tag: "Automation",
+    deliverable: "End-to-end process automation engine connecting operational touchpoints with retry logic and audit trails.",
+    benchmark: "Cuts manual processing time from hours to seconds with audit logging.",
+  },
+  {
+    icon: Bot,
     title: "Autonomous Multi-Agent Swarms",
     description: "Stateful agent graphs powered by LangGraph and CrewAI. Multiple specialized agents collaborate, challenge outputs, and execute multi-step plans.",
     tag: "Agent Swarms",
     deliverable: "Multi-agent coordination graph with cyclic decision loops, supervisor validation agents, and state persistence in Postgres.",
-    benchmark: "Executes 50+ step business processes with 99.4% task completion accuracy.",
+    benchmark: "Executes complex multi-step business processes with deterministic verification.",
   },
   {
     icon: FileText,
@@ -134,7 +142,7 @@ export const SERVICES_AGENTS_AUTOMATION: CapabilityItem[] = [
     description: "Automated extraction and classification of complex unstructured PDFs, scanned contracts, invoices, and financial records into validated JSON schemas.",
     tag: "Doc Intelligence",
     deliverable: "Multi-modal OCR parsing pipeline combining vision models with strict Zod schema validation and confidence scoring.",
-    benchmark: "99.2% field accuracy across 15+ invoice layouts with automated anomaly flagging.",
+    benchmark: "High field accuracy across diverse document layouts with automated anomaly flagging.",
   },
   {
     icon: Zap,
@@ -142,7 +150,7 @@ export const SERVICES_AGENTS_AUTOMATION: CapabilityItem[] = [
     description: "Instant event processing via distributed message queues (Kafka, Redis, Celery), transforming inbound webhooks into executed agent workflows.",
     tag: "Event Streams",
     deliverable: "Fault-tolerant webhook ingester with exponential backoff retries, dead-letter queues, and idempotency guarantees.",
-    benchmark: "Sub-50ms ingestion latency with 100% audit logging of inbound payloads.",
+    benchmark: "Sub-50ms ingestion latency with complete audit logging of inbound payloads.",
   },
   {
     icon: Boxes,
@@ -150,7 +158,7 @@ export const SERVICES_AGENTS_AUTOMATION: CapabilityItem[] = [
     description: "Continuous bidirectional synchronization between Salesforce, HubSpot, SAP, NetSuite, and internal databases with automatic conflict resolution.",
     tag: "Enterprise Sync",
     deliverable: "Real-time bidirectional connectors with schema transformation, field mapping consoles, and transactional consistency checks.",
-    benchmark: "Eliminates duplicate records and cuts data drift between ERP and CRM to 0%.",
+    benchmark: "Eliminates duplicate records and minimizes data drift across enterprise systems.",
   },
   {
     icon: Search,
@@ -158,15 +166,15 @@ export const SERVICES_AGENTS_AUTOMATION: CapabilityItem[] = [
     description: "Self-directed background agents that scrape web data, analyze competitor filings, verify contact details, and enrich leads autonomously.",
     tag: "Research Agents",
     deliverable: "Scheduled browser automation agents with headless Playwright, SERP API integrations, and structured LLM synthesizers.",
-    benchmark: "Enriches 5,000+ prospective accounts daily with verified executive contacts and recent filing signals.",
+    benchmark: "Enriches thousands of prospective records with verified contacts and structured signals.",
   },
   {
     icon: Users,
     title: "Tier-1/Tier-2 Support & Escalation Agents",
-    description: "Context-aware conversational agents resolving 60-80% of routine inquiries with automated API actions and seamless human escalation gates.",
+    description: "Context-aware conversational agents resolving routine inquiries with automated API actions and seamless human escalation gates.",
     tag: "Support Agents",
     deliverable: "Omnichannel customer support copilot integrated into Zendesk, Intercom, and Slack with customer profile context injection.",
-    benchmark: "74% first-contact resolution rate with average customer response time under 15 seconds.",
+    benchmark: "High first-contact resolution rate with rapid automated triage.",
   },
   {
     icon: RefreshCw,
@@ -174,15 +182,7 @@ export const SERVICES_AGENTS_AUTOMATION: CapabilityItem[] = [
     description: "Robust error interception that automatically switches model backends, retries flaky API calls, and flags unresolvable tasks for review.",
     tag: "Fault Tolerance",
     deliverable: "Resilience middleware with circuit breakers, model provider fallback chains (Anthropic to OpenAI to local models), and alert webhooks.",
-    benchmark: "100% graceful degradation during major cloud provider outages.",
-  },
-  {
-    icon: Shield,
-    title: "Security, PII Masking & Prompt Firewalls",
-    description: "Real-time sanitization of sensitive personal data, regex/embedding-based prompt-injection filters, and strict output boundaries.",
-    tag: "Guardrails",
-    deliverable: "In-line security proxy masking Aadhaar, PAN, SSN, and credit card numbers prior to LLM submission, compliant with DPDP.",
-    benchmark: "Zero PII leaks across 10M+ analyzed tokens with <8ms interception latency.",
+    benchmark: "100% graceful degradation during upstream API disruptions.",
   },
   {
     icon: Sliders,
@@ -190,84 +190,87 @@ export const SERVICES_AGENTS_AUTOMATION: CapabilityItem[] = [
     description: "Lightweight approval workspaces allowing domain specialists to inspect, approve, or correct high-value agent actions before execution.",
     tag: "Human-in-Loop",
     deliverable: "Tailored review dashboard with visual diffing, one-click authorization, and feedback loops that fine-tune agent prompts.",
-    benchmark: "Reduces human review overhead by 82% while maintaining 100% executive sign-off on transactions.",
+    benchmark: "Significantly reduces human review overhead while retaining executive sign-off on transactions.",
   },
 ];
 
 export const SERVICES_TRANSFORMATION: CapabilityItem[] = [
   {
-    icon: Compass,
-    title: "AI Readiness & Operational Audit",
-    description: "Deep dive into your organization's data architecture, repetitive labor costs, and workflow bottlenecks to identify the highest ROI AI opportunities.",
-    tag: "Audit & Strategy",
-    deliverable: "Comprehensive 40-page technical audit report, prioritized feasibility matrix, ROI projections, and 12-month engineering roadmap.",
-    benchmark: "Identifies minimum 3.5x annual operational ROI opportunities within 10 business days.",
+    icon: Building,
+    title: "Modern Business Websites & Portals",
+    description: "High-performance digital flagships and customer web portals engineered with Next.js, TypeScript, and responsive design systems.",
+    tag: "Web Experience",
+    deliverable: "Turnkey responsive web experiences, dynamic CMS integrations, fast global CDN delivery, and conversion-focused architecture.",
+    benchmark: "Sub-100ms First Contentful Paint with 100/100 Lighthouse performance scores.",
   },
   {
-    icon: Briefcase,
-    title: "Fractional AI CTO & Technical Advisory",
-    description: "Executive-level engineering leadership guiding architecture decisions, evaluating vendor solutions, and defining technical AI milestones.",
-    tag: "Fractional CTO",
-    deliverable: "Dedicated weekly architecture reviews, vendor procurement assessments, sprint roadmapping, and board-level technology briefings.",
-    benchmark: "Aligns engineering execution with investor milestones and saves $180k+ compared to full-time executive hiring.",
+    icon: Boxes,
+    title: "Interactive Dashboards & Admin Panels",
+    description: "Data-dense analytics interfaces, real-time operational control consoles, and complex admin dashboards with granular permission controls.",
+    tag: "Dashboards",
+    deliverable: "Custom data tables, interactive charting modules, export pipelines, and responsive role-based access consoles.",
+    benchmark: "Fluid 60fps rendering across heavy data tables and interactive charts.",
+  },
+  {
+    icon: Code,
+    title: "SaaS Web Applications & Portals",
+    description: "Rich, highly responsive browser-based applications with complex client-side state management, keyboard shortcuts, and offline tolerance.",
+    tag: "SaaS Web Apps",
+    deliverable: "Complete frontend architecture, modular component systems, client state synchronization, and reactive UI patterns.",
+    benchmark: "Fast, reliable web application workflows with zero layout shifts.",
+  },
+  {
+    icon: Compass,
+    title: "Practical AI Readiness & Workflow Discovery",
+    description: "Auditing operational workflows and existing software to identify high-leverage automation opportunities and plan realistic AI integration.",
+    tag: "AI Readiness",
+    deliverable: "Actionable technical feasibility blueprint, architecture recommendations, and prioritized engineering roadmap.",
+    benchmark: "Delivers an actionable implementation roadmap within 10 business days.",
   },
   {
     icon: Server,
-    title: "Private Cloud AI Infrastructure Build",
-    description: "Secure deployment of self-hosted open models (Llama 3, Mistral) within your isolated VPC or on-premise clusters for complete data sovereignty.",
-    tag: "Private AI",
-    deliverable: "vLLM and Ollama inference clusters on private AWS/GCP GPU instances with autoscaling, private API gateways, and TLS encryption.",
-    benchmark: "100% on-premise data sovereignty with zero external API dependencies.",
-  },
-  {
-    icon: Database,
-    title: "Domain-Specific Data Curation & Fine-Tuning",
-    description: "Extracting, structuring, and synthetic-augmenting your company's proprietary data to fine-tune specialized models tailored to your industry.",
-    tag: "Fine-Tuning",
-    deliverable: "Curated dataset pipelines, LoRA/QLoRA parameter-efficient fine-tuning runs, and automated evaluation benchmark comparisons.",
-    benchmark: "Achieves domain accuracy matching GPT-4o on proprietary jargon at 1/10th the inference cost.",
-  },
-  {
-    icon: Building,
-    title: "Legacy Monolith Modernization",
-    description: "Strangler pattern re-architecting of aging legacy monoliths into modern micro-services and event-driven architectures with AI integrations.",
+    title: "Legacy Application Modernization",
+    description: "Re-architecting legacy web applications into modern, modular architectures with clean API interfaces and AI readiness.",
     tag: "Modernization",
-    deliverable: "Incremental strangler proxy layer, modular REST/gRPC microservices, decoupled relational databases, and automated regression suites.",
-    benchmark: "Eliminates legacy tech debt without system downtime or commercial operational disruption.",
-  },
-  {
-    icon: Shield,
-    title: "Enterprise Governance & Regulatory Compliance",
-    description: "Comprehensive adherence to India's DPDP Act, GDPR, and enterprise security policies. Strict zero-data-retention model agreements.",
-    tag: "Governance",
-    deliverable: "Data lineage maps, SOC2/ISO27001 AI governance documentation, zero-data-retention vendor agreements, and audit logging.",
-    benchmark: "Full compliance verification with statutory Indian IT and DPDP Act provisions.",
+    deliverable: "Incremental modernization roadmap, modular REST/GraphQL endpoints, decoupled frontend components, and regression suites.",
+    benchmark: "Smooth transition without service interruption or operational downtime.",
   },
   {
     icon: Search,
     title: "Enterprise Knowledge Hub & Semantic Graph",
-    description: "Unifying corporate knowledge across Slack, Google Drive, Notion, and Confluence into a single queryable real-time intelligence hub.",
+    description: "Unifying corporate documentation and scattered information across systems into a single, queryable real-time intelligence hub.",
     tag: "Knowledge Base",
-    deliverable: "Knowledge graph architecture connecting enterprise documents with entity extraction, automated indexing, and permission synchronization.",
-    benchmark: "Reduces internal employee knowledge search time from 45 minutes to under 8 seconds.",
+    deliverable: "Knowledge search architecture connecting internal documentation with semantic search and permission synchronization.",
+    benchmark: "Reduces internal document lookup turnaround from minutes to seconds.",
   },
   {
-    icon: Users,
-    title: "Co-Engineering & Internal Team Upskilling",
-    description: "Embedded pair-programming sprints, architectural workshops, and hands-on knowledge transfer so your internal team can operate systems confidently.",
-    tag: "Upskilling",
-    deliverable: "Structured live coding bootcamps, internal documentation wikis, architecture runbooks, and graduated operational handoffs.",
-    benchmark: "Enables internal engineering teams to take full operational ownership within 60 days.",
+    icon: Shield,
+    title: "Enterprise Governance & Security Integration",
+    description: "Ensuring adherence to data protection standards, strict access controls, zero-data-retention agreements, and robust audit trails.",
+    tag: "Governance",
+    deliverable: "Data governance documentation, audit logging architecture, and compliance-ready data handling pipelines.",
+    benchmark: "Full alignment with statutory data protection and security standards.",
+  },
+  {
+    icon: Briefcase,
+    title: "Fractional AI CTO & Technical Advisory",
+    description: "Hands-on engineering leadership guiding architecture decisions, evaluating vendor solutions, and defining technical delivery milestones.",
+    tag: "Technical Advisory",
+    deliverable: "Dedicated architecture reviews, system evaluations, sprint roadmapping, and pragmatic technical guidance.",
+    benchmark: "Pragmatic, milestone-driven technical leadership focused on shipping working software.",
   },
   {
     icon: TrendingUp,
-    title: "Continuous Evaluation & SLA Maintenance",
-    description: "Long-term monitoring for model drift, automated synthetic benchmark regressions, security patches, and 99.9% uptime operational SLAs.",
+    title: "Continuous System Improvement & SLAs",
+    description: "Ongoing platform monitoring, performance tuning, security patches, regression tests, and guaranteed operational response windows.",
     tag: "SLA & Support",
-    deliverable: "Automated weekly regression testing suites, model latency alerts, dependency vulnerability patching, and 4-hour response SLAs.",
-    benchmark: "Guaranteed 99.9% platform availability with proactive drift mitigation before user impact.",
+    deliverable: "Automated test suites, latency monitoring, scheduled maintenance, and dedicated engineering support windows.",
+    benchmark: "Guaranteed platform availability with proactive system maintenance.",
   },
 ];
+
+// Alias for semantic clarity
+export const SERVICES_WEB_APPLICATIONS = SERVICES_TRANSFORMATION;
 
 // ==========================================
 // ENGAGEMENT MODELS
@@ -285,11 +288,11 @@ export interface EngagementModel {
 
 export const ENGAGEMENT_MODELS: EngagementModel[] = [
   {
-    title: "Project-Based Engagement",
+    title: "Project-Based Development",
     badge: "Fixed Scope",
     duration: "4 to 12 Weeks",
-    description: "A clearly scoped, milestone-driven engagement with predictable costs and fixed deliverables. Ideal for defined products or specific workflow automations.",
-    idealFor: "Startups or teams with defined specs who need a turnkey, production-ready system engineered from zero.",
+    description: "A clearly scoped, milestone-driven engagement with predictable costs and fixed deliverables. Ideal for defined products, SaaS MVPs, or specific workflow automations.",
+    idealFor: "Founders and businesses with defined requirements who need a production-ready system engineered from zero.",
     deliverables: [
       "Technical architecture & schema blueprint",
       "Full source code ownership & Git repository",
@@ -304,14 +307,14 @@ export const ENGAGEMENT_MODELS: EngagementModel[] = [
     title: "Dedicated Engineering Retainer",
     badge: "Continuous Velocity",
     duration: "Monthly / Quarterly",
-    description: "An embedded, dedicated AI engineering pod acting as an extension of your internal team. High-velocity iterative building and continuous scaling.",
-    idealFor: "Scaling companies requiring ongoing AI engineering capacity, architectural leadership, and continuous system evolution.",
+    description: "An embedded engineering pod acting as an extension of your internal team. High-velocity iterative building, AI integrations, and continuous scaling.",
+    idealFor: "Scaling companies requiring ongoing product engineering capacity, architectural leadership, and continuous system evolution.",
     deliverables: [
       "Dedicated Senior AI Engineers & Full-Stack Builders",
-      "Fractional AI CTO strategic guidance & planning",
+      "Lead architect guidance & roadmap planning",
       "Bi-weekly sprint planning & continuous deployment",
       "Direct Slack/Discord real-time engineering channel",
-      "Model fine-tuning, evals, and prompt optimization",
+      "Model integrations, evals, and prompt optimization",
       "Guaranteed priority response times & uptime monitoring",
     ],
     ctaText: "Explore Retainer",
@@ -320,8 +323,8 @@ export const ENGAGEMENT_MODELS: EngagementModel[] = [
     title: "4-Week MVP Sprint",
     badge: "Maximum Velocity",
     duration: "4 Weeks Flat",
-    description: "A battle-tested rapid innovation sprint that takes you from an initial concept or wireframe to a live, monetizable AI product in 28 calendar days.",
-    idealFor: "Founders testing new AI product hypotheses who cannot afford months of bloated agency development.",
+    description: "A rapid product sprint that takes you from an initial concept or wireframe to a live, monetizable digital product in 28 calendar days.",
+    idealFor: "Early-stage founders validating new product hypotheses who need rapid, high-quality execution without bloated agency timelines.",
     deliverables: [
       "Week 1: Architecture, database schema & wireframe lock",
       "Week 2: Core AI integrations & functional prototype",
@@ -349,28 +352,28 @@ export interface UseCaseScenario {
 
 export const USE_CASE_SCENARIOS: UseCaseScenario[] = [
   {
-    pillar: "Product Engineering",
+    pillar: "AI SaaS & Digital Product Engineering",
     title: "Generative Financial Modeling SaaS",
     clientType: "FinTech Startup",
     problem: "Financial analysts were spending 14+ hours per client manually building DCF models and parsing SEC 10-K filings.",
     architecture: "Next.js 15 + Fastify backend with pgvector hybrid search, Claude 3.5 Sonnet tool-calling engine, and streaming spreadsheet canvas UI.",
-    impact: "Model generation dropped from 14 hours to 45 seconds. The startup raised a $2.5M Seed round on the back of the MVP.",
+    impact: "Model generation turnaround dropped from 14 hours to 45 seconds with deterministic spreadsheet export fidelity.",
   },
   {
-    pillar: "Agents & Automation",
-    title: "Autonomous Procurement & Invoice Reconciliation",
+    pillar: "Business Process Automation & Integrations",
+    title: "Procurement & Invoice Reconciliation",
     clientType: "Mid-Market B2B Distributor",
-    problem: "Processing 8,000 monthly multi-currency invoices across 12 ERP formats caused payment delays and costly manual data entry errors.",
-    architecture: "Event-driven LangGraph agent swarm with OCR extraction, automated 3-way matching against purchase orders, and human-in-the-loop exception approvals.",
-    impact: "94.2% of invoices processed touchless. Error rate dropped from 6.8% to 0.05%, saving $24,000 monthly in labor costs.",
+    problem: "Processing thousands of monthly multi-currency invoices across diverse ERP formats caused payment delays and manual data entry overhead.",
+    architecture: "Event-driven LangGraph pipeline with OCR extraction, automated 3-way matching against purchase orders, and human-in-the-loop exception approvals.",
+    impact: "Over 94% touchless reconciliation rate with exception review queue, eliminating hundreds of hours of manual entry each month.",
   },
   {
-    pillar: "Transformation",
-    title: "Enterprise Knowledge Brain & Fractional CTO",
-    clientType: "Global Logistics Advisory",
-    problem: "Critical operational knowledge was trapped in 40,000 siloed PDFs, Slack channels, and SharePoint libraries, paralyzing junior consultants.",
-    architecture: "Private VPC deployment of custom-embedded Llama 3 with real-time Slackbot integration, strict citation tracking, and automated doc ingestion.",
-    impact: "Information retrieval time reduced by 82%. Team onboarded new consultants in 2 weeks instead of 3 months.",
+    pillar: "Web Applications & Digital Experiences",
+    title: "High-Performance SaaS Portal & Analytics Dashboard",
+    clientType: "Growing B2B Software Company",
+    problem: "Fragmented legacy portal with slow page loads and confusing navigation caused high support volume and low self-service user adoption.",
+    architecture: "Next.js App Router, Tailwind CSS design system, server-rendered analytics tables, and responsive mobile-first navigation.",
+    impact: "First Contentful Paint dropped to under 120ms with a 40% increase in self-service portal engagement.",
   },
 ];
 
@@ -433,7 +436,7 @@ export function ServicesPage() {
             kicker="PRACTICE &amp; CAPABILITIES"
             title="Engineered Services"
             italicWord="&amp; Execution Models"
-            description="We partner with founders and enterprise leaders to design, build, and deploy production-grade AI systems with master craftsman precision and deterministic reliability."
+            description="We help ambitious startups build AI-powered products and help businesses prepare for an AI-powered future through intelligent software, automation and modern engineering."
           />
         </div>
       </section>
@@ -453,7 +456,7 @@ export function ServicesPage() {
                   : "border-transparent text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)]"
               }`}
             >
-              01. Product Engineering
+              01. SaaS &amp; Product Engineering
             </button>
             <button
               type="button"
@@ -464,7 +467,7 @@ export function ServicesPage() {
                   : "border-transparent text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)]"
               }`}
             >
-              02. Agents &amp; Automation
+              02. Automation &amp; Integrations
             </button>
             <button
               type="button"
@@ -475,7 +478,7 @@ export function ServicesPage() {
                   : "border-transparent text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)]"
               }`}
             >
-              03. Transformation
+              03. Web Apps &amp; Experiences
             </button>
           </div>
           <Link href="/contact" className="hidden sm:inline-flex">
@@ -488,15 +491,15 @@ export function ServicesPage() {
       </div>
 
       {/* ============================================================
-          SECTION 1: AI PRODUCT ENGINEERING
+          SECTION 1: AI SAAS & DIGITAL PRODUCT ENGINEERING
           ============================================================ */}
       <section id="product-engineering" className="py-24 border-b border-[var(--ctl-line)]">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           <PlateHeader
-            kicker="PRACTICE · 01"
-            title="AI Product Engineering"
-            italicWord="From concept to scale."
-            description="We build full-stack web and mobile applications with bespoke generative AI and conversational UX, backed by resilient streaming APIs and sub-second retrieval pipelines."
+            kicker="PILLAR · 01"
+            title="AI SaaS &amp; Digital Product Engineering"
+            italicWord="From concept to production."
+            description="We turn product ideas into production-ready digital platforms. From architecture and engineering to deployment, we help founders move from concept to a working product."
           />
           <CapabilityGrid
             capabilities={SERVICES_PRODUCT_ENGINEERING}
@@ -507,15 +510,15 @@ export function ServicesPage() {
       </section>
 
       {/* ============================================================
-          SECTION 2: AI AGENTS & AUTOMATION
+          SECTION 2: BUSINESS PROCESS AUTOMATION & INTEGRATIONS
           ============================================================ */}
       <section id="agents-automation" className="py-24 border-b border-[var(--ctl-line)] bg-[var(--ctl-wash)]">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           <PlateHeader
-            kicker="PRACTICE · 02"
-            title="AI Agents &amp; Automation"
-            italicWord="Deterministic execution."
-            description="Autonomous multi-agent swarms and event-driven pipelines designed to eliminate back-office friction, extract structured intelligence, and synchronize enterprise systems."
+            kicker="PILLAR · 02"
+            title="Business Process Automation &amp; Integrations"
+            italicWord="Intelligent operational workflows."
+            description="We connect systems, automate repetitive operations and engineer intelligent workflows that help businesses operate more efficiently."
           />
           <div className="py-6">
             <AgentWorkflowVisual />
@@ -529,15 +532,15 @@ export function ServicesPage() {
       </section>
 
       {/* ============================================================
-          SECTION 3: AI TRANSFORMATION
+          SECTION 3: WEB APPLICATIONS & DIGITAL EXPERIENCES
           ============================================================ */}
       <section id="transformation" className="py-24 border-b border-[var(--ctl-line)]">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           <PlateHeader
-            kicker="PRACTICE · 03"
-            title="AI Transformation"
-            italicWord="Strategic advisory &amp; upskilling."
-            description="Long-term partnership with your leadership team: technical audits, private cloud infrastructure builds, enterprise compliance, and team co-engineering."
+            kicker="PILLAR · 03"
+            title="Web Applications &amp; Digital Experiences"
+            italicWord="Modern, responsive interfaces."
+            description="We design and engineer modern digital experiences that make complex products intuitive, accessible and performant across devices."
           />
           <CapabilityGrid
             capabilities={SERVICES_TRANSFORMATION}
