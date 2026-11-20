@@ -5,38 +5,34 @@ import {
   PlateKicker,
   EtchedCard,
   CopperplateButton,
-  WaxSealBadge,
   HatchDivider,
+  WaxSealBadge,
 } from "@/components/ui/copperplate-primitives";
 import {
-  Building2,
-  Rocket,
-  Code2,
+  ShieldCheck,
   Zap,
   Target,
-  Compass,
   ArrowRight,
   ExternalLink,
-  ShieldCheck,
-  CheckCircle2,
+  Building2,
+  Compass,
   Cpu,
-  Layers,
-  Sparkles,
-  Users,
+  CheckCircle2,
+  Lock,
 } from "lucide-react";
 
 export function AboutPage() {
   return (
     <div className="relative min-h-screen text-[var(--ctl-text)] bg-[var(--ctl-paper)] overflow-hidden">
       {/* ============================================================
-          PAGE HERO
+          PAGE HERO / HEADER
           ============================================================ */}
       <section className="py-20 border-b border-[var(--ctl-line)] bg-[var(--ctl-paper)]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
-            <div className="lg:col-span-8 space-y-6">
-              <PlateKicker>AI-NATIVE PRODUCT & ENGINEERING STUDIO</PlateKicker>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[var(--ctl-text)] leading-[1.08]">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
+            <div className="lg:col-span-8 space-y-4">
+              <PlateKicker>STUDIO PEDIGREE &amp; OPERATIONAL CHARTER</PlateKicker>
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[var(--ctl-text)] leading-tight">
                 Build for the Future.{" "}
                 <span className="italic text-[var(--ctl-ink)] font-normal block mt-1">
                   Become AI-Ready Today.
@@ -53,9 +49,9 @@ export function AboutPage() {
                     <ArrowRight className="w-4 h-4" />
                   </CopperplateButton>
                 </Link>
-                <Link href="/work">
+                <Link href="/services">
                   <CopperplateButton variant="paper">
-                    <span>Explore Our Work</span>
+                    <span>Explore Services</span>
                   </CopperplateButton>
                 </Link>
               </div>
@@ -152,7 +148,7 @@ export function AboutPage() {
 
                 <div className="pt-4 border-t border-[var(--ctl-line)] text-xs text-[var(--ctl-soft)] flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-[var(--ctl-ink)] shrink-0" />
-                  <span>Headquartered in Bangalore, India with global client delivery.</span>
+                  <span>Headquartered in Gurgaon, Haryana, India with global client delivery.</span>
                 </div>
               </EtchedCard>
             </div>
@@ -161,21 +157,22 @@ export function AboutPage() {
       </section>
 
       {/* ============================================================
-          SECTION 2: OUR MISSION
+          SECTION 2: MISSION & COMMITMENT
           ============================================================ */}
       <section className="py-24 border-b border-[var(--ctl-line)]">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           <PlateHeader
-            kicker="THE MISSION"
+            kicker="STUDIO CHARTER"
             title="Empowering Businesses to Become AI-Native"
-            description="We define 'AI-Native' not as using AI as a novelty feature, but as fundamentally re-architecting how digital products are built and how operations execute."
+            italicWord="From initial scoping to running systems."
+            description="We bridge the critical gap between conceptual AI capabilities and production software that drives business outcomes."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <EtchedCard className="space-y-4">
               <span className="font-serif text-2xl font-bold text-[var(--ctl-ink)]">I.</span>
               <h3 className="font-serif text-xl sm:text-2xl text-[var(--ctl-text)]">
-                Build for the AI-Powered Future
+                Build for the Future
               </h3>
               <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
                 We help ambitious founders turn ideas and wireframes into working, monetizable AI-powered
@@ -197,7 +194,7 @@ export function AboutPage() {
             <EtchedCard className="space-y-4">
               <span className="font-serif text-2xl font-bold text-[var(--ctl-ink)]">III.</span>
               <h3 className="font-serif text-xl sm:text-2xl text-[var(--ctl-text)]">
-                Full Code Ownership & Data Security
+                Full Code Ownership &amp; Data Security
               </h3>
               <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
                 100% intellectual property ownership transferred upon project payment. We engineer systems
@@ -284,7 +281,7 @@ export function AboutPage() {
       </section>
 
       {/* ============================================================
-          SECTION 4: PROQUOMENT PLATFORM CROSS-LINK
+          SECTION 4: PROQUOMENT PLATFORM ECOSYSTEM
           ============================================================ */}
       <section className="py-24 border-b border-[var(--ctl-line)]">
         <div className="max-w-7xl mx-auto px-6">
@@ -307,7 +304,7 @@ export function AboutPage() {
                 <p className="text-[16px] text-[var(--ctl-soft)] leading-relaxed">
                   Proquoment Labs is the dedicated AI product and engineering studio of
                   Proquoment Private Limited, operating as a distinct client-services brand. Our sister
-                  venture operates the specialized procurement SaaS platform at <strong className="text-[var(--ctl-ink)]">proquoment.in</strong>.
+                  venture operates the specialized procurement SaaS platform.
                 </p>
 
                 <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
@@ -317,20 +314,8 @@ export function AboutPage() {
               </div>
 
               <div className="lg:col-span-4 flex flex-col gap-3">
-                <a
-                  href="https://proquoment.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full"
-                >
-                  <CopperplateButton variant="deep" className="w-full">
-                    <Building2 className="w-4 h-4" />
-                    <span>Visit proquoment.in</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </CopperplateButton>
-                </a>
                 <Link href="/contact" className="w-full">
-                  <CopperplateButton variant="paper" className="w-full">
+                  <CopperplateButton variant="deep" className="w-full">
                     <span>Contact Labs Team</span>
                     <ArrowRight className="w-4 h-4" />
                   </CopperplateButton>

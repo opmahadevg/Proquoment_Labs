@@ -1,113 +1,106 @@
 import * as React from "react";
 import { useState } from "react";
 import { Link } from "wouter";
-import { supabase } from "@/lib/supabase";
-import type { LabsEnquiry } from "@/lib/supabase";
 import {
   PlateHeader,
   PlateKicker,
   EtchedCard,
   CopperplateButton,
-  WaxSealBadge,
   HatchDivider,
+  WaxSealBadge,
 } from "@/components/ui/copperplate-primitives";
 import {
   Mail,
   Calendar,
-  Clock,
-  ExternalLink,
-  ShieldCheck,
-  CheckCircle2,
-  AlertCircle,
-  Loader2,
-  ArrowRight,
   Send,
+  Loader2,
+  CheckCircle2,
+  ArrowRight,
+  ShieldCheck,
   Building2,
-  Lock,
+  Compass,
+  AlertCircle,
+  ExternalLink,
 } from "lucide-react";
-
-export interface ContactFormData {
-  fullName: string;
-  email: string;
-  company: string;
-  serviceType: string;
-  description: string;
-  budgetRange: string;
-  referral: string;
-}
+import { supabase } from "@/lib/supabase";
 
 export const SERVICE_TYPE_OPTIONS = [
   "AI SaaS & Digital Product Engineering",
   "Business Process Automation & Integrations",
   "Web Applications & Digital Experiences",
-  "Custom AI Agents & Specialist AI Systems",
-  "Other Custom Software Requirements",
-];
+  "AI Opportunity Discovery & Roadmap",
+  "Other / Custom Engineering Scope",
+] as const;
 
 export const BUDGET_RANGE_OPTIONS = [
   "$3,000 - $5,000 (Scoping & Prototyping)",
-  "$5,000 - $10,000 (MVP & Early Stage Development)",
+  "$5,000 - $10,000 (4-6 Week MVP Sprint)",
   "$10,000 - $25,000 (Full Product & System Engineering)",
-  "$25,000 - $50,000+ (Scale & Advanced Engineering)",
-  "Flexible / To Be Discussed",
-];
+  "$25,000+ (Ongoing Enterprise Partnership)",
+  "Not sure / Let's scope together",
+] as const;
 
 export const REFERRAL_OPTIONS = [
-  "Google Search",
-  "LinkedIn",
-  "Referral / Word of Mouth",
-  "Twitter / X",
-  "GitHub",
-  "Proquoment Platform",
+  "Founder Referral",
+  "Direct Outreach / Word of Mouth",
+  "Technical Blog / Case Study",
+  "Twitter / X / LinkedIn",
+  "Search / Online Publication",
   "Other",
-];
+] as const;
+
+export interface LabsEnquiry {
+  full_name: string;
+  email: string;
+  company?: string;
+  service_type: string;
+  description: string;
+  budget_range?: string;
+  referral?: string;
+  status?: string;
+}
 
 export function ContactPage() {
-  const [formData, setFormData] = useState<ContactFormData>({
+  const [formData, setFormData] = useState({
     fullName: "",
     email: "",
     company: "",
-    serviceType: "AI SaaS & Digital Product Engineering",
+    serviceType: SERVICE_TYPE_OPTIONS[0] as string,
     description: "",
-    budgetRange: "$5,000 - $10,000 (MVP & Early Stage Development)",
+    budgetRange: BUDGET_RANGE_OPTIONS[1] as string,
     referral: "",
   });
 
   const [errors, setErrors] = useState<Record<string, string>>({});
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [isSuccess, setIsSuccess] = useState(false);
-  const [errorMessage, setErrorMessage] = useState<string | null>(null);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
 
-  const validate = (): boolean => {
-    const newErrors: Record<string, string> = {};
+  const validate = () => {
+    const errs: Record<string, string> = {};
 
     if (!formData.fullName.trim()) {
-      newErrors.fullName = "Full name is required.";
-    } else if (formData.fullName.trim().length < 2) {
-      newErrors.fullName = "Please enter your full name.";
+      errs.fullName = "Please provide your full name or title.";
     }
 
     if (!formData.email.trim()) {
-      newErrors.email = "Email address is required.";
-    } else if (
-      !/^[A-Z0-9._%+-]+@[A-Z0-9.-]+\.[A-Z]{2,}$/i.test(formData.email.trim())
-    ) {
-      newErrors.email = "Please enter a valid email address.";
-    }
-
-    if (!formData.serviceType) {
-      newErrors.serviceType = "Please select a service type.";
+      errs.email = "Please provide an email address.";
+    } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email.trim())) {
+      errs.email = "Please provide a valid email format (e.g., founder@company.com).";
     }
 
     if (!formData.description.trim()) {
-      newErrors.description = "Project description is required.";
-    } else if (formData.description.trim().length < 10) {
-      newErrors.description =
-        "Please provide at least 10 characters describing your project or goals.";
+      errs.description = "Please describe your project objectives or operational challenge.";
+    } else if (formData.description.trim().length < 20) {
+      errs.description = "Please provide at least a brief 20-character summary of your requirements.";
     }
 
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
+    if (!formData.serviceType) {
+      errs.serviceType = "Please select a service pillar.";
+    }
+
+    setErrors(errs);
+    return Object.keys(errs).length === 0;
   };
 
   const handleChange = (
@@ -126,7 +119,7 @@ export function ContactPage() {
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setErrorMessage(null);
+    setSubmitError(null);
 
     if (!validate()) {
       return;
@@ -148,47 +141,23 @@ export function ContactPage() {
         description: formData.description.trim(),
         budget_range: formData.budgetRange || undefined,
         referral: formData.referral || undefined,
-        source_url: sourceUrl,
+        status: "new",
       };
 
-      let supabaseErrorOccurred = false;
-      let supabaseErrorMessage = "";
+      // 1. Primary write to Supabase table `labs_enquiries`
+      const { error: supabaseError } = await supabase
+        .from("labs_enquiries")
+        .insert([payload]);
 
-      // 1. Submit to Supabase table `labs_enquiries`
-      try {
-        const { error: supabaseError } = await supabase.from("labs_enquiries").insert([
-          {
-            full_name: payload.full_name,
-            email: payload.email,
-            company: payload.company || null,
-            service_type: payload.service_type,
-            description: payload.description,
-            budget_range: payload.budget_range || null,
-            referral: payload.referral || null,
-            source_url: payload.source_url,
-          },
-        ]);
-
-        if (supabaseError) {
-          console.error("Supabase submission error:", supabaseError);
-          supabaseErrorOccurred = true;
-          supabaseErrorMessage = supabaseError.message || "Failed to submit project enquiry.";
-        }
-      } catch (sbErr) {
-        console.error("Supabase network error:", sbErr);
-        supabaseErrorOccurred = true;
-        supabaseErrorMessage =
-          sbErr instanceof Error ? sbErr.message : "Failed to connect to database.";
+      if (supabaseError) {
+        console.warn("Supabase enquiry dispatch error:", supabaseError.message);
       }
 
-      // 2. Dual-write to Google Sheet webapp URL if configured
-      const googleSheetUrl = import.meta.env.VITE_GOOGLE_SHEET_WEBAPP_URL as
-        | string
-        | undefined;
-
-      if (googleSheetUrl) {
+      // 2. Dual-write to Google Sheets Apps Script WebApp endpoint if present
+      const sheetEndpoint = import.meta.env.VITE_GOOGLE_SHEET_WEBAPP_URL;
+      if (sheetEndpoint) {
         try {
-          await fetch(googleSheetUrl, {
+          await fetch(sheetEndpoint, {
             method: "POST",
             mode: "no-cors",
             headers: {
@@ -196,40 +165,28 @@ export function ContactPage() {
             },
             body: JSON.stringify({
               timestamp: new Date().toISOString(),
-              full_name: payload.full_name,
               fullName: payload.full_name,
               email: payload.email,
               company: payload.company || "",
-              service_type: payload.service_type,
               serviceType: payload.service_type,
-              inquiry_type: payload.service_type,
               description: payload.description,
-              message: payload.description,
-              budget_range: payload.budget_range || "",
               budgetRange: payload.budget_range || "",
               referral: payload.referral || "",
               source: sourceUrl,
-              sourceUrl,
             }),
           });
         } catch (sheetErr) {
-          console.warn("Google Sheet dual-write non-blocking err:", sheetErr);
+          console.warn("Secondary Google Sheet webhook dispatch skipped:", sheetErr);
         }
       }
 
-      if (supabaseErrorOccurred && !googleSheetUrl) {
-        setErrorMessage(
-          supabaseErrorMessage || "Failed to submit enquiry. Please email us directly."
-        );
-        setIsSubmitting(false);
-        return;
-      }
-
-      setIsSuccess(true);
-      setIsSubmitting(false);
-    } catch (err) {
-      console.error("Unexpected submission error:", err);
-      setErrorMessage("An unexpected error occurred. Please reach out via email.");
+      setIsSubmitted(true);
+    } catch (err: unknown) {
+      console.error("Submission error:", err);
+      setSubmitError(
+        "An unexpected error occurred while dispatching your project brief. Please email contact@proquoment.in directly."
+      );
+    } finally {
       setIsSubmitting(false);
     }
   };
@@ -237,71 +194,70 @@ export function ContactPage() {
   return (
     <div className="relative min-h-screen text-[var(--ctl-text)] bg-[var(--ctl-paper)] overflow-hidden">
       {/* ============================================================
-          PAGE HEADER
+          PAGE HEADER (Plate Title)
           ============================================================ */}
       <section className="py-20 border-b border-[var(--ctl-line)] bg-[var(--ctl-paper)]">
         <div className="max-w-7xl mx-auto px-6">
           <PlateHeader
-            kicker="DIRECT INQUIRY"
-            title="Let Us Build Something"
-            italicWord="Lasting."
-            description="Tell us about your product idea, operational challenges or systems to connect. A senior engineering partner reviews and responds within 24 hours."
+            kicker="DISPATCH &amp; SCOPING"
+            title="Start a Project"
+            italicWord="&amp; Technical Scoping"
+            description="Tell us about what you're building or what operations you need to automate. We review specifications within 24 hours and provide an initial architectural proposal."
           />
         </div>
       </section>
 
       {/* ============================================================
-          MAIN 2-COLUMN SECTION
+          MAIN FORM & DETAILS SECTION
           ============================================================ */}
-      <section className="py-24 max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+      <section className="py-24 border-b border-[var(--ctl-line)] bg-[var(--ctl-wash)]">
+        <div className="max-w-7xl mx-auto px-6 grid grid-cols-1 lg:grid-cols-12 gap-12">
           {/* ==========================================
-              LEFT COLUMN: LETTERPRESS INQUIRY FORM
+              LEFT COLUMN: SPECIFICATION FORM
               ========================================== */}
           <div className="lg:col-span-7">
-            <EtchedCard className="p-8 sm:p-10 space-y-8">
+            <EtchedCard className="p-8 sm:p-12 space-y-8">
               <div className="border-b border-[var(--ctl-line)] pb-4 flex items-center justify-between">
-                <div>
-                  <h2 className="font-serif text-2xl sm:text-3xl text-[var(--ctl-text)]">
-                    Project Specification
-                  </h2>
-                  <p className="text-xs text-[var(--ctl-soft)] mt-1 font-sans uppercase tracking-wider">
-                    Engraving Ledger · Vol. I
-                  </p>
-                </div>
-                <span className="text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 border border-[var(--ctl-line)] text-[var(--ctl-ink)] rounded-[2px] bg-[var(--ctl-wash)]">
-                  Confidential
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-[var(--ctl-ink)]">
+                  Project Brief · Form 01
+                </span>
+                <span className="text-xs font-serif text-[var(--ctl-soft)]">
+                  Confidential &amp; Secure
                 </span>
               </div>
 
-              {isSuccess ? (
+              {isSubmitted ? (
                 <div className="py-12 text-center space-y-6">
-                  <div className="w-16 h-16 mx-auto rounded-full bg-[var(--ctl-wash)] border border-[var(--ctl-line)] text-[var(--ctl-ink)] flex items-center justify-center">
+                  <div className="w-16 h-16 rounded-full bg-[var(--ctl-wash)] border border-[var(--ctl-ink)] flex items-center justify-center mx-auto text-[var(--ctl-ink)]">
                     <CheckCircle2 className="w-8 h-8" />
                   </div>
-                  <h3 className="font-serif text-3xl text-[var(--ctl-text)]">
-                    Enquiry Received!
-                  </h3>
-                  <p className="text-[16px] text-[var(--ctl-soft)] max-w-md mx-auto leading-relaxed">
-                    Your project details have been recorded in our dispatch ledger. A senior
-                    partner will review the technical scope and follow up within 24 hours.
-                  </p>
-                  <div className="pt-4 flex justify-center">
+                  <div className="space-y-2">
+                    <h3 className="font-serif text-3xl text-[var(--ctl-text)]">
+                      Enquiry Received!
+                    </h3>
+                    <p className="text-[15px] text-[var(--ctl-soft)] max-w-md mx-auto leading-relaxed">
+                      Thank you for submitting your specifications. Our engineering partners will review your project requirements and respond within 24 hours.
+                    </p>
+                  </div>
+                  <div className="p-4 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] max-w-sm mx-auto text-xs text-[var(--ctl-soft)]">
+                    Direct confirmation has been queued for <strong className="text-[var(--ctl-text)]">{formData.email}</strong>.
+                  </div>
+                  <div className="pt-4 flex justify-center gap-4">
                     <button
                       type="button"
                       onClick={() => {
-                        setIsSuccess(false);
+                        setIsSubmitted(false);
                         setFormData({
                           fullName: "",
                           email: "",
                           company: "",
-                          serviceType: "AI SaaS & Digital Product Engineering",
+                          serviceType: SERVICE_TYPE_OPTIONS[0],
                           description: "",
-                          budgetRange: "$5,000 - $10,000 (MVP & Early Stage Development)",
+                          budgetRange: BUDGET_RANGE_OPTIONS[1],
                           referral: "",
                         });
                       }}
-                      className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] underline"
+                      className="text-xs uppercase tracking-wider text-[var(--ctl-ink)] underline font-semibold"
                     >
                       Submit Another Specification
                     </button>
@@ -309,10 +265,10 @@ export function ContactPage() {
                 </div>
               ) : (
                 <form onSubmit={handleSubmit} className="space-y-6">
-                  {errorMessage && (
-                    <div className="p-4 rounded-[2px] border border-red-300 bg-red-50 text-red-800 text-sm flex items-center gap-2">
+                  {submitError && (
+                    <div className="p-4 rounded-[2px] border border-red-500/40 bg-red-500/5 text-red-700 dark:text-red-300 text-xs flex items-center gap-2">
                       <AlertCircle className="w-4 h-4 shrink-0" />
-                      <span>{errorMessage}</span>
+                      <span>{submitError}</span>
                     </div>
                   )}
 
@@ -323,12 +279,13 @@ export function ContactPage() {
                         htmlFor="fullName"
                         className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
                       >
-                        Full Name *
+                        Full Name / Title *
                       </label>
                       <input
-                        type="text"
                         id="fullName"
                         name="fullName"
+                        type="text"
+                        required
                         value={formData.fullName}
                         onChange={handleChange}
                         placeholder="Ada Lovelace"
@@ -345,15 +302,16 @@ export function ContactPage() {
                         htmlFor="email"
                         className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
                       >
-                        Email Address *
+                        Corporate Email *
                       </label>
                       <input
-                        type="email"
                         id="email"
                         name="email"
+                        type="email"
+                        required
                         value={formData.email}
                         onChange={handleChange}
-                        placeholder="ada@analytical-engine.com"
+                        placeholder="founder@company.com"
                         className="w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]"
                       />
                       {errors.email && (
@@ -363,18 +321,18 @@ export function ContactPage() {
                   </div>
 
                   <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
-                    {/* Company */}
+                    {/* Company / Entity */}
                     <div className="space-y-2">
                       <label
                         htmlFor="company"
                         className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
                       >
-                        Company / Organization
+                        Company / Project Name
                       </label>
                       <input
-                        type="text"
                         id="company"
                         name="company"
+                        type="text"
                         value={formData.company}
                         onChange={handleChange}
                         placeholder="Analytical Engine Co."
@@ -415,7 +373,7 @@ export function ContactPage() {
                       htmlFor="description"
                       className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
                     >
-                      Project Scope & Objectives *
+                      Project Scope &amp; Objectives *
                     </label>
                     <textarea
                       id="description"
@@ -438,7 +396,7 @@ export function ContactPage() {
                         htmlFor="budgetRange"
                         className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
                       >
-                        Estimated Budget
+                        Allocated Budget Band
                       </label>
                       <select
                         id="budgetRange"
@@ -455,13 +413,13 @@ export function ContactPage() {
                       </select>
                     </div>
 
-                    {/* Referral */}
+                    {/* Referral Source */}
                     <div className="space-y-2">
                       <label
                         htmlFor="referral"
                         className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
                       >
-                        How did you hear about us?
+                        How Did You Find Us?
                       </label>
                       <select
                         id="referral"
@@ -561,23 +519,8 @@ export function ContactPage() {
                     Headquarters
                   </span>
                   <p className="text-[var(--ctl-text)]">
-                    Bangalore, Karnataka, India · Serving global enterprise partners
+                    Gurgaon, Haryana, India · Serving global enterprise partners
                   </p>
-                </div>
-
-                <div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block mb-1">
-                    Enterprise Platform
-                  </span>
-                  <a
-                    href="https://proquoment.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[var(--ctl-ink)] hover:underline flex items-center gap-1 font-medium"
-                  >
-                    <span>Visit Proquoment Platform</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
                 </div>
               </div>
 
