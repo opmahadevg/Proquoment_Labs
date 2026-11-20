@@ -10,7 +10,6 @@
 ## Canonical Public Pages
 - [Home](https://labs.proquoment.in/): Overview of Proquoment Labs AI product engineering, automation, and digital experiences.
 - [Services](https://labs.proquoment.in/services): Deep dive into AI SaaS engineering, business process automation, and web application development.
-- [Work](https://labs.proquoment.in/work): Production case studies including autonomous agent swarms, SaaS MVP sprints, and workflow automation.
 - [About](https://labs.proquoment.in/about): The dedicated AI engineering and innovation studio of Proquoment Private Limited.
 - [Contact](https://labs.proquoment.in/contact): Start an AI project with direct engineering review and <24h response SLA.
 - [Insights & Industry AI Dispatches](https://labs.proquoment.in/blog): Deep-dive case studies, playbooks, and architectures for enterprise AI implementation.
@@ -18,6 +17,6 @@
 - [Terms of Service](https://labs.proquoment.in/terms-of-service): Commercial terms and intellectual property ownership standards.
 
 ## Organization Details
-- Parent Organization: Proquoment (https://proquoment.in)
+- Parent Organization: Proquoment
 - Website: https://labs.proquoment.in
 - Contact: contact@proquoment.in

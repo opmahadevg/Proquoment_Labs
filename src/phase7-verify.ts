@@ -15,7 +15,7 @@ export const CANONICAL_ROUTES: readonly RouteMetaRecord[] = [
   {
     path: "/",
     canonical: "https://labs.proquoment.in/",
-    title: "Proquoment Labs | Build for the Future. Become AI-Ready Today.",
+    title: "Proquoment Labs | Become AI-Ready Today.",
     description:
       "We help ambitious startups build AI-powered products and help businesses prepare for an AI-powered future through intelligent software, automation and modern engineering.",
     isLazy: true,
@@ -26,14 +26,6 @@ export const CANONICAL_ROUTES: readonly RouteMetaRecord[] = [
     title: "Services | AI SaaS, Business Automation & Digital Experiences | Proquoment Labs",
     description:
       "AI SaaS & Digital Product Engineering, Business Process Automation & Integrations, and Web Applications & Digital Experiences.",
-    isLazy: true,
-  },
-  {
-    path: "/work",
-    canonical: "https://labs.proquoment.in/work",
-    title: "Work & Case Studies | Production AI Systems & Architecture | Proquoment Labs",
-    description:
-      "Explore technical case studies: AI SaaS product engineering, intelligent process automation, and high-performance web systems.",
     isLazy: true,
   },
   {
@@ -89,7 +81,7 @@ export const REQUIRED_PUBLIC_ASSETS = [
 export function verifyPhase7Exports() {
   const routesValid =
     Array.isArray(CANONICAL_ROUTES) &&
-    CANONICAL_ROUTES.length === 7 &&
+    CANONICAL_ROUTES.length === 6 &&
     CANONICAL_ROUTES.every(
       (r) =>
         r.path.startsWith("/") &&
