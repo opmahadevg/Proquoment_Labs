@@ -5,34 +5,38 @@ import {
   PlateKicker,
   EtchedCard,
   CopperplateButton,
-  HatchDivider,
   WaxSealBadge,
+  HatchDivider,
 } from "@/components/ui/copperplate-primitives";
 import {
-  ShieldCheck,
+  Building2,
+  Rocket,
+  Code2,
   Zap,
   Target,
+  Compass,
   ArrowRight,
   ExternalLink,
-  Building2,
-  Compass,
-  Cpu,
+  ShieldCheck,
   CheckCircle2,
-  Lock,
+  Cpu,
+  Layers,
+  Sparkles,
+  Users,
 } from "lucide-react";
 
 export function AboutPage() {
   return (
     <div className="relative min-h-screen text-[var(--ctl-text)] bg-[var(--ctl-paper)] overflow-hidden">
       {/* ============================================================
-          PAGE HERO / HEADER
+          PAGE HERO
           ============================================================ */}
       <section className="py-20 border-b border-[var(--ctl-line)] bg-[var(--ctl-paper)]">
         <div className="max-w-7xl mx-auto px-6">
-          <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center">
-            <div className="lg:col-span-8 space-y-4">
-              <PlateKicker>STUDIO PEDIGREE &amp; OPERATIONAL CHARTER</PlateKicker>
-              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[var(--ctl-text)] leading-tight">
+          <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+            <div className="lg:col-span-8 space-y-6">
+              <PlateKicker>AI-NATIVE PRODUCT &amp; ENGINEERING STUDIO</PlateKicker>
+              <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[var(--ctl-text)] leading-[1.08]">
                 Build for the Future.{" "}
                 <span className="italic text-[var(--ctl-ink)] font-normal block mt-1">
                   Become AI-Ready Today.
@@ -157,22 +161,21 @@ export function AboutPage() {
       </section>
 
       {/* ============================================================
-          SECTION 2: MISSION & COMMITMENT
+          SECTION 2: OUR MISSION
           ============================================================ */}
       <section className="py-24 border-b border-[var(--ctl-line)]">
         <div className="max-w-7xl mx-auto px-6 space-y-12">
           <PlateHeader
-            kicker="STUDIO CHARTER"
+            kicker="THE MISSION"
             title="Empowering Businesses to Become AI-Native"
-            italicWord="From initial scoping to running systems."
-            description="We bridge the critical gap between conceptual AI capabilities and production software that drives business outcomes."
+            description="We define 'AI-Native' not as using AI as a novelty feature, but as fundamentally re-architecting how digital products are built and how operations execute."
           />
 
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <EtchedCard className="space-y-4">
               <span className="font-serif text-2xl font-bold text-[var(--ctl-ink)]">I.</span>
               <h3 className="font-serif text-xl sm:text-2xl text-[var(--ctl-text)]">
-                Build for the Future
+                Build for the AI-Powered Future
               </h3>
               <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
                 We help ambitious founders turn ideas and wireframes into working, monetizable AI-powered
@@ -281,7 +284,7 @@ export function AboutPage() {
       </section>
 
       {/* ============================================================
-          SECTION 4: PROQUOMENT PLATFORM ECOSYSTEM
+          SECTION 4: PROQUOMENT PLATFORM CROSS-LINK
           ============================================================ */}
       <section className="py-24 border-b border-[var(--ctl-line)]">
         <div className="max-w-7xl mx-auto px-6">
@@ -304,7 +307,7 @@ export function AboutPage() {
                 <p className="text-[16px] text-[var(--ctl-soft)] leading-relaxed">
                   Proquoment Labs is the dedicated AI product and engineering studio of
                   Proquoment Private Limited, operating as a distinct client-services brand. Our sister
-                  venture operates the specialized procurement SaaS platform.
+                  venture operates the specialized procurement SaaS platform at <strong className="text-[var(--ctl-ink)]">proquoment.in</strong>.
                 </p>
 
                 <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
