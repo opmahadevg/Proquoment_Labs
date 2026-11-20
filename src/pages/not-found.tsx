@@ -85,10 +85,6 @@ export function NotFoundPage() {
               Services
             </Link>
             <span className="text-[var(--ctl-line)]">•</span>
-            <Link href="/work" className="hover:text-[var(--ctl-ink)] uppercase tracking-wider">
-              Work &amp; Portfolio
-            </Link>
-            <span className="text-[var(--ctl-line)]">•</span>
             <Link href="/about" className="hover:text-[var(--ctl-ink)] uppercase tracking-wider">
               About Us
             </Link>
