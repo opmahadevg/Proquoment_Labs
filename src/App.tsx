@@ -8,6 +8,7 @@ import SmoothScroll from "@/components/SmoothScroll";
 import Layout from "@/components/Layout";
 import RouteErrorBoundary from "@/components/RouteErrorBoundary";
 import { prefetchRoute } from "@/lib/prefetch";
+import { PageFallbackSkeleton } from "@/components/ui/copperplate-skeletons";
 import { verifyPhase2Exports } from "@/phase2-verify";
 import { verifyPhase3Exports } from "@/phase3-verify";
 import { verifyPhase4Exports } from "@/phase4-verify";
@@ -45,15 +46,9 @@ export function PageFallback() {
     <div
       role="status"
       aria-live="polite"
-      className="min-h-[60vh] flex flex-col items-center justify-center space-y-4 py-24"
+      className="w-full min-h-[60vh] transition-opacity duration-300"
     >
-      <div
-        className="w-10 h-10 rounded-full border-2 border-primary border-t-transparent animate-spin"
-        aria-hidden="true"
-      />
-      <span className="text-xs font-mono text-zinc-400 animate-pulse tracking-wider">
-        Loading Proquoment Labs...
-      </span>
+      <PageFallbackSkeleton />
       <span className="sr-only">Loading content, please wait...</span>
     </div>
   );

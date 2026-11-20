@@ -7,6 +7,7 @@ import { motion, AnimatePresence } from "framer-motion";
 import { cn } from "@/lib/utils";
 import SEO, { SEOProps } from "@/components/SEO";
 import { prefetchRoute } from "@/lib/prefetch";
+import { PageTransition } from "@/components/PageTransition";
 
 export interface NavItem {
   label: string;
@@ -596,12 +597,18 @@ export interface LayoutProps {
 }
 
 export function Layout({ children, seo, className }: LayoutProps) {
+  const [location] = useLocation();
+
   return (
     <div className="min-h-screen flex flex-col bg-[var(--ctl-paper)] text-[var(--ctl-text)] antialiased transition-colors duration-300">
       <SEO {...seo} />
       <Navbar />
       <main className={cn("min-h-[calc(100vh-4rem)] flex-1", className)}>
-        {children}
+        <AnimatePresence mode="wait" initial={false}>
+          <PageTransition key={location}>
+            {children}
+          </PageTransition>
+        </AnimatePresence>
       </main>
       <Footer />
     </div>

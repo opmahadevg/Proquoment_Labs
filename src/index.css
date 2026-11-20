@@ -229,3 +229,43 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 }
+
+/* Hardware accelerated CSS custom property registration for hero etch curtain */
+@property --ctl-r {
+  syntax: "<percentage>";
+  inherits: false;
+  initial-value: 0%;
+}
+
+/* Copperplate Skeleton Shimmer Utilities */
+@keyframes ctl-shimmer {
+  0% {
+    background-position: -200% 0;
+  }
+  100% {
+    background-position: 200% 0;
+  }
+}
+
+.ctl-skeleton {
+  position: relative;
+  overflow: hidden;
+  background-color: color-mix(in oklab, var(--ctl-ink) 5%, var(--ctl-paper));
+  border: 1px solid var(--ctl-line);
+  border-radius: 2px;
+}
+
+.ctl-skeleton::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in oklab, var(--ctl-ink) 8%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: ctl-shimmer 2.2s cubic-bezier(0.4, 0, 0.2, 1) infinite;
+  pointer-events: none;
+}

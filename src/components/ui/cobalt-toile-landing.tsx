@@ -513,8 +513,10 @@ const CTL_CSS = `
 @keyframes ctl-drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 @media (max-width:860px){.ctl-links,.ctl-navcta{display:none}.ctl-burger{display:inline-flex}}
 
+@property --ctl-r{syntax:"<percentage>";inherits:false;initial-value:0%}
 .ctl-hero{padding:6px clamp(8px,1.6vw,20px) 0}
-.ctl-stage{--ctl-sh:clamp(560px,52vw,880px);position:relative;height:var(--ctl-sh);max-width:1640px;margin:0 auto;overflow:hidden;background:var(--ctl-deep);color:var(--ctl-ondeep);touch-action:pan-y}
+.ctl-stage{--ctl-sh:clamp(560px,52vw,880px);position:relative;height:var(--ctl-sh);max-width:1640px;margin:0 auto;overflow:hidden;background:var(--ctl-deep);color:var(--ctl-ondeep);touch-action:pan-y;animation:ctl-fadein .7s cubic-bezier(.16,1,.3,1) both}
+@keyframes ctl-fadein{0%{opacity:0;transform:translate3d(0,6px,0) scale(.99)}100%{opacity:1;transform:translate3d(0,0,0) scale(1)}}
 .ctl-cover{position:absolute;left:50%;top:0;height:100%;width:calc(var(--ctl-sh) * 1.6667);transform:translateX(-50%);container-type:inline-size}
 .ctl-layer{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;will-change:transform}
 .ctl-copy{position:absolute;left:34.4%;width:31.2%;top:22.5%;bottom:33%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,1.25cqw,20px);text-align:center;color:var(--ctl-ink);will-change:transform}
@@ -538,11 +540,11 @@ const CTL_CSS = `
 .ctl-shade{transition:transform 1.1s cubic-bezier(.5,0,.2,1)}
 .ctl-shoot{position:absolute;z-index:1;left:12%;top:9%;width:130px;height:1.5px;background:linear-gradient(90deg,transparent,var(--ctl-ondeep));transform:rotate(18deg);opacity:0;pointer-events:none;animation:ctl-shoot 13s linear 4s infinite}
 @keyframes ctl-shoot{0%,86%{opacity:0;translate:0 0}88%{opacity:1}95%{opacity:0;translate:260px 84px}100%{opacity:0;translate:260px 84px}}
-.ctl-veil{position:absolute;inset:0;z-index:6;pointer-events:none;background:radial-gradient(circle at 50% 58%,transparent var(--ctl-r),color-mix(in oklab,var(--ctl-ondeep) 70%,transparent) calc(var(--ctl-r) + .6%),var(--ctl-deep) calc(var(--ctl-r) + 7%));opacity:0}
-.ctl-intro .ctl-veil{animation:ctl-etch 2.3s cubic-bezier(.65,.05,.25,1) .1s both}
+.ctl-veil{position:absolute;inset:0;z-index:6;pointer-events:none;background:radial-gradient(circle at 50% 58%,transparent var(--ctl-r),color-mix(in oklab,var(--ctl-ondeep) 70%,transparent) calc(var(--ctl-r) + .6%),var(--ctl-deep) calc(var(--ctl-r) + 7%));opacity:0;will-change:opacity}
+.ctl-intro .ctl-veil{animation:ctl-etch 2.2s cubic-bezier(.65,.05,.25,1) .1s both}
 @keyframes ctl-etch{0%{--ctl-r:0%;opacity:1}88%{opacity:1}100%{--ctl-r:110%;opacity:0}}
-.ctl-intro .ctl-settle{animation:ctl-settle 2.4s cubic-bezier(.2,.7,.2,1) both}
-@keyframes ctl-settle{from{scale:1.07}to{scale:1}}
+.ctl-intro .ctl-settle{animation:ctl-settle 2.2s cubic-bezier(.16,1,.3,1) both;will-change:transform}
+@keyframes ctl-settle{from{transform:translate3d(0,0,0) scale(1.03)}to{transform:translate3d(0,0,0) scale(1)}}
 .ctl-intro .ctl-rise{animation:ctl-rise 1.1s cubic-bezier(.2,.7,.2,1) both}
 @keyframes ctl-rise{from{opacity:0;translate:0 16px}to{opacity:1;translate:0 0}}
 

@@ -28,7 +28,9 @@ export function ScrollToTop() {
       }, 40);
       return () => clearInterval(interval);
     }
-    window.scrollTo({ top: 0, behavior: "instant" });
+    if (window.scrollY > 0) {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
     return undefined;
   }, [location]);
 
