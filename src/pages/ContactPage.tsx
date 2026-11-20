@@ -174,4 +174,423 @@ export function ContactPage() {
           supabaseErrorOccurred = true;
           supabaseErrorMessage = supabaseError.message || "Failed to submit project enquiry.";
         }
-      } catch (sbErr) {\n        console.error(\"Supabase network error:\", sbErr);\n        supabaseErrorOccurred = true;\n        supabaseErrorMessage =\n          sbErr instanceof Error ? sbErr.message : \"Failed to connect to database.\";\n      }\n\n      // 2. Dual-write to Google Sheet webapp URL if configured\n      const googleSheetUrl = import.meta.env.VITE_GOOGLE_SHEET_WEBAPP_URL as\n        | string\n        | undefined;\n\n      if (googleSheetUrl) {\n        try {\n          await fetch(googleSheetUrl, {\n            method: \"POST\",\n            mode: \"no-cors\",\n            headers: {\n              \"Content-Type\": \"application/json\",\n            },\n            body: JSON.stringify({\n              timestamp: new Date().toISOString(),\n              full_name: payload.full_name,\n              fullName: payload.full_name,\n              email: payload.email,\n              company: payload.company || \"\",\n              service_type: payload.service_type,\n              serviceType: payload.service_type,\n              inquiry_type: payload.service_type,\n              description: payload.description,\n              message: payload.description,\n              budget_range: payload.budget_range || \"\",\n              budgetRange: payload.budget_range || \"\",\n              referral: payload.referral || \"\",\n              source: sourceUrl,\n              sourceUrl,\n            }),\n          });\n        } catch (sheetErr) {\n          console.warn(\"Google Sheet dual-write non-blocking err:\", sheetErr);\n        }\n      }\n\n      if (supabaseErrorOccurred && !googleSheetUrl) {\n        setErrorMessage(\n          supabaseErrorMessage || \"Failed to submit enquiry. Please email us directly.\"\n        );\n        setIsSubmitting(false);\n        return;\n      }\n\n      setIsSuccess(true);\n      setIsSubmitting(false);\n    } catch (err) {\n      console.error(\"Unexpected submission error:\", err);\n      setErrorMessage(\"An unexpected error occurred. Please reach out via email.\");\n      setIsSubmitting(false);\n    }\n  };\n\n  return (\n    <div className=\"relative min-h-screen text-[var(--ctl-text)] bg-[var(--ctl-paper)] overflow-hidden\">\n      {/* ============================================================\n          PAGE HEADER\n          ============================================================ */}\n      <section className=\"py-20 border-b border-[var(--ctl-line)] bg-[var(--ctl-paper)]\">\n        <div className=\"max-w-7xl mx-auto px-6\">\n          <PlateHeader\n            kicker=\"DIRECT INQUIRY\"\n            title=\"Let Us Build Something\"\n            italicWord=\"Lasting.\"\n            description=\"Tell us about your product idea, operational challenges or systems to connect. A senior engineering partner reviews and responds within 24 hours.\"\n          />\n        </div>\n      </section>\n\n      {/* ============================================================\n          MAIN 2-COLUMN SECTION\n          ============================================================ */}\n      <section className=\"py-24 max-w-7xl mx-auto px-6\">\n        <div className=\"grid grid-cols-1 lg:grid-cols-12 gap-12 items-start\">\n          {/* ==========================================\n              LEFT COLUMN: LETTERPRESS INQUIRY FORM\n              ========================================== */}\n          <div className=\"lg:col-span-7\">\n            <EtchedCard className=\"p-8 sm:p-10 space-y-8\">\n              <div className=\"border-b border-[var(--ctl-line)] pb-4 flex items-center justify-between\">\n                <div>\n                  <h2 className=\"font-serif text-2xl sm:text-3xl text-[var(--ctl-text)]\">\n                    Project Specification\n                  </h2>\n                  <p className=\"text-xs text-[var(--ctl-soft)] mt-1 font-sans uppercase tracking-wider\">\n                    Engraving Ledger · Vol. I\n                  </p>\n                </div>\n                <span className=\"text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 border border-[var(--ctl-line)] text-[var(--ctl-ink)] rounded-[2px] bg-[var(--ctl-wash)]\">\n                  Confidential\n                </span>\n              </div>\n\n              {isSuccess ? (\n                <div className=\"py-12 text-center space-y-6\">\n                  <div className=\"w-16 h-16 mx-auto rounded-full bg-[var(--ctl-wash)] border border-[var(--ctl-line)] text-[var(--ctl-ink)] flex items-center justify-center\">\n                    <CheckCircle2 className=\"w-8 h-8\" />\n                  </div>\n                  <h3 className=\"font-serif text-3xl text-[var(--ctl-text)]\">\n                    Enquiry Received!\n                  </h3>\n                  <p className=\"text-[16px] text-[var(--ctl-soft)] max-w-md mx-auto leading-relaxed\">\n                    Your project details have been recorded in our dispatch ledger. A senior\n                    partner will review the technical scope and follow up within 24 hours.\n                  </p>\n                  <div className=\"pt-4 flex justify-center\">\n                    <button\n                      type=\"button\"\n                      onClick={() => {\n                        setIsSuccess(false);\n                        setFormData({\n                          fullName: \"\",\n                          email: \"\",\n                          company: \"\",\n                          serviceType: \"AI SaaS & Digital Product Engineering\",\n                          description: \"\",\n                          budgetRange: \"$5,000 - $10,000 (MVP & Early Stage Development)\",\n                          referral: \"\",\n                        });\n                      }}\n                      className=\"text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] underline\"\n                    >\n                      Submit Another Specification\n                    </button>\n                  </div>\n                </div>\n              ) : (\n                <form onSubmit={handleSubmit} className=\"space-y-6\">\n                  {errorMessage && (\n                    <div className=\"p-4 rounded-[2px] border border-red-300 bg-red-50 text-red-800 text-sm flex items-center gap-2\">\n                      <AlertCircle className=\"w-4 h-4 shrink-0\" />\n                      <span>{errorMessage}</span>\n                    </div>\n                  )}\n\n                  <div className=\"grid grid-cols-1 sm:grid-cols-2 gap-6\">\n                    {/* Full Name */}\n                    <div className=\"space-y-2\">\n                      <label\n                        htmlFor=\"fullName\"\n                        className=\"text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block\"\n                      >\n                        Full Name *\n                      </label>\n                      <input\n                        type=\"text\"\n                        id=\"fullName\"\n                        name=\"fullName\"\n                        value={formData.fullName}\n                        onChange={handleChange}\n                        placeholder=\"Ada Lovelace\"\n                        className=\"w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]\"\n                      />\n                      {errors.fullName && (\n                        <p className=\"text-xs text-red-600 font-sans\">{errors.fullName}</p>\n                      )}\n                    </div>\n\n                    {/* Email Address */}\n                    <div className=\"space-y-2\">\n                      <label\n                        htmlFor=\"email\"\n                        className=\"text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block\"\n                      >\n                        Email Address *\n                      </label>\n                      <input\n                        type=\"email\"\n                        id=\"email\"\n                        name=\"email\"\n                        value={formData.email}\n                        onChange={handleChange}\n                        placeholder=\"ada@analytical-engine.com\"\n                        className=\"w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]\"\n                      />\n                      {errors.email && (\n                        <p className=\"text-xs text-red-600 font-sans\">{errors.email}</p>\n                      )}\n                    </div>\n                  </div>\n\n                  <div className=\"grid grid-cols-1 sm:grid-cols-2 gap-6\">\n                    {/* Company */}\n                    <div className=\"space-y-2\">\n                      <label\n                        htmlFor=\"company\"\n                        className=\"text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block\"\n                      >\n                        Company / Organization\n                      </label>\n                      <input\n                        type=\"text\"\n                        id=\"company\"\n                        name=\"company\"\n                        value={formData.company}\n                        onChange={handleChange}\n                        placeholder=\"Analytical Engine Co.\"\n                        className=\"w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]\"\n                      />\n                    </div>\n\n                    {/* Service Type */}\n                    <div className=\"space-y-2\">\n                      <label\n                        htmlFor=\"serviceType\"\n                        className=\"text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block\"\n                      >\n                        Engagement Type *\n                      </label>\n                      <select\n                        id=\"serviceType\"\n                        name=\"serviceType\"\n                        value={formData.serviceType}\n                        onChange={handleChange}\n                        className=\"w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]\"\n                      >\n                        {SERVICE_TYPE_OPTIONS.map((opt) => (\n                          <option key={opt} value={opt}>\n                            {opt}\n                          </option>\n                        ))}\n                      </select>\n                      {errors.serviceType && (\n                        <p className=\"text-xs text-red-600 font-sans\">{errors.serviceType}</p>\n                      )}\n                    </div>\n                  </div>\n\n                  {/* Project Description */}\n                  <div className=\"space-y-2\">\n                    <label\n                      htmlFor=\"description\"\n                      className=\"text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block\"\n                    >\n                      Project Scope &amp; Objectives *\n                    </label>\n                    <textarea\n                      id=\"description\"\n                      name=\"description\"\n                      rows={5}\n                      value={formData.description}\n                      onChange={handleChange}\n                      placeholder=\"Tell us about your product idea or operational problem, your current stage, desired outcome, and timeline...\"\n                      className=\"w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]\"\n                    />\n                    {errors.description && (\n                      <p className=\"text-xs text-red-600 font-sans\">{errors.description}</p>\n                    )}\n                  </div>\n\n                  <div className=\"grid grid-cols-1 sm:grid-cols-2 gap-6\">\n                    {/* Budget Range */}\n                    <div className=\"space-y-2\">\n                      <label\n                        htmlFor=\"budgetRange\"\n                        className=\"text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block\"\n                      >\n                        Estimated Budget\n                      </label>\n                      <select\n                        id=\"budgetRange\"\n                        name=\"budgetRange\"\n                        value={formData.budgetRange}\n                        onChange={handleChange}\n                        className=\"w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]\"\n                      >\n                        {BUDGET_RANGE_OPTIONS.map((opt) => (\n                          <option key={opt} value={opt}>\n                            {opt}\n                          </option>\n                        ))}\n                      </select>\n                    </div>\n\n                    {/* Referral */}\n                    <div className=\"space-y-2\">\n                      <label\n                        htmlFor=\"referral\"\n                        className=\"text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block\"\n                      >\n                        How did you hear about us?\n                      </label>\n                      <select\n                        id=\"referral\"\n                        name=\"referral\"\n                        value={formData.referral}\n                        onChange={handleChange}\n                        className=\"w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]\"\n                      >\n                        <option value=\"\">Select source...</option>\n                        {REFERRAL_OPTIONS.map((opt) => (\n                          <option key={opt} value={opt}>\n                            {opt}\n                          </option>\n                        ))}\n                      </select>\n                    </div>\n                  </div>\n\n                  <div className=\"pt-4 border-t border-[var(--ctl-line)]\">\n                    <CopperplateButton\n                      variant=\"deep\"\n                      className=\"w-full h-12 text-sm\"\n                      onClick={() => {}}\n                    >\n                      {isSubmitting ? (\n                        <>\n                          <Loader2 className=\"w-4 h-4 animate-spin\" />\n                          <span>Dispatching to Ledger...</span>\n                        </>\n                      ) : (\n                        <>\n                          <span>Submit Project Specification</span>\n                          <Send className=\"w-4 h-4\" />\n                        </>\n                      )}\n                    </CopperplateButton>\n                  </div>\n                </form>\n              )}\n            </EtchedCard>\n          </div>\n\n          {/* ==========================================\n              RIGHT COLUMN: DISPATCH INFO PANEL\n              ========================================== */}\n          <div className=\"lg:col-span-5 space-y-6\">\n            <EtchedCard className=\"p-8 space-y-6\">\n              <div className=\"border-b border-[var(--ctl-line)] pb-4 flex items-center justify-between\">\n                <span className=\"text-[11px] font-semibold uppercase tracking-widest text-[var(--ctl-ink)]\">\n                  Direct Coordination\n                </span>\n                <span className=\"text-xs font-serif text-[var(--ctl-soft)]\">\n                  &lt;24h Response Time SLA\n                </span>\n              </div>\n\n              {/* Direct Booking on Calendly */}\n              <div className=\"space-y-3\">\n                <h3 className=\"font-serif text-xl text-[var(--ctl-text)]\">\n                  Prefer a Live Discovery Call?\n                </h3>\n                <p className=\"text-sm text-[var(--ctl-soft)] leading-relaxed\">\n                  Book a 30-minute technical architecture call directly on our team calendar.\n                </p>\n                <a\n                  href=\"https://calendly.com/proquoment\"\n                  target=\"_blank\"\n                  rel=\"noopener noreferrer\"\n                  className=\"block w-full\"\n                >\n                  <CopperplateButton variant=\"paper\" className=\"w-full\">\n                    <Calendar className=\"w-4 h-4 text-[var(--ctl-ink)]\" />\n                    <span>Book on Calendly &rarr;</span>\n                  </CopperplateButton>\n                </a>\n              </div>\n\n              <HatchDivider className=\"my-6\" />\n\n              {/* Email & Details */}\n              <div className=\"space-y-4 text-sm text-[var(--ctl-soft)]\">\n                <div>\n                  <span className=\"text-[11px] font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block mb-1\">\n                    Direct Email\n                  </span>\n                  <a\n                    href=\"mailto:contact@proquoment.in\"\n                    className=\"font-serif text-lg text-[var(--ctl-text)] hover:text-[var(--ctl-ink)] transition-colors flex items-center gap-2\"\n                  >\n                    <Mail className=\"w-4 h-4 text-[var(--ctl-ink)]\" />\n                    <span>contact@proquoment.in</span>\n                  </a>\n                </div>\n\n                <div>\n                  <span className=\"text-[11px] font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block mb-1\">\n                    Headquarters\n                  </span>\n                  <p className=\"text-[var(--ctl-text)]\">\n                    Bangalore, Karnataka, India · Serving global enterprise partners\n                  </p>\n                </div>\n\n                <div>\n                  <span className=\"text-[11px] font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block mb-1\">\n                    Enterprise Platform\n                  </span>\n                  <a\n                    href=\"https://proquoment.in\"\n                    target=\"_blank\"\n                    rel=\"noopener noreferrer\"\n                    className=\"text-[var(--ctl-ink)] hover:underline flex items-center gap-1 font-medium\"\n                  >\n                    <span>Visit Proquoment Platform</span>\n                    <ExternalLink className=\"w-3.5 h-3.5\" />\n                  </a>\n                </div>\n              </div>\n\n              {/* Wax Seal Illustration */}\n              <div className=\"pt-4 border-t border-[var(--ctl-line)] flex items-center justify-center\">\n                <WaxSealBadge size={130} />\n              </div>\n            </EtchedCard>\n          </div>\n        </div>\n      </section>\n    </div>\n  );\n}\n\nexport default ContactPage;\n
+      } catch (sbErr) {
+        console.error("Supabase network error:", sbErr);
+        supabaseErrorOccurred = true;
+        supabaseErrorMessage =
+          sbErr instanceof Error ? sbErr.message : "Failed to connect to database.";
+      }
+
+      // 2. Dual-write to Google Sheet webapp URL if configured
+      const googleSheetUrl = import.meta.env.VITE_GOOGLE_SHEET_WEBAPP_URL as
+        | string
+        | undefined;
+
+      if (googleSheetUrl) {
+        try {
+          await fetch(googleSheetUrl, {
+            method: "POST",
+            mode: "no-cors",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              timestamp: new Date().toISOString(),
+              full_name: payload.full_name,
+              fullName: payload.full_name,
+              email: payload.email,
+              company: payload.company || "",
+              service_type: payload.service_type,
+              serviceType: payload.service_type,
+              inquiry_type: payload.service_type,
+              description: payload.description,
+              message: payload.description,
+              budget_range: payload.budget_range || "",
+              budgetRange: payload.budget_range || "",
+              referral: payload.referral || "",
+              source: sourceUrl,
+              sourceUrl,
+            }),
+          });
+        } catch (sheetErr) {
+          console.warn("Google Sheet dual-write non-blocking err:", sheetErr);
+        }
+      }
+
+      if (supabaseErrorOccurred && !googleSheetUrl) {
+        setErrorMessage(
+          supabaseErrorMessage || "Failed to submit enquiry. Please email us directly."
+        );
+        setIsSubmitting(false);
+        return;
+      }
+
+      setIsSuccess(true);
+      setIsSubmitting(false);
+    } catch (err) {
+      console.error("Unexpected submission error:", err);
+      setErrorMessage("An unexpected error occurred. Please reach out via email.");
+      setIsSubmitting(false);
+    }
+  };
+
+  return (
+    <div className="relative min-h-screen text-[var(--ctl-text)] bg-[var(--ctl-paper)] overflow-hidden">
+      {/* ============================================================
+          PAGE HEADER
+          ============================================================ */}
+      <section className="py-20 border-b border-[var(--ctl-line)] bg-[var(--ctl-paper)]">
+        <div className="max-w-7xl mx-auto px-6">
+          <PlateHeader
+            kicker="DIRECT INQUIRY"
+            title="Let Us Build Something"
+            italicWord="Lasting."
+            description="Tell us about your product idea, operational challenges or systems to connect. A senior engineering partner reviews and responds within 24 hours."
+          />
+        </div>
+      </section>
+
+      {/* ============================================================
+          MAIN 2-COLUMN SECTION
+          ============================================================ */}
+      <section className="py-24 max-w-7xl mx-auto px-6">
+        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+          {/* ==========================================
+              LEFT COLUMN: LETTERPRESS INQUIRY FORM
+              ========================================== */}
+          <div className="lg:col-span-7">
+            <EtchedCard className="p-8 sm:p-10 space-y-8">
+              <div className="border-b border-[var(--ctl-line)] pb-4 flex items-center justify-between">
+                <div>
+                  <h2 className="font-serif text-2xl sm:text-3xl text-[var(--ctl-text)]">
+                    Project Specification
+                  </h2>
+                  <p className="text-xs text-[var(--ctl-soft)] mt-1 font-sans uppercase tracking-wider">
+                    Engraving Ledger · Vol. I
+                  </p>
+                </div>
+                <span className="text-[11px] font-semibold tracking-wider uppercase px-2.5 py-1 border border-[var(--ctl-line)] text-[var(--ctl-ink)] rounded-[2px] bg-[var(--ctl-wash)]">
+                  Confidential
+                </span>
+              </div>
+
+              {isSuccess ? (
+                <div className="py-12 text-center space-y-6">
+                  <div className="w-16 h-16 mx-auto rounded-full bg-[var(--ctl-wash)] border border-[var(--ctl-line)] text-[var(--ctl-ink)] flex items-center justify-center">
+                    <CheckCircle2 className="w-8 h-8" />
+                  </div>
+                  <h3 className="font-serif text-3xl text-[var(--ctl-text)]">
+                    Enquiry Received!
+                  </h3>
+                  <p className="text-[16px] text-[var(--ctl-soft)] max-w-md mx-auto leading-relaxed">
+                    Your project details have been recorded in our dispatch ledger. A senior
+                    partner will review the technical scope and follow up within 24 hours.
+                  </p>
+                  <div className="pt-4 flex justify-center">
+                    <button
+                      type="button"
+                      onClick={() => {
+                        setIsSuccess(false);
+                        setFormData({
+                          fullName: "",
+                          email: "",
+                          company: "",
+                          serviceType: "AI SaaS & Digital Product Engineering",
+                          description: "",
+                          budgetRange: "$5,000 - $10,000 (MVP & Early Stage Development)",
+                          referral: "",
+                        });
+                      }}
+                      className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] underline"
+                    >
+                      Submit Another Specification
+                    </button>
+                  </div>
+                </div>
+              ) : (
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  {errorMessage && (
+                    <div className="p-4 rounded-[2px] border border-red-300 bg-red-50 text-red-800 text-sm flex items-center gap-2">
+                      <AlertCircle className="w-4 h-4 shrink-0" />
+                      <span>{errorMessage}</span>
+                    </div>
+                  )}
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {/* Full Name */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="fullName"
+                        className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
+                      >
+                        Full Name *
+                      </label>
+                      <input
+                        type="text"
+                        id="fullName"
+                        name="fullName"
+                        value={formData.fullName}
+                        onChange={handleChange}
+                        placeholder="Ada Lovelace"
+                        className="w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]"
+                      />
+                      {errors.fullName && (
+                        <p className="text-xs text-red-600 font-sans">{errors.fullName}</p>
+                      )}
+                    </div>
+
+                    {/* Email Address */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="email"
+                        className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
+                      >
+                        Email Address *
+                      </label>
+                      <input
+                        type="email"
+                        id="email"
+                        name="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        placeholder="ada@analytical-engine.com"
+                        className="w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]"
+                      />
+                      {errors.email && (
+                        <p className="text-xs text-red-600 font-sans">{errors.email}</p>
+                      )}
+                    </div>
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {/* Company */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="company"
+                        className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
+                      >
+                        Company / Organization
+                      </label>
+                      <input
+                        type="text"
+                        id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        placeholder="Analytical Engine Co."
+                        className="w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]"
+                      />
+                    </div>
+
+                    {/* Service Type */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="serviceType"
+                        className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
+                      >
+                        Engagement Type *
+                      </label>
+                      <select
+                        id="serviceType"
+                        name="serviceType"
+                        value={formData.serviceType}
+                        onChange={handleChange}
+                        className="w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]"
+                      >
+                        {SERVICE_TYPE_OPTIONS.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                      {errors.serviceType && (
+                        <p className="text-xs text-red-600 font-sans">{errors.serviceType}</p>
+                      )}
+                    </div>
+                  </div>
+
+                  {/* Project Description */}
+                  <div className="space-y-2">
+                    <label
+                      htmlFor="description"
+                      className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
+                    >
+                      Project Scope & Objectives *
+                    </label>
+                    <textarea
+                      id="description"
+                      name="description"
+                      rows={5}
+                      value={formData.description}
+                      onChange={handleChange}
+                      placeholder="Tell us about your product idea or operational problem, your current stage, desired outcome, and timeline..."
+                      className="w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]"
+                    />
+                    {errors.description && (
+                      <p className="text-xs text-red-600 font-sans">{errors.description}</p>
+                    )}
+                  </div>
+
+                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                    {/* Budget Range */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="budgetRange"
+                        className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
+                      >
+                        Estimated Budget
+                      </label>
+                      <select
+                        id="budgetRange"
+                        name="budgetRange"
+                        value={formData.budgetRange}
+                        onChange={handleChange}
+                        className="w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]"
+                      >
+                        {BUDGET_RANGE_OPTIONS.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+
+                    {/* Referral */}
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="referral"
+                        className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block"
+                      >
+                        How did you hear about us?
+                      </label>
+                      <select
+                        id="referral"
+                        name="referral"
+                        value={formData.referral}
+                        onChange={handleChange}
+                        className="w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]"
+                      >
+                        <option value="">Select source...</option>
+                        {REFERRAL_OPTIONS.map((opt) => (
+                          <option key={opt} value={opt}>
+                            {opt}
+                          </option>
+                        ))}
+                      </select>
+                    </div>
+                  </div>
+
+                  <div className="pt-4 border-t border-[var(--ctl-line)]">
+                    <CopperplateButton
+                      variant="deep"
+                      className="w-full h-12 text-sm"
+                      onClick={() => {}}
+                    >
+                      {isSubmitting ? (
+                        <>
+                          <Loader2 className="w-4 h-4 animate-spin" />
+                          <span>Dispatching to Ledger...</span>
+                        </>
+                      ) : (
+                        <>
+                          <span>Submit Project Specification</span>
+                          <Send className="w-4 h-4" />
+                        </>
+                      )}
+                    </CopperplateButton>
+                  </div>
+                </form>
+              )}
+            </EtchedCard>
+          </div>
+
+          {/* ==========================================
+              RIGHT COLUMN: DISPATCH INFO PANEL
+              ========================================== */}
+          <div className="lg:col-span-5 space-y-6">
+            <EtchedCard className="p-8 space-y-6">
+              <div className="border-b border-[var(--ctl-line)] pb-4 flex items-center justify-between">
+                <span className="text-[11px] font-semibold uppercase tracking-widest text-[var(--ctl-ink)]">
+                  Direct Coordination
+                </span>
+                <span className="text-xs font-serif text-[var(--ctl-soft)]">
+                  &lt;24h Response Time SLA
+                </span>
+              </div>
+
+              {/* Direct Booking on Calendly */}
+              <div className="space-y-3">
+                <h3 className="font-serif text-xl text-[var(--ctl-text)]">
+                  Prefer a Live Discovery Call?
+                </h3>
+                <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
+                  Book a 30-minute technical architecture call directly on our team calendar.
+                </p>
+                <a
+                  href="https://calendly.com/proquoment"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="block w-full"
+                >
+                  <CopperplateButton variant="paper" className="w-full">
+                    <Calendar className="w-4 h-4 text-[var(--ctl-ink)]" />
+                    <span>Book on Calendly &rarr;</span>
+                  </CopperplateButton>
+                </a>
+              </div>
+
+              <HatchDivider className="my-6" />
+
+              {/* Email & Details */}
+              <div className="space-y-4 text-sm text-[var(--ctl-soft)]">
+                <div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block mb-1">
+                    Direct Email
+                  </span>
+                  <a
+                    href="mailto:contact@proquoment.in"
+                    className="font-serif text-lg text-[var(--ctl-text)] hover:text-[var(--ctl-ink)] transition-colors flex items-center gap-2"
+                  >
+                    <Mail className="w-4 h-4 text-[var(--ctl-ink)]" />
+                    <span>contact@proquoment.in</span>
+                  </a>
+                </div>
+
+                <div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block mb-1">
+                    Headquarters
+                  </span>
+                  <p className="text-[var(--ctl-text)]">
+                    Bangalore, Karnataka, India · Serving global enterprise partners
+                  </p>
+                </div>
+
+                <div>
+                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block mb-1">
+                    Enterprise Platform
+                  </span>
+                  <a
+                    href="https://proquoment.in"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="text-[var(--ctl-ink)] hover:underline flex items-center gap-1 font-medium"
+                  >
+                    <span>Visit Proquoment Platform</span>
+                    <ExternalLink className="w-3.5 h-3.5" />
+                  </a>
+                </div>
+              </div>
+
+              {/* Wax Seal Illustration */}
+              <div className="pt-4 border-t border-[var(--ctl-line)] flex items-center justify-center">
+                <WaxSealBadge size={130} />
+              </div>
+            </EtchedCard>
+          </div>
+        </div>
+      </section>
+    </div>
+  );
+}
+
+export default ContactPage;

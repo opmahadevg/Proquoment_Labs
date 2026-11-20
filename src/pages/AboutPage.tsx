@@ -35,7 +35,7 @@ export function AboutPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-8 space-y-6">
-              <PlateKicker>AI-NATIVE PRODUCT &amp; ENGINEERING STUDIO</PlateKicker>
+              <PlateKicker>AI-NATIVE PRODUCT & ENGINEERING STUDIO</PlateKicker>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[var(--ctl-text)] leading-[1.08]">
                 Build for the Future.{" "}
                 <span className="italic text-[var(--ctl-ink)] font-normal block mt-1">
@@ -197,7 +197,7 @@ export function AboutPage() {
             <EtchedCard className="space-y-4">
               <span className="font-serif text-2xl font-bold text-[var(--ctl-ink)]">III.</span>
               <h3 className="font-serif text-xl sm:text-2xl text-[var(--ctl-text)]">
-                Full Code Ownership &amp; Data Security
+                Full Code Ownership & Data Security
               </h3>
               <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
                 100% intellectual property ownership transferred upon project payment. We engineer systems
