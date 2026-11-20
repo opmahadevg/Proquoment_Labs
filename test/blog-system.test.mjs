@@ -66,8 +66,8 @@ describe("AI Industry Blog & Insights System Contract Tests", () => {
     });
 
     test("contains ZERO em dashes or en dashes", () => {
-      assert.strictEqual(blogsDataContent.includes("—"), false, "Found em dash in blogs.ts");
-      assert.strictEqual(blogsDataContent.includes("–"), false, "Found en dash in blogs.ts");
+      assert.strictEqual(blogsDataContent.includes("\u2014"), false, "Found em dash in blogs.ts");
+      assert.strictEqual(blogsDataContent.includes("\u2013"), false, "Found en dash in blogs.ts");
     });
   });
 
@@ -96,8 +96,8 @@ describe("AI Industry Blog & Insights System Contract Tests", () => {
     });
 
     test("contains ZERO em dashes or en dashes", () => {
-      assert.strictEqual(blogPageContent.includes("—"), false, "Found em dash in BlogPage.tsx");
-      assert.strictEqual(blogPageContent.includes("–"), false, "Found en dash in BlogPage.tsx");
+      assert.strictEqual(blogPageContent.includes("\u2014"), false, "Found em dash in BlogPage.tsx");
+      assert.strictEqual(blogPageContent.includes("\u2013"), false, "Found en dash in BlogPage.tsx");
     });
   });
 
@@ -125,8 +125,8 @@ describe("AI Industry Blog & Insights System Contract Tests", () => {
     });
 
     test("contains ZERO em dashes or en dashes", () => {
-      assert.strictEqual(blogPostPageContent.includes("—"), false, "Found em dash in BlogPostPage.tsx");
-      assert.strictEqual(blogPostPageContent.includes("–"), false, "Found en dash in BlogPostPage.tsx");
+      assert.strictEqual(blogPostPageContent.includes("\u2014"), false, "Found em dash in BlogPostPage.tsx");
+      assert.strictEqual(blogPostPageContent.includes("\u2013"), false, "Found en dash in BlogPostPage.tsx");
     });
   });
 

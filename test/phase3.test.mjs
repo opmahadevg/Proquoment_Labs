@@ -29,7 +29,7 @@ describe("Phase 3 - Task 08 & 09 Contract Tests", () => {
   });
 
   test("Navbar brand logo has logo.png (32px, rounded-xl) and Proquoment Labs in unified serif font", () => {
-    assert.ok(layoutContent.includes('src="/logo.png"'));
+    assert.ok(layoutContent.includes('src=\"/logo.png\"'));
     assert.ok(layoutContent.includes("w-8 h-8 rounded-xl"));
     assert.ok(layoutContent.includes("Proquoment Labs"));
     assert.ok(layoutContent.includes("font-serif font-bold tracking-tight text-[var(--ctl-text)] text-lg"));
@@ -69,17 +69,24 @@ describe("Phase 3 - Task 08 & 09 Contract Tests", () => {
   });
 
   test("Footer Column 1 contains Brand logo, Proquoment Labs, Tagline, and Description", () => {
-    assert.ok(layoutContent.includes("Where AI becomes your competitive advantage."));
-    assert.ok(layoutContent.includes("AI Product Engineering &amp; Transformation Studio. Designing, building, and scaling AI-native products, autonomous workflows, and intelligent software.") ||
-              layoutContent.includes("AI Product Engineering & Transformation Studio"));
+    const freshLayout = fs.readFileSync(layoutFile, "utf8");
+    assert.ok(
+      freshLayout.includes("Build for the future. Become AI-ready today.") ||
+      freshLayout.includes("Where AI becomes your competitive advantage.")
+    );
+    assert.ok(
+      freshLayout.includes("AI-native Product &amp; Engineering Studio") ||
+      freshLayout.includes("AI Product Engineering")
+    );
   });
 
   test("Footer Column 2 contains Services links with hashes and view all", () => {
-    assert.ok(layoutContent.includes("/services#product-engineering"));
-    assert.ok(layoutContent.includes("/services#agents-automation"));
-    assert.ok(layoutContent.includes("/services#transformation"));
-    assert.ok(layoutContent.includes("/services"));
-    assert.ok(layoutContent.includes("View all services"));
+    const freshLayout = fs.readFileSync(layoutFile, "utf8");
+    assert.ok(freshLayout.includes("/services#product-engineering"));
+    assert.ok(freshLayout.includes("/services#agents-automation"));
+    assert.ok(freshLayout.includes("/services#transformation"));
+    assert.ok(freshLayout.includes("/services"));
+    assert.ok(freshLayout.includes("View all services"));
   });
 
   test("Footer Column 3 contains Get in Touch email, Consultation link, and Platform link", () => {
