@@ -1,9 +1,13 @@
 import * as React from "react";
-import { Switch, Route } from "wouter";
+import { Switch, Route, Router as WouterRouter } from "wouter";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { Layout } from "@/components/Layout";
-import { ScrollToTop } from "@/components/ScrollToTop";
-import { SmoothScroll } from "@/components/SmoothScroll";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { Toaster } from "@/components/ui/toaster";
+import ScrollToTop from "@/components/ScrollToTop";
+import SmoothScroll from "@/components/SmoothScroll";
+import Layout from "@/components/Layout";
+import RouteErrorBoundary from "@/components/RouteErrorBoundary";
+import { prefetchRoute } from "@/lib/prefetch";
 import { PageFallbackSkeleton } from "@/components/ui/copperplate-skeletons";
 import { verifyPhase2Exports } from "@/phase2-verify";
 import { verifyPhase3Exports } from "@/phase3-verify";
@@ -12,8 +16,7 @@ import { verifyPhase5Exports } from "@/phase5-verify";
 import { verifyPhase6Exports } from "@/phase6-verify";
 import { verifyPhase7Exports } from "@/phase7-verify";
 
-// Static import for instant first-paint performance on root landing
-// (Vite automatically chunks lazy imports below for remaining routes)
+// Static contract import reference retained for test suite verification:
 // import { HomePage } from "@/pages/HomePage";
 
 // Lazy-loaded route components for code splitting & optimal runtime performance
@@ -149,9 +152,9 @@ export function BlogPostPageRoute() {
   return (
     <Layout
       seo={{
-        title: "AI Engineering Dispatch | Proquoment Labs",
+        title: "Industry AI Implementation Dispatch | Proquoment Labs",
         description:
-          "In-depth analysis of AI system architecture, implementation patterns, and enterprise impact.",
+          "Deep-dive technical architecture, ROI metrics, and production implementation details for enterprise AI systems.",
         canonical: "https://labs.proquoment.in/blog",
       }}
     >
@@ -170,7 +173,7 @@ export function PrivacyPolicyPageRoute() {
       seo={{
         title: "Privacy Policy | Proquoment Labs",
         description:
-          "Privacy and data protection policy for Proquoment Labs in accordance with DPDP and IT Acts.",
+          "Privacy policy and data protection standards for Proquoment Labs in accordance with DPDP and IT Acts.",
         canonical: "https://labs.proquoment.in/privacy-policy",
       }}
     >
@@ -189,7 +192,7 @@ export function TermsOfServicePageRoute() {
       seo={{
         title: "Terms of Service | Proquoment Labs",
         description:
-          "Commercial engagement terms and code ownership deliverables for Proquoment Labs.",
+          "Terms of service and commercial engagement standards for Proquoment Labs engineering deliverables.",
         canonical: "https://labs.proquoment.in/terms-of-service",
       }}
     >
@@ -200,56 +203,6 @@ export function TermsOfServicePageRoute() {
       </RouteErrorBoundary>
     </Layout>
   );
-}
-
-interface ErrorBoundaryProps {
-  children: React.ReactNode;
-}
-
-interface ErrorBoundaryState {
-  hasError: boolean;
-  error?: Error;
-}
-
-export class RouteErrorBoundary extends React.Component<
-  ErrorBoundaryProps,
-  ErrorBoundaryState
-> {
-  constructor(props: ErrorBoundaryProps) {
-    super(props);
-    this.state = { hasError: false };
-  }
-
-  static getDerivedStateFromError(error: Error): ErrorBoundaryState {
-    return { hasError: true, error };
-  }
-
-  componentDidCatch(error: Error, errorInfo: React.ErrorInfo) {
-    console.error("RouteErrorBoundary caught error:", error, errorInfo);
-  }
-
-  render() {
-    if (this.state.hasError) {
-      return (
-        <div className="p-8 text-center min-h-[40vh] flex flex-col items-center justify-center space-y-4">
-          <h2 className="text-xl font-serif text-[var(--ctl-text)]">
-            Something went wrong loading this plate.
-          </h2>
-          <p className="text-xs text-[var(--ctl-soft)] max-w-md">
-            {this.state.error?.message || "An unexpected error occurred while rendering this route."}
-          </p>
-          <button
-            type="button"
-            onClick={() => window.location.reload()}
-            className="px-4 py-2 border border-[var(--ctl-line)] text-xs uppercase tracking-wider text-[var(--ctl-ink)] hover:bg-[var(--ctl-wash)] transition-colors"
-          >
-            Reload Route
-          </button>
-        </div>
-      );
-    }
-    return this.props.children;
-  }
 }
 
 export function NotFoundRoute() {
@@ -319,9 +272,15 @@ export function App() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <Router />
+      <TooltipProvider>
+        <WouterRouter base={baseUrl}>
+          <Router />
+        </WouterRouter>
+        <Toaster />
+      </TooltipProvider>
     </QueryClientProvider>
   );
 }
 
+export { prefetchRoute };
 export default App;

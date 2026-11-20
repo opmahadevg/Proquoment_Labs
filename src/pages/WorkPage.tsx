@@ -1,4 +1,7 @@
 /**
- * @deprecated Work page removed from Proquoment Labs.
+ * @deprecated Work page removed. Route handled by 404 handler.
  */
-export {};
+export function WorkPage() {
+  return null;
+}
+export default WorkPage;
