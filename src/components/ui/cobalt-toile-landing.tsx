@@ -120,8 +120,8 @@ const PALETTES = {
   oxblood: { label: "Oxblood", ink: "#7a1d2b", paper: "#f4ede2" },
 }
 const PALETTE_KEYS = ["cobalt", "indigo", "delft", "oxblood"]
-const MOON_STEPS = [0.42, 0.86, 1.34, 2.3]
-const MOON_NAMES = ["waxing crescent", "first quarter", "waxing gibbous", "full moon"]
+const MOON_STEPS = [0.42, 0.76, 1.15, 2.3, 1.15, 0.76]
+const MOON_NAMES = ["waxing crescent", "first quarter", "waxing gibbous", "full moon", "waning gibbous", "last quarter"]
 
 function clamp(v: number, a: number, b: number): number {
   return Math.min(b, Math.max(a, v))
@@ -513,10 +513,9 @@ const CTL_CSS = `
 @keyframes ctl-drop{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
 @media (max-width:860px){.ctl-links,.ctl-navcta{display:none}.ctl-burger{display:inline-flex}}
 
-@property --ctl-r{syntax:"<percentage>";inherits:false;initial-value:0%}
 .ctl-hero{padding:6px clamp(8px,1.6vw,20px) 0}
-.ctl-stage{--ctl-sh:clamp(560px,52vw,880px);position:relative;height:var(--ctl-sh);max-width:1640px;margin:0 auto;overflow:hidden;background:var(--ctl-deep);color:var(--ctl-ondeep);touch-action:pan-y;animation:ctl-fadein .7s cubic-bezier(.16,1,.3,1) both}
-@keyframes ctl-fadein{0%{opacity:0;transform:translate3d(0,6px,0) scale(.99)}100%{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+.ctl-stage{--ctl-sh:clamp(560px,52vw,880px);position:relative;height:var(--ctl-sh);max-width:1640px;margin:0 auto;overflow:hidden;background:var(--ctl-deep);color:var(--ctl-ondeep);touch-action:pan-y;animation:ctl-fadein .5s cubic-bezier(.16,1,.3,1) both}
+@keyframes ctl-fadein{0%{opacity:0;transform:translate3d(0,4px,0)}100%{opacity:1;transform:translate3d(0,0,0)}}
 .ctl-cover{position:absolute;left:50%;top:0;height:100%;width:calc(var(--ctl-sh) * 1.6667);transform:translateX(-50%);container-type:inline-size}
 .ctl-layer{position:absolute;left:0;top:0;width:100%;height:100%;pointer-events:none;will-change:transform}
 .ctl-copy{position:absolute;left:34.4%;width:31.2%;top:22.5%;bottom:33%;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(8px,1.25cqw,20px);text-align:center;color:var(--ctl-ink);will-change:transform}
@@ -537,16 +536,21 @@ const CTL_CSS = `
 .ctl-moon{pointer-events:auto;cursor:pointer;outline:none}
 .ctl-moon .ctl-moonring{opacity:0;transition:opacity .25s}
 .ctl-moon:hover .ctl-moonring,.ctl-moon:focus-visible .ctl-moonring{opacity:1}
-.ctl-shade{transition:transform 1.1s cubic-bezier(.5,0,.2,1)}
+.ctl-moon-cycle{animation:ctl-moon-glide 1.8s cubic-bezier(.45,.05,.25,.95) infinite alternate;will-change:transform}
+.ctl-moon:hover .ctl-moon-cycle{animation-play-state:paused}
+@keyframes ctl-moon-glide{0%{transform:translate3d(12px,0,0)}30%{transform:translate3d(24px,0,0)}65%{transform:translate3d(42px,0,0)}100%{transform:translate3d(70px,0,0)}}
+.ctl-sun-spin{animation:ctl-sun-spin 12s linear infinite;transform-origin:0px 0px;will-change:transform}
+.ctl-moon:hover .ctl-sun-spin{animation-duration:4s}
+@keyframes ctl-sun-spin{0%{transform:rotate(0deg)}100%{transform:rotate(360deg)}}
 .ctl-shoot{position:absolute;z-index:1;left:12%;top:9%;width:130px;height:1.5px;background:linear-gradient(90deg,transparent,var(--ctl-ondeep));transform:rotate(18deg);opacity:0;pointer-events:none;animation:ctl-shoot 13s linear 4s infinite}
 @keyframes ctl-shoot{0%,86%{opacity:0;translate:0 0}88%{opacity:1}95%{opacity:0;translate:260px 84px}100%{opacity:0;translate:260px 84px}}
-.ctl-veil{position:absolute;inset:0;z-index:6;pointer-events:none;background:radial-gradient(circle at 50% 58%,transparent var(--ctl-r),color-mix(in oklab,var(--ctl-ondeep) 70%,transparent) calc(var(--ctl-r) + .6%),var(--ctl-deep) calc(var(--ctl-r) + 7%));opacity:0;will-change:opacity}
-.ctl-intro .ctl-veil{animation:ctl-etch 2.2s cubic-bezier(.65,.05,.25,1) .1s both}
-@keyframes ctl-etch{0%{--ctl-r:0%;opacity:1}88%{opacity:1}100%{--ctl-r:110%;opacity:0}}
-.ctl-intro .ctl-settle{animation:ctl-settle 2.2s cubic-bezier(.16,1,.3,1) both;will-change:transform}
-@keyframes ctl-settle{from{transform:translate3d(0,0,0) scale(1.03)}to{transform:translate3d(0,0,0) scale(1)}}
-.ctl-intro .ctl-rise{animation:ctl-rise 1.1s cubic-bezier(.2,.7,.2,1) both}
-@keyframes ctl-rise{from{opacity:0;translate:0 16px}to{opacity:1;translate:0 0}}
+.ctl-veil{position:absolute;left:50%;top:58%;width:400px;height:400px;margin-left:-200px;margin-top:-200px;border-radius:50%;box-shadow:0 0 0 2500px var(--ctl-deep),inset 0 0 30px color-mix(in oklab,var(--ctl-ondeep) 40%,var(--ctl-deep));opacity:0;pointer-events:none;z-index:6;transform:translate3d(0,0,0) scale(.04);will-change:transform,opacity}
+.ctl-intro .ctl-veil{animation:ctl-etch 0.85s cubic-bezier(.16,1,.3,1) both}
+@keyframes ctl-etch{0%{opacity:1;transform:translate3d(0,0,0) scale(.04)}65%{opacity:1}100%{opacity:0;transform:translate3d(0,0,0) scale(4.8)}}
+.ctl-intro .ctl-settle{animation:ctl-settle 0.8s cubic-bezier(.16,1,.3,1) both;will-change:transform}
+@keyframes ctl-settle{from{opacity:.3;transform:translate3d(0,0,0) scale(1.025)}to{opacity:1;transform:translate3d(0,0,0) scale(1)}}
+.ctl-intro .ctl-rise{animation:ctl-rise 0.55s cubic-bezier(.16,1,.3,1) both;will-change:transform,opacity}
+@keyframes ctl-rise{from{opacity:0;transform:translate3d(0,14px,0)}to{opacity:1;transform:translate3d(0,0,0)}}
 
 .ctl-ticker{display:flex;align-items:center;gap:28px;padding:22px 0;border-bottom:1px solid var(--ctl-line)}
 .ctl-ticklabel{flex:none;font:600 10.5px/1.3 var(--ctl-sans);letter-spacing:.22em;text-transform:uppercase;color:var(--ctl-soft);max-width:11em}
@@ -1065,22 +1069,21 @@ function HeroSky() {
   )
 }
 
-function Moon({ x, y, r, side, phase, onCycle }: { x: number; y: number; r: number; side: number; phase: number; onCycle: () => void }) {
+function Moon({ x, y, r, side = 1, onCycle }: { x: number; y: number; r: number; side?: number; onCycle?: () => void }) {
   const pat = usePat()
   const { uid } = React.useContext(ArtCtx)
   const id = uid + "-moon" + (side > 0 ? "l" : "r")
-  const d = MOON_STEPS[phase] * r * side
   return (
     <g
       className="ctl-moon"
       role="button"
       tabIndex={0}
-      aria-label={"Moon, " + MOON_NAMES[phase] + ". Press to change its phase"}
+      aria-label="Moon, continuous lunar cycle"
       onClick={onCycle}
       onKeyDown={(e) => {
         if (e.key === "Enter" || e.key === " ") {
           e.preventDefault()
-          onCycle()
+          onCycle?.()
         }
       }}
     >
@@ -1103,12 +1106,119 @@ function Moon({ x, y, r, side, phase, onCycle }: { x: number; y: number; r: numb
           <circle cx={x + r * 0.3} cy={y + r * 0.18} r={r * 0.14} />
         </g>
         <circle cx={x} cy={y} r={r} fill={pat("d", "i")} opacity="0.35" />
-        <g className="ctl-shade" style={{ transform: "translateX(" + r1(d) + "px)" }}>
+        <g className="ctl-moon-cycle">
           <circle cx={x} cy={y} r={r * 1.03} className="ctl-bp" />
           <circle cx={x} cy={y} r={r * 1.03} fill={pat("h1", "p")} opacity="0.35" />
         </g>
       </g>
       <circle cx={x} cy={y} r={r} className="ctl-sp" fill="none" strokeWidth="0.8" />
+    </g>
+  )
+}
+
+function Sun({ x, y, r, onCycle }: { x: number; y: number; r: number; onCycle?: () => void }) {
+  const pat = usePat()
+
+  const rays = React.useMemo(() => {
+    const N = 16
+    const step = (Math.PI * 2) / N
+    const straightPaths = [] as string[]
+    const flamePaths = [] as string[]
+    const creasePaths = [] as string[]
+
+    for (let i = 0; i < N; i++) {
+      const th = i * step
+      const th1 = th - step * 0.32
+      const th2 = th + step * 0.32
+      const b1x = r * Math.cos(th1)
+      const b1y = r * Math.sin(th1)
+      const b2x = r * Math.cos(th2)
+      const b2y = r * Math.sin(th2)
+
+      if (i % 2 === 0) {
+        const tipR = r * 1.68
+        const tx = tipR * Math.cos(th)
+        const ty = tipR * Math.sin(th)
+        straightPaths.push(`M ${r1(b1x)} ${r1(b1y)} L ${r1(tx)} ${r1(ty)} L ${r1(b2x)} ${r1(b2y)} Z`)
+        creasePaths.push(`M ${r1(r * Math.cos(th))} ${r1(r * Math.sin(th))} L ${r1(tx)} ${r1(ty)}`)
+      } else {
+        const tipR = r * 1.56
+        const tx = tipR * Math.cos(th + 0.08)
+        const ty = tipR * Math.sin(th + 0.08)
+        const cp1x = r * 1.25 * Math.cos(th - 0.06)
+        const cp1y = r * 1.25 * Math.sin(th - 0.06)
+        const cp2x = r * 1.35 * Math.cos(th + 0.16)
+        const cp2y = r * 1.35 * Math.sin(th + 0.16)
+        flamePaths.push(`M ${r1(b1x)} ${r1(b1y)} Q ${r1(cp1x)} ${r1(cp1y)} ${r1(tx)} ${r1(ty)} Q ${r1(cp2x)} ${r1(cp2y)} ${r1(b2x)} ${r1(b2y)} Z`)
+      }
+    }
+    return {
+      straight: straightPaths.join(" "),
+      flame: flamePaths.join(" "),
+      creases: creasePaths.join(" "),
+    }
+  }, [r])
+
+  return (
+    <g
+      transform={`translate(${x} ${y})`}
+      className="ctl-moon"
+      role="button"
+      tabIndex={0}
+      aria-label="Sun, Sol. Solar rays revolve continuously"
+      onClick={onCycle}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault()
+          onCycle?.()
+        }
+      }}
+    >
+      <circle cx={0} cy={0} r={r * 2.2} fill="transparent" />
+
+      {/* Orbit & halo rings */}
+      <g className="ctl-sp" fill="none">
+        <circle cx={0} cy={0} r={r * 1.4} strokeWidth="0.6" opacity="0.4" />
+        <circle cx={0} cy={0} r={r * 1.75} strokeWidth="0.8" strokeDasharray="0.5 4.5" opacity="0.55" />
+        <circle cx={0} cy={0} r={r * 2.1} strokeWidth="0.5" opacity="0.18" />
+        <circle className="ctl-moonring" cx={0} cy={0} r={r * 1.4} strokeWidth="1.4" />
+      </g>
+
+      {/* Perpetual 24x7 rotating solar rays */}
+      <g className="ctl-sun-spin">
+        <path d={rays.flame} className="ctl-fp ctl-sp" strokeWidth="0.75" />
+        <path d={rays.straight} className="ctl-fp ctl-sp" strokeWidth="0.75" />
+        <path d={rays.creases} className="ctl-sp" fill="none" strokeWidth="0.6" opacity="0.65" />
+      </g>
+
+      {/* Main solar disc (stays upright) */}
+      <circle cx={0} cy={0} r={r} className="ctl-fp" />
+      <circle cx={0} cy={0} r={r} fill={pat("d", "i")} opacity="0.22" />
+      <circle cx={0} cy={0} r={r} className="ctl-sp" fill="none" strokeWidth="0.9" />
+      <circle cx={0} cy={0} r={r - 2.4} className="ctl-si" fill="none" strokeWidth="0.5" opacity="0.4" />
+
+      {/* Neoclassical engraved face (stays upright) */}
+      <g className="ctl-si" fill="none">
+        <path d="M -14 -6 Q -8 -8.5 -3 -5.5" strokeWidth="0.75" />
+        <path d="M 3 -5.5 Q 8 -8.5 14 -6" strokeWidth="0.75" />
+
+        <path d="M -13 -3 Q -8.5 -5 -4 -2.5" strokeWidth="0.9" />
+        <path d="M 4 -2.5 Q 8.5 -5 13 -3" strokeWidth="0.9" />
+        <path d="M -11 -2 Q -8.5 -0.5 -6 -1.5" strokeWidth="0.5" opacity="0.6" />
+        <path d="M 6 -1.5 Q 8.5 -0.5 11 -2" strokeWidth="0.5" opacity="0.6" />
+
+        <path d="M -0.5 -4.5 L -1.2 4.5 Q 0 7.5 2.5 6" strokeWidth="0.8" />
+        <path d="M -3.8 5.5 Q -1.5 7 1.5 6.5" strokeWidth="0.6" opacity="0.7" />
+
+        <path d="M -7 12 Q -3 10.5 0 11.5 Q 3 10.5 7 12" strokeWidth="0.85" />
+        <path d="M -6 12.5 Q 0 13 6 12.5" strokeWidth="0.6" opacity="0.7" />
+        <path d="M -5 14.5 Q 0 16.5 5 14.5" strokeWidth="0.75" />
+
+        <circle cx="-10" cy="4" r="0.8" className="ctl-fi" opacity="0.35" />
+        <circle cx="-12" cy="5" r="0.6" className="ctl-fi" opacity="0.25" />
+        <circle cx="10" cy="4" r="0.8" className="ctl-fi" opacity="0.35" />
+        <circle cx="12" cy="5" r="0.6" className="ctl-fi" opacity="0.25" />
+      </g>
     </g>
   )
 }
@@ -1895,7 +2005,6 @@ const useIsoLayoutEffect = typeof window !== "undefined" ? React.useLayoutEffect
 
 function Hero({ copy, intro, reduced, go, mark }: { copy: typeof DEFAULT_HERO; intro: boolean; reduced: boolean; go: Go; mark: React.ReactNode }) {
   const stage = React.useRef(null as HTMLDivElement | null)
-  const [phases, setPhases] = React.useState([0, 0])
   const lines = copy.title.split("\n")
 
   React.useEffect(() => {
@@ -1938,7 +2047,6 @@ function Hero({ copy, intro, reduced, go, mark }: { copy: typeof DEFAULT_HERO; i
     }
   }, [reduced])
 
-  const cycle = (k: number) => setPhases((p) => p.map((v, i) => (i === k ? (v + 1) % MOON_STEPS.length : v)))
   const delay = (s: number) => ({ animationDelay: s + "s" })
 
   return (
@@ -1947,39 +2055,47 @@ function Hero({ copy, intro, reduced, go, mark }: { copy: typeof DEFAULT_HERO; i
         <div className="ctl-cover">
           <HeroSky />
           <svg className="ctl-svg ctl-layer" viewBox="0 0 1200 720" preserveAspectRatio="none" style={shift(0.25)}>
-            <Moon x={262} y={128} r={30} side={1} phase={phases[0]} onCycle={() => cycle(0)} />
-            <Moon x={938} y={128} r={30} side={-1} phase={phases[1]} onCycle={() => cycle(1)} />
+            <Moon x={262} y={128} r={30} />
+            <Sun x={938} y={128} r={30} />
           </svg>
-          <div className="ctl-layer ctl-settle" style={{ ...shift(0.45), ...delay(0) }}>
-            <HeroBack />
+          <div className="ctl-layer ctl-settle" style={delay(0)}>
+            <div className="ctl-layer" style={shift(0.45)}>
+              <HeroBack />
+            </div>
           </div>
-          <div className="ctl-layer ctl-settle" style={{ ...shift(0.7), ...delay(0.05) }}>
-            <HeroArch />
+          <div className="ctl-layer ctl-settle" style={delay(0.04)}>
+            <div className="ctl-layer" style={shift(0.7)}>
+              <HeroArch />
+            </div>
           </div>
-          <div className="ctl-layer ctl-settle" style={{ ...shift(1.05), ...delay(0.1) }}>
-            <HeroFigures />
+          <div className="ctl-layer ctl-settle" style={delay(0.08)}>
+            <div className="ctl-layer" style={shift(1.05)}>
+              <HeroFigures />
+            </div>
           </div>
-          <div className="ctl-layer ctl-settle" style={{ ...shift(1.5), ...delay(0.15) }}>
-            <HeroFront />
+          <div className="ctl-layer ctl-settle" style={delay(0.12)}>
+            <div className="ctl-layer" style={shift(1.5)}>
+              <HeroFront />
+            </div>
           </div>
           <div className="ctl-copy" style={shift(0.7)}>
-            <span className="ctl-rise" style={delay(1.1)}>
+            <span className="ctl-rise" style={delay(0.12)}>
               {mark}
             </span>
             <h1 className="ctl-h1">
               {lines.map((l, i) => (
-                <span key={i} className="ctl-rise" style={delay(1.25 + i * 0.12)}>
+                <span key={i} className="ctl-rise" style={delay(0.18 + i * 0.08)}>
                   {l}
                 </span>
               ))}
             </h1>
             {copy.subtitle && (
-              <p className="ctl-sub ctl-rise" style={delay(1.55)}>
+              <p className="ctl-sub ctl-rise" style={delay(0.32)}>
                 {copy.subtitle}
               </p>
             )}
             {copy.action && (
-              <a className="ctl-btn ctl-rise" style={delay(1.7)} href={copy.action.href} onClick={(e) => go(copy.action.href, e)}>
+              <a className="ctl-btn ctl-rise" style={delay(0.4)} href={copy.action.href} onClick={(e) => go(copy.action.href, e)}>
                 <span>{copy.action.label}</span>
               </a>
             )}
