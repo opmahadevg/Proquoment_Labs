@@ -161,7 +161,7 @@ export function CopperplateButton({
 
 /** Procedural SVG turning wax seal */
 export function WaxSealBadge({
-  text = "PROQUOMENT LABS · AUTONOMOUS INTELLIGENCE · EST. MMXXIV · ",
+  text = "PROQUOMENT LABS · AUTONOMOUS INTELLIGENCE · EST. MMXXVI · ",
   monogram = "P",
   size = 140,
   className,

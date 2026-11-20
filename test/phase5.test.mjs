@@ -32,7 +32,7 @@ describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
     });
 
     test("Hero includes edition and founding year", () => {
-      assert.ok(homePageContent.includes("Est. MMXXIV"));
+      assert.ok(homePageContent.includes("Est. MMXXVI"));
     });
 
     test("CTAs include Start a Project (/contact) and Book a Call (calendly.com)", () => {
@@ -125,7 +125,7 @@ describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
       assert.ok(homePageContent.includes("IP Ownership to Client"));
       assert.ok(homePageContent.includes("Production Uptime SLA"));
       assert.ok(homePageContent.includes("Operational Velocity"));
-      assert.ok(homePageContent.includes("Proquoment Labs · Autonomous Intelligence · Est. MMXXIV · "));
+      assert.ok(homePageContent.includes("Proquoment Labs · Autonomous Intelligence · Est. MMXXVI · "));
     });
   });
 

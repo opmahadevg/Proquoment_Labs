@@ -231,7 +231,7 @@ export function HomePage() {
           subtitle:
             "Where AI becomes your competitive advantage. Build AI-native products. Automate what slows you down. We engineer intelligent systems with master craftsman precision.",
           action: { label: "Start a Project", href: "/contact" },
-          est: "Est. MMXXIV",
+          est: "Est. MMXXVI",
           edition: "Vol. I · Nº 01",
         }}
         clients={[
@@ -259,7 +259,7 @@ export function HomePage() {
             { value: 99.9, suffix: "%", label: "Production Uptime SLA" },
             { value: 10, suffix: "x", label: "Operational Velocity" },
           ],
-          seal: "Proquoment Labs · Autonomous Intelligence · Est. MMXXIV · ",
+          seal: "Proquoment Labs · Autonomous Intelligence · Est. MMXXVI · ",
         }}
         solutionsCopy={{
           kicker: "Core Practices",
