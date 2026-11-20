@@ -5,138 +5,123 @@ import {
   PlateKicker,
   EtchedCard,
   CopperplateButton,
+  HatchDivider,
 } from "@/components/ui/copperplate-primitives";
-import { Shield, Lock, FileCheck, Mail, ArrowLeft } from "lucide-react";
+import { Shield, ArrowLeft, Mail, Lock, Building2 } from "lucide-react";
 
 export function PrivacyPolicyPage() {
   return (
     <div className="relative min-h-screen text-[var(--ctl-text)] bg-[var(--ctl-paper)] overflow-hidden">
-      {/* Page Header */}
-      <section className="py-20 border-b border-[var(--ctl-line)] bg-[var(--ctl-paper)]">
-        <div className="max-w-4xl mx-auto px-6 space-y-4">
-          <PlateKicker>STATUTORY GOVERNANCE &amp; DATA PRIVACY</PlateKicker>
+      <div className="max-w-4xl mx-auto px-6 py-16 space-y-12">
+        {/* Back Link */}
+        <div>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] hover:underline transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Return to Top</span>
+          </Link>
+        </div>
+
+        {/* Page Header */}
+        <div className="space-y-4 border-b border-[var(--ctl-line)] pb-8">
+          <PlateKicker>LEGAL &amp; PRIVACY CHARTER</PlateKicker>
           <h1 className="font-serif text-4xl sm:text-5xl text-[var(--ctl-text)] leading-tight">
             Privacy Policy
           </h1>
           <div className="flex flex-wrap items-center gap-4 text-xs font-serif italic text-[var(--ctl-soft)]">
-            <span>Effective Date: November 18, 2026</span>
-            <span>•</span>
-            <span>Version: 1.0 (Digital Personal Data Protection Compliance)</span>
+            <span>Last Updated: November 18, 2026</span>
+            <span>·</span>
+            <span>Entity: Proquoment Private Limited</span>
+            <span>·</span>
+            <span>Domain: labs.proquoment.in</span>
           </div>
         </div>
-      </section>
 
-      {/* Main Legal Content */}
-      <div className="max-w-4xl mx-auto px-6 py-16 space-y-12">
+        {/* Main Legal Content Card */}
         <EtchedCard className="p-8 sm:p-12 space-y-10 text-[var(--ctl-text)] text-sm sm:text-[15px] leading-relaxed">
-          {/* Introduction */}
-          <div className="space-y-4 border-b border-[var(--ctl-line)] pb-8">
-            <p className="font-serif text-base text-[var(--ctl-ink)] italic">
-              Proquoment Labs operates as an AI-native Product &amp; Engineering Studio, a division of Proquoment Private Limited.
-            </p>
-            <p>
-              We are committed to maintaining the highest standards of confidentiality, transparency, and data privacy for all
-              prospective clients, business partners, and platform visitors. This Privacy Policy details how we collect, process,
-              safeguard, and govern personal information when you access our website (<strong className="text-[var(--ctl-ink)]">labs.proquoment.in</strong>)
-              or submit project inquiries to our engineering team.
-            </p>
-          </div>
-
           {/* Section 1 */}
           <section className="space-y-3">
             <h2 className="font-serif text-2xl text-[var(--ctl-text)] flex items-baseline gap-3">
               <span className="text-sm font-sans font-semibold text-[var(--ctl-ink)]">01.</span>
-              <span>Information We Collect</span>
+              <span>Introduction &amp; Scope</span>
             </h2>
             <p>
-              We collect information solely for legitimate commercial, engineering scoping, and client coordination purposes:
+              This Privacy Policy describes how <strong>Proquoment Private Limited</strong> (&ldquo;Proquoment&rdquo;,
+              &ldquo;Proquoment Labs&rdquo;, &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;) collects, uses,
+              processes, and safeguards personal and technical information gathered through our dedicated innovation website
+              located at <strong className="text-[var(--ctl-ink)]">labs.proquoment.in</strong> (the &ldquo;Site&rdquo;) and associated
+              engineering inquiry channels.
             </p>
-            <ul className="list-disc list-inside space-y-2 text-[var(--ctl-soft)] pl-2">
-              <li>
-                <strong className="text-[var(--ctl-text)]">Direct Inquiries:</strong> When you submit a project brief or contact us, we collect your full name,
-                business email, company or venture name, project scope, and budget tier.
-              </li>
-              <li>
-                <strong className="text-[var(--ctl-text)]">Technical Diagnostics:</strong> Telemetry regarding HTTP routing, user-agent details, browser viewport,
-                and network timestamps to ensure site reliability and prevent malicious intrusion.
-              </li>
-              <li>
-                <strong className="text-[var(--ctl-text)]">Calendar Integrations:</strong> If you book a discovery call via our team calendar (Calendly), your contact
-                details and submitted agenda notes are securely transmitted under mutual confidentiality.
-              </li>
-            </ul>
+            <p className="text-[var(--ctl-soft)] text-xs sm:text-sm">
+              We respect your privacy and are committed to protecting it through transparent data practices and compliance
+              with applicable data protection regulations, including India&apos;s Information Technology Act, 2000, the Information
+              Technology (Reasonable Security Practices and Procedures and Sensitive Personal Data or Information) Rules, 2011,
+              and the Digital Personal Data Protection Act, 2023 (DPDP Act).
+            </p>
           </section>
 
           {/* Section 2 */}
           <section className="space-y-3">
             <h2 className="font-serif text-2xl text-[var(--ctl-text)] flex items-baseline gap-3">
               <span className="text-sm font-sans font-semibold text-[var(--ctl-ink)]">02.</span>
-              <span>How We Process Your Information</span>
+              <span>Information We Collect</span>
             </h2>
-            <p>
-              Your data is utilized strictly for the following purposes:
-            </p>
-            <ol className="list-decimal list-inside space-y-1.5 text-[var(--ctl-soft)] pl-2">
-              <li>Reviewing technical requirements and preparing customized architectural proposals.</li>
-              <li>Executing formal Non-Disclosure Agreements (NDAs) and engineering Statements of Work (SOW).</li>
-              <li>Coordinating milestone delivery, sprint planning, and secure codebase transfers.</li>
-              <li>Monitoring platform stability and preventing security vulnerabilities.</li>
-            </ol>
-            <p className="font-serif italic text-xs text-[var(--ctl-ink)] pt-1">
-              We never sell, rent, monetize, or publicly disclose user information or submitted project briefs.
-            </p>
+            <p>We collect information you provide directly to us when initiating communication, as well as limited technical telemetry:</p>
+            <ul className="list-disc list-inside space-y-2 text-[var(--ctl-text)] pl-2">
+              <li>
+                <strong className="text-[var(--ctl-ink)]">Project Inquiries &amp; Contact Details:</strong> When you submit our project enquiry form
+                or book an architecture call, we collect your full name, work email address, company name, service requirements,
+                estimated budget range, project description, and referral origin.
+              </li>
+              <li>
+                <strong className="text-[var(--ctl-ink)]">Direct Correspondence:</strong> If you reach out to us via email (e.g. contact@proquoment.in),
+                we retain the contents of your message, email address, and any attached documentation or RFPs.
+              </li>
+              <li>
+                <strong className="text-[var(--ctl-ink)]">Technical &amp; Usage Telemetry:</strong> When you browse our Site, we automatically collect
+                anonymized technical data such as browser type, operating system, referring URL, time spent per page, and general
+                geographic location (country/city level). We do not correlate this telemetry with personal identities without explicit consent.
+              </li>
+            </ul>
           </section>
 
           {/* Section 3 */}
           <section className="space-y-3">
             <h2 className="font-serif text-2xl text-[var(--ctl-text)] flex items-baseline gap-3">
               <span className="text-sm font-sans font-semibold text-[var(--ctl-ink)]">03.</span>
-              <span>Infrastructure &amp; Third-Party Processors</span>
+              <span>How We Use Your Information</span>
             </h2>
-            <p>
-              We partner with industry-standard, ISO/IEC 27001 and SOC 2 Type II certified cloud infrastructure providers:
+            <p>We process collected information strictly for the following operational purposes:</p>
+            <ul className="list-disc list-inside space-y-1.5 text-[var(--ctl-text)] pl-2">
+              <li>To evaluate project feasibility, prepare architectural proposals, and respond to your inquiries within our 24-hour SLA.</li>
+              <li>To schedule technical discovery sessions and consultation calls.</li>
+              <li>To deliver contracted AI engineering, software prototyping, and fractional CTO advisory services.</li>
+              <li>To monitor, analyze, and enhance the performance, reliability, and security of our web properties.</li>
+              <li>To comply with statutory legal and accounting obligations under Indian corporate law.</li>
+            </ul>
+            <p className="text-[var(--ctl-soft)] text-xs sm:text-sm">
+              We never sell, rent, trade, or monetize your contact information or submitted project briefs to third-party advertisers.
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
-              <div className="p-4 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-wash)]">
-                <span className="font-semibold text-xs uppercase tracking-wider text-[var(--ctl-ink)] block">Supabase Inc.</span>
-                <p className="text-xs text-[var(--ctl-soft)] mt-1">
-                  PostgreSQL database hosting with enterprise row-level security (RLS) and end-to-end encryption at rest (AES-256).
-                </p>
-              </div>
-              <div className="p-4 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-wash)]">
-                <span className="font-semibold text-xs uppercase tracking-wider text-[var(--ctl-ink)] block">PostHog Inc.</span>
-                <p className="text-xs text-[var(--ctl-soft)] mt-1">
-                  Privacy-first product analytics with IP anonymization, cookie-less options, and zero behavioral ad tracking.
-                </p>
-              </div>
-              <div className="p-4 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-wash)]">
-                <span className="font-semibold text-xs uppercase tracking-wider text-[var(--ctl-ink)] block">Vercel Inc.</span>
-                <p className="text-xs text-[var(--ctl-soft)] mt-1">
-                  Global edge hosting, DDoS mitigation, and SSL/TLS certificate termination.
-                </p>
-              </div>
-              <div className="p-4 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-wash)]">
-                <span className="font-semibold text-xs uppercase tracking-wider text-[var(--ctl-ink)] block">Calendly LLC</span>
-                <p className="text-xs text-[var(--ctl-soft)] mt-1">
-                  Encrypted calendar coordination for initial discovery and technical scoping sessions.
-                </p>
-              </div>
-            </div>
           </section>
 
           {/* Section 4 */}
           <section className="space-y-3">
             <h2 className="font-serif text-2xl text-[var(--ctl-text)] flex items-baseline gap-3">
               <span className="text-sm font-sans font-semibold text-[var(--ctl-ink)]">04.</span>
-              <span>Cookies &amp; Local Storage</span>
+              <span>Data Storage, Infrastructure &amp; Security</span>
             </h2>
             <p>
-              Our website uses minimal local storage to remember your aesthetic palette selection (Cobalt, Indigo, Delft, Oxblood)
-              and dark/light mode preference across sessions. We do not use third-party advertising cookies or cross-site tracking pixels.
+              Your project inquiries and technical communications are stored in enterprise-grade cloud environments:
             </p>
-            <ul className="list-disc list-inside space-y-1 text-xs text-[var(--ctl-soft)] pl-2">
+            <ul className="list-disc list-inside space-y-1.5 text-[var(--ctl-text)] pl-2">
               <li>
-                <strong className="text-[var(--ctl-ink)]">First-Party Telemetry:</strong> Anonymized session telemetry is gathered via PostHog for site
+                <strong className="text-[var(--ctl-ink)]">Supabase:</strong> Inquiries submitted through our forms are securely stored in Supabase
+                PostgreSQL instances with strict Row-Level Security (RLS) policies and encrypted at rest using AES-256.
+              </li>
+              <li>
+                <strong className="text-[var(--ctl-ink)]">PostHog / Analytics:</strong> Anonymized behavioral telemetry is gathered for platform
                 performance optimization, with IP addresses masked and privacy-friendly cookie flags applied.
               </li>
               <li>
@@ -169,25 +154,29 @@ export function PrivacyPolicyPage() {
               <span>Your Rights Under DPDP Act &amp; International Standards</span>
             </h2>
             <p>
-              Under India's Digital Personal Data Protection Act, 2023 (DPDP Act) and international data protection regulations:
+              In accordance with applicable privacy regulations, you possess the right to:
             </p>
-            <ul className="list-disc list-inside space-y-1 text-[var(--ctl-soft)] pl-2">
-              <li><strong className="text-[var(--ctl-text)]">Right to Access:</strong> You may request a copy of any personal contact data we hold concerning your inquiries.</li>
-              <li><strong className="text-[var(--ctl-text)]">Right to Correction:</strong> You may ask us to correct incomplete or outdated personal information.</li>
-              <li><strong className="text-[var(--ctl-text)]">Right to Erasure:</strong> You may request complete deletion of your records from our systems, subject to legal recordkeeping duties.</li>
-              <li><strong className="text-[var(--ctl-text)]">Right to Withdraw Consent:</strong> You may revoke consent for future communications at any time.</li>
+            <ul className="list-disc list-inside space-y-1.5 text-[var(--ctl-text)] pl-2">
+              <li>Request confirmation of whether we hold or process your personal data.</li>
+              <li>Request access to, correction of, or permanent deletion (erasure) of your stored inquiry records.</li>
+              <li>Withdraw consent for future communications at any time.</li>
             </ul>
+            <p className="text-[var(--ctl-soft)] text-xs sm:text-sm">
+              To exercise any of these statutory rights, please send an email to <strong className="text-[var(--ctl-ink)]">contact@proquoment.in</strong> with
+              the subject line &ldquo;Privacy Rights Request&rdquo;. We will respond and process verified requests within 30 days.
+            </p>
           </section>
 
           {/* Section 7 */}
           <section className="space-y-3">
             <h2 className="font-serif text-2xl text-[var(--ctl-text)] flex items-baseline gap-3">
               <span className="text-sm font-sans font-semibold text-[var(--ctl-ink)]">07.</span>
-              <span>Data Retention Policy</span>
+              <span>Cookies &amp; Tracking Technologies</span>
             </h2>
             <p>
-              Inquiries that do not materialize into an active commercial engagement are automatically scrubbed from active lead registries
-              after twelve (12) months. Engaged client records and contracts are retained in accordance with Indian commercial taxation and statutory requirements.
+              We use minimal cookies strictly necessary for navigation state, security verification, and anonymous site analytics.
+              You may configure your browser to decline or delete cookies at any time; however, some interactive features may experience
+              degraded functionality.
             </p>
           </section>
 

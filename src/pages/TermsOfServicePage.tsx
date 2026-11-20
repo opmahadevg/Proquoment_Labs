@@ -5,24 +5,23 @@ import {
   PlateKicker,
   EtchedCard,
   CopperplateButton,
+  HatchDivider,
 } from "@/components/ui/copperplate-primitives";
-import { FileText, Shield, CheckCircle2, ArrowLeft } from "lucide-react";
+import { FileText, ArrowLeft, Mail, ShieldAlert, CheckCircle2 } from "lucide-react";
 
 export function TermsOfServicePage() {
   return (
     <div className="relative min-h-screen text-[var(--ctl-text)] bg-[var(--ctl-paper)] overflow-hidden">
-      {/* Page Header */}
-      <div className="max-w-4xl mx-auto px-6 pt-16 pb-8 space-y-6">
-        <div className="flex items-center justify-between gap-4">
-          <Link href="/">
-            <CopperplateButton variant="paper" className="text-xs">
-              <ArrowLeft className="w-3.5 h-3.5 mr-1" />
-              <span>Back to Home</span>
-            </CopperplateButton>
+      <div className="max-w-4xl mx-auto px-6 py-16 space-y-12">
+        {/* Back Link */}
+        <div>
+          <Link
+            href="/"
+            className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-[var(--ctl-ink)] hover:underline transition-colors"
+          >
+            <ArrowLeft className="w-3.5 h-3.5" />
+            <span>Return to Top</span>
           </Link>
-          <span className="text-xs font-mono uppercase tracking-wider text-[var(--ctl-soft)]">
-            Legal Document · TOS-2026-V1
-          </span>
         </div>
 
         {/* Page Header */}
@@ -46,17 +45,19 @@ export function TermsOfServicePage() {
           <section className="space-y-3">
             <h2 className="font-serif text-2xl text-[var(--ctl-text)] flex items-baseline gap-3">
               <span className="text-sm font-sans font-semibold text-[var(--ctl-ink)]">01.</span>
-              <span>Scope of Engineering Services</span>
+              <span>Agreement to Terms</span>
             </h2>
             <p>
-              Proquoment Labs (&ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), a dedicated division of Proquoment Private Limited,
-              provides bespoke software engineering, AI systems development, and digital transformation services.
-              Services are delivered exclusively pursuant to mutually executed Statements of Work (&ldquo;SOW&rdquo;)
-              or Milestone Specifications signed by authorized representatives of both parties.
+              These Terms of Service (&ldquo;Terms&rdquo;) constitute a legally binding agreement between you
+              (whether personally or on behalf of an entity, &ldquo;Client&rdquo;, &ldquo;you&rdquo;) and
+              <strong> Proquoment Private Limited</strong> (&ldquo;Proquoment&rdquo;, &ldquo;Proquoment Labs&rdquo;,
+              &ldquo;we&rdquo;, &ldquo;us&rdquo;, or &ldquo;our&rdquo;), governing your access to and use of our website
+              at <strong className="text-[var(--ctl-ink)]">labs.proquoment.in</strong> and any professional engineering services,
+              software development, consultation, or technical deliverables provided by us.
             </p>
             <p className="text-[var(--ctl-soft)] text-xs sm:text-sm">
-              Any general website inquiries, exploratory calls, or preliminary scoping sessions do not constitute a binding
-              commitment to deliver code until a formal agreement is entered into.
+              By accessing our Site, booking an architecture call, or executing a Statement of Work (SOW), you agree
+              to be bound by these Terms. If you do not agree, you must discontinue use immediately.
             </p>
           </section>
 
@@ -64,55 +65,46 @@ export function TermsOfServicePage() {
           <section className="space-y-3">
             <h2 className="font-serif text-2xl text-[var(--ctl-text)] flex items-baseline gap-3">
               <span className="text-sm font-sans font-semibold text-[var(--ctl-ink)]">02.</span>
-              <span>Commercial Engagement Models</span>
+              <span>Scope of Engineering Services</span>
             </h2>
             <p>
-              We operate under two distinct commercial structures, as defined in each SOW:
+              Proquoment Labs provides specialized digital engineering, artificial intelligence integration, and
+              transformation services across three core pillars:
             </p>
-            <div className="space-y-4 pt-2">
-              <div className="p-4 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-wash)]">
-                <h3 className="font-serif font-bold text-base text-[var(--ctl-text)]">
-                  A. Milestone-Based Fixed Scope Sprints
-                </h3>
-                <p className="text-xs text-[var(--ctl-soft)] mt-1">
-                  Defines specific deliverables, acceptance criteria, and fixed payment tranches tied to verified project milestones.
-                  Scope adjustments require a written Change Request approved by both parties.
-                </p>
-              </div>
-
-              <div className="p-4 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-wash)]">
-                <h3 className="font-serif font-bold text-base text-[var(--ctl-text)]">
-                  B. Dedicated Engineering Retainer
-                </h3>
-                <p className="text-xs text-[var(--ctl-soft)] mt-1">
-                  Provides a dedicated multidisciplinary engineering pod on a monthly or quarterly cycle with bi-weekly sprint planning.
-                  Sprint velocity and prioritization are directed by the client in collaboration with our lead technical partner.
-                </p>
-              </div>
-            </div>
+            <ul className="list-disc list-inside space-y-1.5 text-[var(--ctl-text)] pl-2">
+              <li><strong className="text-[var(--ctl-ink)]">AI SaaS &amp; Digital Product Engineering:</strong> Full-stack web and SaaS application engineering, MVP sprint acceleration, API architectures, and scalable digital platforms.</li>
+              <li><strong className="text-[var(--ctl-ink)]">Business Process Automation &amp; Integrations:</strong> Autonomous workflow orchestration, custom AI agents, document processing, and enterprise CRM/ERP synchronizations.</li>
+              <li><strong className="text-[var(--ctl-ink)]">Web Applications &amp; Digital Experiences:</strong> High-performance business websites, customer portals, interactive dashboards, design systems, and practical AI readiness.</li>
+            </ul>
+            <p className="text-[var(--ctl-soft)] text-xs sm:text-sm">
+              Specific project timelines, milestones, acceptance criteria, and fee structures are governed by individual
+              Statements of Work (SOW) or Retainer Agreements agreed upon in writing between the parties.
+            </p>
           </section>
 
           {/* Section 3 */}
           <section className="space-y-3">
             <h2 className="font-serif text-2xl text-[var(--ctl-text)] flex items-baseline gap-3">
               <span className="text-sm font-sans font-semibold text-[var(--ctl-ink)]">03.</span>
-              <span>Intellectual Property &amp; Codebase Ownership</span>
+              <span>Engagement Models &amp; Payment Terms</span>
             </h2>
-            <div className="p-4 rounded-[2px] border border-[var(--ctl-ink)] bg-[var(--ctl-wash)] space-y-2">
-              <div className="flex items-center gap-2 text-[var(--ctl-ink)] font-semibold text-xs uppercase tracking-wider">
-                <Shield className="w-4 h-4" />
-                <span>100% Client Codebase Ownership</span>
-              </div>
-              <p className="text-xs text-[var(--ctl-text)] leading-relaxed">
-                Upon receipt of full payment for the relevant milestone or engagement period, Proquoment irrevocably transfers and assigns
-                to the Client all right, title, and intellectual property interest in and to the custom software, algorithms, frontend code,
-                and system documentation created specifically for the Client under the applicable SOW.
-              </p>
-            </div>
+            <p>
+              Engagements with Proquoment Labs operate under one of three models:
+            </p>
+            <ul className="list-disc list-inside space-y-2 text-[var(--ctl-text)] pl-2">
+              <li>
+                <strong className="text-[var(--ctl-ink)]">Project-Based:</strong> Invoiced based on predefined milestones (e.g., 50% deposit, 25% prototype acceptance, 25% production deployment). Work commences upon receipt of the initial deposit.
+              </li>
+              <li>
+                <strong className="text-[var(--ctl-ink)]">Dedicated Engineering Retainer:</strong> Billed in advance on a monthly or quarterly basis for dedicated engineering capacity and fractional CTO leadership.
+              </li>
+              <li>
+                <strong className="text-[var(--ctl-ink)]">4-Week MVP Sprint:</strong> Fixed-fee rapid innovation sprint with clear milestone deliverables over 28 calendar days.
+              </li>
+            </ul>
             <p className="text-[var(--ctl-soft)] text-xs sm:text-sm">
-              We retain ownership of our pre-existing proprietary developer tooling, generalized helper libraries, and architectural primitives
-              used across projects, for which we grant the Client a perpetual, royalty-free, non-exclusive license to use and modify
-              within their product.
+              All invoices are payable within 14 calendar days of issuance unless otherwise stipulated. Late payments
+              may result in immediate suspension of engineering services and delayed code handoffs.
             </p>
           </section>
 
@@ -120,12 +112,23 @@ export function TermsOfServicePage() {
           <section className="space-y-3">
             <h2 className="font-serif text-2xl text-[var(--ctl-text)] flex items-baseline gap-3">
               <span className="text-sm font-sans font-semibold text-[var(--ctl-ink)]">04.</span>
-              <span>Client Responsibilities &amp; Materials</span>
+              <span>Intellectual Property Ownership</span>
             </h2>
-            <p>
-              To ensure on-schedule delivery, the Client agrees to provide timely access to necessary API credentials, third-party accounts,
-              design assets, and domain specifications. Delays caused by withheld inputs or third-party vendor downtime shall proportionally
-              extend project timelines without penalty to Proquoment.
+            <div className="p-6 rounded-[2px] border border-[var(--ctl-ink)] bg-[var(--ctl-wash)] text-[var(--ctl-text)] text-sm space-y-2">
+              <div className="flex items-center gap-2 text-[var(--ctl-ink)] font-semibold uppercase tracking-wider text-xs">
+                <CheckCircle2 className="w-4 h-4 text-[var(--ctl-ink)]" />
+                <span>100% Client Codebase Ownership</span>
+              </div>
+              <p className="text-sm text-[var(--ctl-text)] leading-relaxed">
+                Upon full payment of all contracted fees, Proquoment Private Limited irrevocably transfers and assigns to
+                the Client all rights, title, and intellectual property interest in the bespoke software, custom models,
+                prompts, and deliverables created specifically for the Client under the applicable SOW.
+              </p>
+            </div>
+            <p className="text-[var(--ctl-soft)] text-xs sm:text-sm">
+              Proquoment retains ownership of its pre-existing core libraries, scaffolding utilities, open-source tooling,
+              and generic developer workflows. To the extent any pre-existing materials are embedded in the deliverables,
+              Proquoment grants the Client a perpetual, worldwide, royalty-free, non-exclusive license to use and modify them.
             </p>
           </section>
 
@@ -136,9 +139,10 @@ export function TermsOfServicePage() {
               <span>Confidentiality &amp; Mutual Non-Disclosure</span>
             </h2>
             <p>
-              Both parties agree to treat all business plans, product specifications, source code, and customer data as strictly confidential.
-              Neither party shall disclose confidential information to any third party without prior written consent, except to employees
-              and contractors bound by equivalent confidentiality obligations.
+              Both parties agree to hold all confidential information, business strategies, technical architectures,
+              trade secrets, and proprietary source code in strict confidence. Neither party shall disclose confidential
+              information to any third party without prior written consent, except to employees, contractors, or legal
+              advisors bound by equivalent confidentiality obligations.
             </p>
           </section>
 
@@ -146,16 +150,17 @@ export function TermsOfServicePage() {
           <section className="space-y-3">
             <h2 className="font-serif text-2xl text-[var(--ctl-text)] flex items-baseline gap-3">
               <span className="text-sm font-sans font-semibold text-[var(--ctl-ink)]">06.</span>
-              <span>Warranties &amp; Probabilistic Systems</span>
+              <span>AI Deliverables, Disclaimers &amp; Probabilistic Systems</span>
             </h2>
             <p>
-              We warrant that all software developed by Proquoment Labs is engineered according to modern industry standards, free from malicious
-              code, and fully functional in accordance with the specifications in the SOW upon client acceptance.
+              Client acknowledges that artificial intelligence models, Large Language Models (LLMs), and autonomous agent
+              systems are probabilistic by nature. While Proquoment Labs employs rigorous evaluation harnesses, guardrails,
+              and schema validations, Proquoment cannot warrant that generative AI outputs will be 100% error-free or free
+              from occasional hallucinations.
             </p>
             <p className="text-[var(--ctl-soft)] text-xs sm:text-sm">
-              Because machine learning and large language models are inherently probabilistic, we do not warrant that external AI models
-              will produce error-free outputs 100% of the time. We mitigate model hallucination through deterministic fallback architectures,
-              schema validations, and automated observability guards.
+              The Client remains responsible for verifying and validating outputs before executing high-risk financial,
+              legal, medical, or life-critical operational actions.
             </p>
           </section>
 
@@ -166,8 +171,12 @@ export function TermsOfServicePage() {
               <span>Limitation of Liability</span>
             </h2>
             <p>
-              In no event shall either party be liable for any indirect, incidental, consequential, special, or punitive damages.
-              Except in cases of gross negligence, willful misconduct, or breach of confidentiality, each party&apos;s total aggregate liability shall not exceed the amounts
+              To the maximum extent permitted by applicable Indian law, in no event shall either party be liable to the other
+              for indirect, incidental, consequential, special, punitive, or exemplary damages, including lost profits, data loss,
+              or business interruption, arising out of or related to these Terms.
+            </p>
+            <p className="text-[var(--ctl-soft)] text-xs sm:text-sm">
+              Proquoment’s total aggregate liability arising out of or related to an engagement shall not exceed the total fees
               actually paid by the Client to Proquoment under the specific SOW giving rise to liability during the three (3) months
               preceding the claim.
             </p>
