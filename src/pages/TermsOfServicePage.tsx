@@ -72,9 +72,9 @@ export function TermsOfServicePage() {
               transformation services across three core pillars:
             </p>
             <ul className="list-disc list-inside space-y-1.5 text-[var(--ctl-text)] pl-2">
-              <li><strong className="text-[var(--ctl-ink)]">AI Product Engineering:</strong> Full-stack web and mobile application engineering, generative copilots, vector RAG search, and MVP sprint acceleration.</li>
-              <li><strong className="text-[var(--ctl-ink)]">AI Agents &amp; Automation:</strong> Autonomous multi-agent systems, document extraction pipelines, event-driven webhooks, and enterprise CRM/ERP synchronizations.</li>
-              <li><strong className="text-[var(--ctl-ink)]">AI Transformation Partnership:</strong> Fractional CTO advisory, cloud AI architecture, private model infrastructure, and legacy modernization.</li>
+              <li><strong className="text-[var(--ctl-ink)]">AI SaaS &amp; Digital Product Engineering:</strong> Full-stack web and SaaS application engineering, MVP sprint acceleration, API architectures, and scalable digital platforms.</li>
+              <li><strong className="text-[var(--ctl-ink)]">Business Process Automation &amp; Integrations:</strong> Autonomous workflow orchestration, custom AI agents, document processing, and enterprise CRM/ERP synchronizations.</li>
+              <li><strong className="text-[var(--ctl-ink)]">Web Applications &amp; Digital Experiences:</strong> High-performance business websites, customer portals, interactive dashboards, design systems, and practical AI readiness.</li>
             </ul>
             <p className="text-[var(--ctl-soft)] text-xs sm:text-sm">
               Specific project timelines, milestones, acceptance criteria, and fee structures are governed by individual
