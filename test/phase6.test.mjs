@@ -8,7 +8,6 @@ const __dirname = path.dirname(fileURLToPath(import.meta.url));
 
 const servicesPageFile = path.resolve(__dirname, "../src/pages/ServicesPage.tsx");
 const contactPageFile = path.resolve(__dirname, "../src/pages/ContactPage.tsx");
-const workPageFile = path.resolve(__dirname, "../src/pages/WorkPage.tsx");
 const aboutPageFile = path.resolve(__dirname, "../src/pages/AboutPage.tsx");
 const privacyPageFile = path.resolve(__dirname, "../src/pages/PrivacyPolicyPage.tsx");
 const termsPageFile = path.resolve(__dirname, "../src/pages/TermsOfServicePage.tsx");
@@ -18,7 +17,6 @@ const verifyFile = path.resolve(__dirname, "../src/phase6-verify.ts");
 
 const servicesContent = fs.readFileSync(servicesPageFile, "utf8");
 const contactContent = fs.readFileSync(contactPageFile, "utf8");
-const workContent = fs.readFileSync(workPageFile, "utf8");
 const aboutContent = fs.readFileSync(aboutPageFile, "utf8");
 const privacyContent = fs.readFileSync(privacyPageFile, "utf8");
 const termsContent = fs.readFileSync(termsPageFile, "utf8");
@@ -186,62 +184,22 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
       assert.ok(freshContact.includes("CheckCircle2"));
     });
 
-    test("info panel includes Calendly link, direct email, <24h response badge, and platform link", () => {
+    test("info panel includes Calendly link, direct email, <24h response badge, and Gurgaon HQ", () => {
       const freshContact = fs.readFileSync(contactPageFile, "utf8");
       assert.ok(freshContact.includes("https://calendly.com/proquoment"));
       assert.ok(freshContact.includes("contact@proquoment.in"));
       assert.ok(freshContact.includes("&lt;24h Response Time SLA") || freshContact.includes("<24h Response Time SLA"));
-      assert.ok(freshContact.includes("https://proquoment.in"));
+      assert.ok(freshContact.includes("Gurgaon, Haryana, India"));
     });
   });
 
   // ==========================================
-  // TASK 27 - WorkPage
+  // TASK 27 - WorkPage Removed
   // ==========================================
-  describe("TASK 27 - WorkPage (src/pages/WorkPage.tsx)", () => {
-    test("exports WorkPage (named and default) and CASE_STUDIES array", () => {
-      const freshWork = fs.readFileSync(workPageFile, "utf8");
-      assert.ok(freshWork.includes("export function WorkPage"));
-      assert.ok(freshWork.includes("export default WorkPage"));
-      assert.ok(freshWork.includes("export const CASE_STUDIES"));
-    });
-
-    test("header contains 'Work we've done. Work in progress.' copy", () => {
-      const freshWork = fs.readFileSync(workPageFile, "utf8");
-      assert.ok(
-        freshWork.includes("Work we&apos;ve done.") ||
-        freshWork.includes("Work we've done.")
-      );
-      assert.ok(freshWork.includes("Work in progress."));
-    });
-
-    test("contains all 3 comprehensive case study teaser cards", () => {
-      const freshWork = fs.readFileSync(workPageFile, "utf8");
-      assert.ok(freshWork.includes("Autonomous AI Agent Swarms"));
-      assert.ok(freshWork.includes("SaaS MVP Acceleration"));
-      assert.ok(freshWork.includes("Enterprise Workflow Automation"));
-    });
-
-    test("aligns case study badges and categories with core pillars", () => {
-      const freshWork = fs.readFileSync(workPageFile, "utf8");
-      assert.ok(freshWork.includes("AI SaaS & Digital Product Engineering") || freshWork.includes("Product Engineering"));
-      assert.ok(freshWork.includes("Business Process Automation & Integrations") || freshWork.includes("Agents & Automation"));
-    });
-
-    test("each case study has problem, solution, architecture highlights, metrics, and tech tags", () => {
-      const freshWork = fs.readFileSync(workPageFile, "utf8");
-      assert.ok(freshWork.includes("The Operational Challenge"));
-      assert.ok(freshWork.includes("The Engineered Solution"));
-      assert.ok(freshWork.includes("Architecture Highlights"));
-      assert.ok(freshWork.includes("LangGraph"));
-      assert.ok(freshWork.includes("Next.js 15"));
-      assert.ok(freshWork.includes("FastAPI"));
-    });
-
-    test("includes Building in Public narrative section and CTA to /contact", () => {
-      const freshWork = fs.readFileSync(workPageFile, "utf8");
-      assert.ok(freshWork.includes("Why We Build in Public"));
-      assert.ok(freshWork.includes('href="/contact"'));
+  describe("TASK 27 - WorkPage Removed", () => {
+    test("WorkPage route and file are removed from branch", () => {
+      const workFile = path.resolve(__dirname, "../src/pages/WorkPage.tsx");
+      assert.strictEqual(fs.existsSync(workFile), false);
     });
   });
 
@@ -273,10 +231,10 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
       assert.ok(freshAbout.includes("Speed is the differentiator"));
     });
 
-    test("Section 4 cross-links to main platform proquoment.in", () => {
+    test("Section 4 presents ecosystem context and Contact Labs action", () => {
       const freshAbout = fs.readFileSync(aboutPageFile, "utf8");
-      assert.ok(freshAbout.includes("https://proquoment.in"));
       assert.ok(freshAbout.includes("Looking for the Proquoment Enterprise Platform?"));
+      assert.ok(freshAbout.includes("Contact Labs Team"));
     });
   });
 
@@ -299,7 +257,7 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
     test("references Indian governing law (Information Technology Act and DPDP Act) and contact email", () => {
       assert.ok(privacyContent.includes("Digital Personal Data Protection Act"));
       assert.ok(privacyContent.includes("Information Technology Act"));
-      assert.ok(privacyContent.includes("Bangalore, Karnataka"));
+      assert.ok(privacyContent.includes("Gurgaon, Haryana"));
       assert.ok(privacyContent.includes("contact@proquoment.in"));
     });
   });
@@ -325,8 +283,8 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
       assert.ok(termsContent.includes("irrevocably transfers and assigns"));
     });
 
-    test("specifies Indian governing law and Bangalore jurisdiction", () => {
-      assert.ok(termsContent.includes("Bangalore, Karnataka, India"));
+    test("specifies Indian governing law and Gurgaon jurisdiction", () => {
+      assert.ok(termsContent.includes("Gurgaon, Haryana, India"));
       assert.ok(termsContent.includes("contact@proquoment.in"));
     });
   });
@@ -351,9 +309,9 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
       assert.ok(notFoundContent.includes("Back to Home"));
     });
 
-    test("contains quick links to Services, Work, About, Contact", () => {
+    test("contains quick links to Services, About, Contact (no work link)", () => {
       assert.ok(notFoundContent.includes('href="/services"'));
-      assert.ok(notFoundContent.includes('href="/work"'));
+      assert.strictEqual(notFoundContent.includes('href="/work"'), false);
       assert.ok(notFoundContent.includes('href="/about"'));
       assert.ok(notFoundContent.includes('href="/contact"'));
     });
@@ -363,10 +321,10 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
   // App Router Integration in src/App.tsx
   // ==========================================
   describe("App Router Integration (src/App.tsx)", () => {
-    test("wires all 7 dedicated routes + not found with Route components", () => {
+    test("wires all dedicated routes + not found with Route components (work removed)", () => {
       assert.ok(appContent.includes('<Route path="/" component={HomePageRoute} />'));
       assert.ok(appContent.includes('<Route path="/services" component={ServicesPageRoute} />'));
-      assert.ok(appContent.includes('<Route path="/work" component={WorkPageRoute} />'));
+      assert.strictEqual(appContent.includes('<Route path="/work"'), false);
       assert.ok(appContent.includes('<Route path="/about" component={AboutPageRoute} />'));
       assert.ok(appContent.includes('<Route path="/contact" component={ContactPageRoute} />'));
       assert.ok(appContent.includes('<Route path="/privacy-policy" component={PrivacyPolicyPageRoute} />'));
@@ -376,7 +334,7 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
 
     test("implements lazy loading (React.lazy) and Suspense with PageFallback", () => {
       assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/ServicesPage\"))"));
-      assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/WorkPage\"))"));
+      assert.strictEqual(appContent.includes("React.lazy(() => import(\"@/pages/WorkPage\"))"), false);
       assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/AboutPage\"))"));
       assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/ContactPage\"))"));
       assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/PrivacyPolicyPage\"))"));
@@ -387,7 +345,6 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
 
     test("configures dedicated SEO props on Layout for each route", () => {
       assert.ok(appContent.includes("https://labs.proquoment.in/services"));
-      assert.ok(appContent.includes("https://labs.proquoment.in/work"));
       assert.ok(appContent.includes("https://labs.proquoment.in/about"));
       assert.ok(appContent.includes("https://labs.proquoment.in/contact"));
       assert.ok(appContent.includes("https://labs.proquoment.in/privacy-policy"));
@@ -395,7 +352,7 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
     });
 
     test("secondary route pages strictly contain no hardcoded #7C3AED or #000EEF glows", () => {
-      const files = [aboutContent, servicesContent, workContent, contactContent, privacyContent, termsContent, notFoundContent];
+      const files = [aboutContent, servicesContent, contactContent, privacyContent, termsContent, notFoundContent];
       for (const content of files) {
         assert.ok(!content.includes("#7C3AED"), "Found hardcoded #7C3AED in route page");
         assert.ok(!content.includes("#000EEF"), "Found hardcoded #000EEF in route page");
@@ -407,7 +364,6 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
       assert.ok(verifyContent.includes("agentsValid"));
       assert.ok(verifyContent.includes("transformationValid"));
       assert.ok(verifyContent.includes("engagementModelsValid"));
-      assert.ok(verifyContent.includes("caseStudiesValid"));
       assert.ok(verifyContent.includes("contactOptionsValid"));
     });
   });

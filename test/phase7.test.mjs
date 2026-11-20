@@ -16,10 +16,10 @@ const phase7VerifyContent = fs.readFileSync(phase7VerifyFile, "utf8");
 
 describe("Phase 7 - Task 32: Wire Full Router in App.tsx & Finalize Public Assets", () => {
   describe("Router Cleanliness & Production Hardening in src/App.tsx", () => {
-    test("wires all 7 core routes and not-found route in Wouter Switch", () => {
+    test("wires all dedicated routes and not-found route in Wouter Switch (without work)", () => {
       assert.ok(appContent.includes('<Route path="/" component={HomePageRoute} />'));
       assert.ok(appContent.includes('<Route path="/services" component={ServicesPageRoute} />'));
-      assert.ok(appContent.includes('<Route path="/work" component={WorkPageRoute} />'));
+      assert.strictEqual(appContent.includes('<Route path="/work"'), false);
       assert.ok(appContent.includes('<Route path="/about" component={AboutPageRoute} />'));
       assert.ok(appContent.includes('<Route path="/contact" component={ContactPageRoute} />'));
       assert.ok(appContent.includes('<Route path="/privacy-policy" component={PrivacyPolicyPageRoute} />'));
@@ -27,10 +27,10 @@ describe("Phase 7 - Task 32: Wire Full Router in App.tsx & Finalize Public Asset
       assert.ok(appContent.includes('<Route component={NotFoundRoute} />'));
     });
 
-    test("implements clean idiomatic React.lazy code-splitting for all 7 routes + 404", () => {
+    test("implements clean idiomatic React.lazy code-splitting for all dedicated routes + 404", () => {
       assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/HomePage\"))"));
       assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/ServicesPage\"))"));
-      assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/WorkPage\"))"));
+      assert.strictEqual(appContent.includes("React.lazy(() => import(\"@/pages/WorkPage\"))"), false);
       assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/AboutPage\"))"));
       assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/ContactPage\"))"));
       assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/PrivacyPolicyPage\"))"));
@@ -38,15 +38,15 @@ describe("Phase 7 - Task 32: Wire Full Router in App.tsx & Finalize Public Asset
       assert.ok(appContent.includes("React.lazy(() => import(\"@/pages/not-found\"))"));
     });
 
-    test("wraps all 7 routes + 404 in React.Suspense with PageFallback", () => {
+    test("wraps all dedicated routes + 404 in React.Suspense with PageFallback", () => {
       const occurrences = (appContent.match(/<React\.Suspense fallback={<PageFallback \/>}>/g) || []).length;
-      assert.ok(occurrences >= 8, `Expected at least 8 Suspense boundaries for 7 routes + 404, got ${occurrences}`);
+      assert.ok(occurrences >= 7, `Expected at least 7 Suspense boundaries, got ${occurrences}`);
     });
 
     test("wraps every route in Layout with route-level canonical SEO metadata", () => {
       assert.ok(appContent.includes("https://labs.proquoment.in/"));
       assert.ok(appContent.includes("https://labs.proquoment.in/services"));
-      assert.ok(appContent.includes("https://labs.proquoment.in/work"));
+      assert.strictEqual(appContent.includes("https://labs.proquoment.in/work"), false);
       assert.ok(appContent.includes("https://labs.proquoment.in/about"));
       assert.ok(appContent.includes("https://labs.proquoment.in/contact"));
       assert.ok(appContent.includes("https://labs.proquoment.in/privacy-policy"));
@@ -135,24 +135,24 @@ describe("Phase 7 - Task 32: Wire Full Router in App.tsx & Finalize Public Asset
       assert.ok(content.includes("Sitemap: https://labs.proquoment.in/sitemap.xml"));
     });
 
-    test("sitemap.xml lists all 7 canonical public routes", () => {
+    test("sitemap.xml lists canonical public routes (without work)", () => {
       const sitemapPath = path.join(publicDir, "sitemap.xml");
       const content = fs.readFileSync(sitemapPath, "utf8");
       assert.ok(content.includes("<loc>https://labs.proquoment.in/</loc>"));
       assert.ok(content.includes("<loc>https://labs.proquoment.in/services</loc>"));
-      assert.ok(content.includes("<loc>https://labs.proquoment.in/work</loc>"));
+      assert.strictEqual(content.includes("<loc>https://labs.proquoment.in/work</loc>"), false);
       assert.ok(content.includes("<loc>https://labs.proquoment.in/about</loc>"));
       assert.ok(content.includes("<loc>https://labs.proquoment.in/contact</loc>"));
       assert.ok(content.includes("<loc>https://labs.proquoment.in/privacy-policy</loc>"));
       assert.ok(content.includes("<loc>https://labs.proquoment.in/terms-of-service</loc>"));
     });
 
-    test("llms.txt documents all 7 public canonical pages and core pillars", () => {
+    test("llms.txt documents public canonical pages and core pillars (without work)", () => {
       const llmsPath = path.join(publicDir, "llms.txt");
       const content = fs.readFileSync(llmsPath, "utf8");
       assert.ok(content.includes("https://labs.proquoment.in/"));
       assert.ok(content.includes("https://labs.proquoment.in/services"));
-      assert.ok(content.includes("https://labs.proquoment.in/work"));
+      assert.strictEqual(content.includes("https://labs.proquoment.in/work"), false);
       assert.ok(content.includes("https://labs.proquoment.in/about"));
       assert.ok(content.includes("https://labs.proquoment.in/contact"));
       assert.ok(content.includes("https://labs.proquoment.in/privacy-policy"));
