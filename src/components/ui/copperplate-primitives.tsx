@@ -343,19 +343,4 @@ export function LedgerRowItem({
                     Scope Deliverables:
                   </h4>
                   <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-sm text-[var(--ctl-soft)]">
-                    {deliverables.map((item, idx) => (
-                      <li key={idx} className="flex items-center gap-2">
-                        <span className="w-1.5 h-1.5 rounded-full bg-[var(--ctl-ink)]" />
-                        <span>{item}</span>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              )}
-            </div>
-          </motion.div>
-        )}
-      </AnimatePresence>
-    </div>
-  );
-}
+                    {deliverables.map((item, idx) => (\n                      <li key={idx} className=\"flex items-center gap-2\">\n                        <span className=\"w-1.5 h-1.5 rounded-full bg-[var(--ctl-ink)]\" />\n                        <span>{item}</span>\n                      </li>\n                    ))}\n                  </ul>\n                </div>\n              )}\n            </div>\n          </motion.div>\n        )}\n      </AnimatePresence>\n    </div>\n  );\n}\n

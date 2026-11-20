@@ -31,25 +31,25 @@ interface Pillar {
 
 const PILLARS: readonly Pillar[] = [
   {
-    title: "AI Product Engineering",
+    title: "AI SaaS & Digital Product Engineering",
     tag: "Pillar 01",
     description:
-      "End-to-end design, rapid prototyping, and production engineering of custom AI-native applications and intelligent user experiences.",
-    highlight: "LLM Interfaces • Custom Tooling • Full-Stack AI",
+      "End-to-end design, rapid MVP prototyping, and production engineering of custom AI-native applications and digital platforms.",
+    highlight: "SaaS MVPs • Custom Platforms • Full-Stack Product Engineering",
   },
   {
-    title: "AI Agents & Business Automation",
+    title: "Business Process Automation & Integrations",
     tag: "Pillar 02",
     description:
       "Autonomous agent workflows, operational pipelines, document intelligence, and multi-system integrations that eliminate repetitive toil.",
-    highlight: "Agent Swarms • Workflow Engines • System Integrations",
+    highlight: "Workflow Automation • System Integrations • Custom AI Agents",
   },
   {
-    title: "AI Transformation & Tech Partnership",
+    title: "Web Applications & Digital Experiences",
     tag: "Pillar 03",
     description:
-      "Strategic advisory, fractional CTO guidance, cloud AI infrastructure architecture, and long-term co-engineering partnerships.",
-    highlight: "Fractional CTO • Architecture • Enterprise Scaling",
+      "Modern business websites, customer portals, interactive dashboards, design systems, and practical AI readiness.",
+    highlight: "Business Websites • Portals & Dashboards • AI Readiness",
   },
 ];
 
