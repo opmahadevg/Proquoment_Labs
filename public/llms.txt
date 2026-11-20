@@ -1,16 +1,15 @@
 # Proquoment Labs
 
-> Proquoment Labs helps startups and growing businesses design, build and deploy AI-powered products, automation systems and intelligent workflows.
+> Proquoment Labs is an AI-native Product & Engineering Studio. We help ambitious startups build AI-powered products and help businesses prepare for an AI-powered future through intelligent software, automation, and modern engineering.
 
 ## Core Pillars & Capabilities
-- AI Product Engineering: End-to-end design, rapid prototyping, and production engineering of custom AI-native applications, LLM interfaces, and full-stack AI solutions.
-- AI Agents & Business Automation: Autonomous multi-agent workflows, operational pipeline automation, document intelligence, and enterprise system integrations.
-- AI Transformation & Technology Partnership: Strategic advisory, fractional CTO guidance, cloud AI infrastructure architecture, and long-term co-engineering partnerships.
+- AI SaaS & Digital Product Engineering: Turning product ideas into production-ready digital platforms, SaaS MVPs, custom dashboards, streaming APIs, and full-stack applications.
+- Business Process Automation & Integrations: Connecting systems, workflow orchestration, CRM/ERP integrations, automated document extraction, and event-driven automation.
+- Web Applications & Digital Experiences: Designing and engineering modern websites, web applications, customer portals, interactive dashboards, and responsive digital interfaces.
 
 ## Canonical Public Pages
-- [Home](https://labs.proquoment.in/): Overview of Proquoment Labs AI engineering and automation services.
-- [Services](https://labs.proquoment.in/services): Full-stack AI product engineering, autonomous multi-agent pipelines, and enterprise transformation partnerships.
-- [Work](https://labs.proquoment.in/work): Production case studies including autonomous agent swarms, SaaS MVP sprints, and workflow automation.
+- [Home](https://labs.proquoment.in/): Overview of Proquoment Labs AI product engineering, automation, and digital experiences.
+- [Services](https://labs.proquoment.in/services): Deep dive into AI SaaS engineering, business process automation, and web application development.
 - [About](https://labs.proquoment.in/about): The dedicated AI engineering and innovation studio of Proquoment Private Limited.
 - [Contact](https://labs.proquoment.in/contact): Start an AI project with direct engineering review and <24h response SLA.
 - [Insights & Industry AI Dispatches](https://labs.proquoment.in/blog): Deep-dive case studies, playbooks, and architectures for enterprise AI implementation.
@@ -18,6 +17,6 @@
 - [Terms of Service](https://labs.proquoment.in/terms-of-service): Commercial terms and intellectual property ownership standards.
 
 ## Organization Details
-- Parent Organization: Proquoment (https://proquoment.in)
+- Parent Organization: Proquoment
 - Website: https://labs.proquoment.in
 - Contact: contact@proquoment.in

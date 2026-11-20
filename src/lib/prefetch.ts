@@ -4,7 +4,6 @@
 export const routePrefetchMap: Record<string, () => Promise<unknown>> = {
   "/": () => import("@/pages/HomePage"),
   "/services": () => import("@/pages/ServicesPage"),
-  "/work": () => import("@/pages/WorkPage"),
   "/about": () => import("@/pages/AboutPage"),
   "/contact": () => import("@/pages/ContactPage"),
   "/privacy-policy": () => import("@/pages/PrivacyPolicyPage"),

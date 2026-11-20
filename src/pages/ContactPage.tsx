@@ -37,18 +37,18 @@ export interface ContactFormData {
 }
 
 export const SERVICE_TYPE_OPTIONS = [
-  "AI Product Engineering",
-  "AI Agents & Business Automation",
-  "AI Transformation & Tech Partnership",
-  "SaaS MVP Acceleration Sprint",
-  "General Inquiry / Architecture Advisory",
+  "AI SaaS & Digital Product Engineering",
+  "Business Process Automation & Integrations",
+  "Web Applications & Digital Experiences",
+  "Custom AI Agents & Specialist AI Systems",
+  "Other Custom Software Requirements",
 ];
 
 export const BUDGET_RANGE_OPTIONS = [
-  "< $5,000 (Advisory / Scoping)",
-  "$5,000 - $15,000 (MVP Sprint)",
-  "$15,000 - $50,000 (Production System)",
-  "$50,000+ (Enterprise Transformation)",
+  "$3,000 - $5,000 (Scoping & Prototyping)",
+  "$5,000 - $10,000 (MVP & Early Stage Development)",
+  "$10,000 - $25,000 (Full Product & System Engineering)",
+  "$25,000 - $50,000+ (Scale & Advanced Engineering)",
   "Flexible / To Be Discussed",
 ];
 
@@ -67,9 +67,9 @@ export function ContactPage() {
     fullName: "",
     email: "",
     company: "",
-    serviceType: "AI Product Engineering",
+    serviceType: "AI SaaS & Digital Product Engineering",
     description: "",
-    budgetRange: "$5,000 - $15,000 (MVP Sprint)",
+    budgetRange: "$5,000 - $10,000 (MVP & Early Stage Development)",
     referral: "",
   });
 
@@ -245,7 +245,7 @@ export function ContactPage() {
             kicker="DIRECT INQUIRY"
             title="Let Us Build Something"
             italicWord="Lasting."
-            description="Tell us about the challenge or architecture you envision. A senior engineering partner, never a salesperson, reviews and responds within 24 hours."
+            description="Tell us about your product idea, operational challenges or systems to connect. A senior engineering partner reviews and responds within 24 hours."
           />
         </div>
       </section>
@@ -295,9 +295,9 @@ export function ContactPage() {
                           fullName: "",
                           email: "",
                           company: "",
-                          serviceType: "AI Product Engineering",
+                          serviceType: "AI SaaS & Digital Product Engineering",
                           description: "",
-                          budgetRange: "$5,000 - $15,000 (MVP Sprint)",
+                          budgetRange: "$5,000 - $10,000 (MVP & Early Stage Development)",
                           referral: "",
                         });
                       }}
@@ -423,7 +423,7 @@ export function ContactPage() {
                       rows={5}
                       value={formData.description}
                       onChange={handleChange}
-                      placeholder="Describe the product architecture, operational bottleneck, or multi-agent workflow you are looking to build..."
+                      placeholder="Tell us about your product idea or operational problem, your current stage, desired outcome, and timeline..."
                       className="w-full px-3.5 py-2.5 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-paper)] text-[var(--ctl-text)] text-sm focus:outline-none focus:border-[var(--ctl-ink)]"
                     />
                     {errors.description && (
@@ -561,23 +561,8 @@ export function ContactPage() {
                     Headquarters
                   </span>
                   <p className="text-[var(--ctl-text)]">
-                    Bangalore, Karnataka, India · Serving global enterprise partners
+                    Gurgaon, Haryana, India · Serving global enterprise partners
                   </p>
-                </div>
-
-                <div>
-                  <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block mb-1">
-                    Enterprise Platform
-                  </span>
-                  <a
-                    href="https://proquoment.in"
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="text-[var(--ctl-ink)] hover:underline flex items-center gap-1 font-medium"
-                  >
-                    <span>Visit Proquoment Platform</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </a>
                 </div>
               </div>
 

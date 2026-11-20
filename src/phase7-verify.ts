@@ -15,33 +15,25 @@ export const CANONICAL_ROUTES: readonly RouteMetaRecord[] = [
   {
     path: "/",
     canonical: "https://labs.proquoment.in/",
-    title: "Proquoment Labs | AI Product Engineering & Autonomous Agent Automation",
+    title: "Proquoment Labs | Become AI-Ready Today.",
     description:
-      "We help startups and growing businesses design, build and deploy AI-powered products, automation systems and intelligent workflows.",
+      "We help ambitious startups build AI-powered products and help businesses prepare for an AI-powered future through intelligent software, automation and modern engineering.",
     isLazy: true,
   },
   {
     path: "/services",
     canonical: "https://labs.proquoment.in/services",
-    title: "Services | AI Engineering, Autonomous Agents & Transformation | Proquoment Labs",
+    title: "Services | AI SaaS, Business Automation & Digital Experiences | Proquoment Labs",
     description:
-      "Full-stack AI product engineering, autonomous multi-agent pipelines, and enterprise transformation partnerships.",
-    isLazy: true,
-  },
-  {
-    path: "/work",
-    canonical: "https://labs.proquoment.in/work",
-    title: "Work & Case Studies | Production AI Systems | Proquoment Labs",
-    description:
-      "Explore production case studies: autonomous multi-agent swarms, SaaS MVP sprints, and enterprise workflow automation.",
+      "AI SaaS & Digital Product Engineering, Business Process Automation & Integrations, and Web Applications & Digital Experiences.",
     isLazy: true,
   },
   {
     path: "/about",
     canonical: "https://labs.proquoment.in/about",
-    title: "About Us | The AI Engineering Studio of Proquoment | Proquoment Labs",
+    title: "About Us | AI-Native Product & Engineering Studio | Proquoment Labs",
     description:
-      "Proquoment Labs is the dedicated artificial intelligence engineering and rapid software development arm of Proquoment Private Limited.",
+      "Proquoment Labs is an AI-native Product & Engineering Studio helping ambitious founders and growing businesses turn ideas into working technology.",
     isLazy: true,
   },
   {
@@ -89,7 +81,7 @@ export const REQUIRED_PUBLIC_ASSETS = [
 export function verifyPhase7Exports() {
   const routesValid =
     Array.isArray(CANONICAL_ROUTES) &&
-    CANONICAL_ROUTES.length === 7 &&
+    CANONICAL_ROUTES.length === 6 &&
     CANONICAL_ROUTES.every(
       (r) =>
         r.path.startsWith("/") &&

@@ -149,7 +149,7 @@ export function CapabilityGrid({
                 {item.benchmark && (
                   <div>
                     <strong className="text-[var(--ctl-ink)] font-semibold block text-xs uppercase tracking-wider mb-1">
-                      Measurable Outcome:
+                      Business Value:
                     </strong>
                     <p className="text-[var(--ctl-text)] font-medium leading-relaxed">
                       {item.benchmark}

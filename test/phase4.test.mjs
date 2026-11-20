@@ -24,7 +24,7 @@ const indexCssContent = fs.readFileSync(indexCssFile, "utf8");
 
 describe("Phase 4 - Tasks 10 to 15 Contract & Implementation Tests", () => {
   // TASK 10: HeroVisual
-  describe("TASK 10 — HeroVisual (src/components/ui/hero-visual.tsx)", () => {
+  describe("TASK 10 - HeroVisual (src/components/ui/hero-visual.tsx)", () => {
     test("exports HeroVisual (named and default) and DEFAULT_AGENT_TASKS", () => {
       assert.match(heroVisualContent, /export\s+function\s+HeroVisual\b/);
       assert.match(heroVisualContent, /export\s+default\s+HeroVisual\b/);
@@ -78,7 +78,7 @@ describe("Phase 4 - Tasks 10 to 15 Contract & Implementation Tests", () => {
   });
 
   // TASK 11: AgentWorkflowVisual
-  describe("TASK 11 — AgentWorkflowVisual (src/components/ui/agent-workflow-visual.tsx)", () => {
+  describe("TASK 11 - AgentWorkflowVisual (src/components/ui/agent-workflow-visual.tsx)", () => {
     test("exports AgentWorkflowVisual (named and default)", () => {
       assert.match(workflowVisualContent, /export\s+function\s+AgentWorkflowVisual\b/);
       assert.match(workflowVisualContent, /export\s+default\s+AgentWorkflowVisual\b/);
@@ -113,138 +113,9 @@ describe("Phase 4 - Tasks 10 to 15 Contract & Implementation Tests", () => {
   });
 
   // TASK 12: TechMarquee
-  describe("TASK 12 — TechMarquee (src/components/ui/tech-marquee.tsx)", () => {
+  describe("TASK 12 - TechMarquee (src/components/ui/tech-marquee.tsx)", () => {
     test("exports TechMarquee (named and default), ALL_TECH_ITEMS, and row constants", () => {
       assert.match(techMarqueeContent, /export\s+function\s+TechMarquee\b/);
       assert.match(techMarqueeContent, /export\s+default\s+TechMarquee\b/);
       assert.match(techMarqueeContent, /export\s+const\s+ALL_TECH_ITEMS\b/);
-      assert.match(techMarqueeContent, /export\s+const\s+TECH_STACK_ROW_1\b/);
-      assert.match(techMarqueeContent, /export\s+const\s+TECH_STACK_ROW_2\b/);
-    });
-
-    test("contains all 25 required tools and platforms without omission", () => {
-      const requiredTools = [
-        "OpenAI", "Anthropic", "Claude", "Gemini", "LangChain",
-        "LangGraph", "Supabase", "PostgreSQL", "Vercel", "Next.js",
-        "React", "Python", "FastAPI", "n8n", "Make",
-        "Zapier", "HubSpot", "Slack", "Notion", "Airtable",
-        "Redis", "Pinecone", "Weaviate", "Stripe", "Twilio"
-      ];
-
-      for (const tool of requiredTools) {
-        assert.ok(
-          techMarqueeContent.includes(`"${tool}"`),
-          `Expected tool "${tool}" to be present in TechMarquee`
-        );
-      }
-    });
-
-    test("renders two rows with forward (animate-marquee) and reverse (animate-marquee-reverse)", () => {
-      assert.ok(techMarqueeContent.includes("animate-marquee"));
-      assert.ok(techMarqueeContent.includes("animate-marquee-reverse"));
-      assert.ok(indexCssContent.includes("@keyframes marquee-reverse"));
-      assert.ok(indexCssContent.includes(".animate-marquee-reverse"));
-    });
-
-    test("edge fading uses .scroller-mask and respects prefers-reduced-motion", () => {
-      assert.ok(techMarqueeContent.includes("scroller-mask"));
-      assert.ok(indexCssContent.includes(".scroller-mask"));
-      assert.ok(indexCssContent.includes("prefers-reduced-motion"));
-    });
-
-    test("marks loop duplicate items with aria-hidden for screen reader accessibility", () => {
-      assert.ok(techMarqueeContent.includes("aria-hidden"));
-      assert.ok(techMarqueeContent.includes("focus-within"));
-    });
-  });
-
-  // TASK 13: ProcessStep
-  describe("TASK 13 — ProcessStep (src/components/ui/process-step.tsx)", () => {
-    test("exports ProcessStep (named and default)", () => {
-      assert.match(processStepContent, /export\s+function\s+ProcessStep\b/);
-      assert.match(processStepContent, /export\s+default\s+ProcessStep\b/);
-    });
-
-    test("supports required props: number, title, description, isLast, highlight", () => {
-      assert.match(processStepContent, /number:\s*number/);
-      assert.match(processStepContent, /title:\s*string/);
-      assert.match(processStepContent, /description:\s*string/);
-      assert.match(processStepContent, /isLast\?:?\s*boolean/);
-      assert.match(processStepContent, /highlight\?:?\s*string/);
-    });
-
-    test("features blue number badge (bg-primary text-white) and dark card styling", () => {
-      assert.ok(processStepContent.includes("bg-primary text-white"));
-      assert.ok(processStepContent.includes("bg-card/75"));
-      assert.ok(processStepContent.includes("border border-white/5"));
-    });
-
-    test("renders connecting arrow or visual indicator between steps when isLast is false", () => {
-      assert.ok(processStepContent.includes("!isLast"));
-      assert.ok(processStepContent.includes("ArrowRight"));
-      assert.ok(processStepContent.includes("ArrowDown"));
-    });
-  });
-
-  // TASK 14: DifferentiatorCard
-  describe("TASK 14 — DifferentiatorCard (src/components/ui/differentiator-card.tsx)", () => {
-    test("exports DifferentiatorCard (named and default)", () => {
-      assert.match(differentiatorCardContent, /export\s+function\s+DifferentiatorCard\b/);
-      assert.match(differentiatorCardContent, /export\s+default\s+DifferentiatorCard\b/);
-    });
-
-    test("supports required props: icon, title, description, className, badge", () => {
-      assert.match(differentiatorCardContent, /icon:\s*LucideIcon/);
-      assert.match(differentiatorCardContent, /title:\s*string/);
-      assert.match(differentiatorCardContent, /description:\s*string/);
-      assert.match(differentiatorCardContent, /badge\?:?\s*string/);
-      assert.match(differentiatorCardContent, /className\?:?\s*string/);
-    });
-
-    test("features dark glass styling (bg-card/80 border border-white/5), hover glow (--glow-blue), scale on hover", () => {
-      assert.ok(differentiatorCardContent.includes("bg-card/80 border border-white/5"));
-      assert.ok(differentiatorCardContent.includes("var(--glow-blue)"));
-      assert.ok(differentiatorCardContent.includes("hover:scale-[1.02]"));
-    });
-  });
-
-  // TASK 15: CapabilityGrid
-  describe("TASK 15 — CapabilityGrid (src/components/ui/capability-grid.tsx)", () => {
-    test("exports CapabilityGrid (named and default)", () => {
-      assert.match(capabilityGridContent, /export\s+function\s+CapabilityGrid\b/);
-      assert.match(capabilityGridContent, /export\s+default\s+CapabilityGrid\b/);
-    });
-
-    test("supports required props: capabilities, columns (2 | 3), className", () => {
-      assert.match(capabilityGridContent, /capabilities:\s*CapabilityItem\[\]/);
-      assert.match(capabilityGridContent, /columns\?:?\s*2\s*\|\s*3/);
-      assert.match(capabilityGridContent, /className\?:?\s*string/);
-    });
-
-    test("supports responsive grid classes for 2 and 3 columns", () => {
-      assert.ok(capabilityGridContent.includes("grid-cols-1 md:grid-cols-2"));
-      assert.ok(capabilityGridContent.includes("grid-cols-1 md:grid-cols-2 lg:grid-cols-3"));
-    });
-
-    test("cards have dark glass styling and hover micro-interactions", () => {
-      assert.ok(capabilityGridContent.includes("bg-card/75 border border-white/5"));
-      assert.ok(capabilityGridContent.includes("hover:border-primary/40"));
-      assert.ok(capabilityGridContent.includes("hover:-translate-y-1"));
-    });
-  });
-
-  // Verification helper test
-  describe("Verification Helper (src/phase4-verify.ts)", () => {
-    test("phase4-verify.ts exists and checks all 6 atoms", () => {
-      const verifyFile = path.resolve(__dirname, "../src/phase4-verify.ts");
-      const verifyContent = fs.readFileSync(verifyFile, "utf8");
-      assert.ok(verifyContent.includes("hasHeroVisual"));
-      assert.ok(verifyContent.includes("hasAgentWorkflowVisual"));
-      assert.ok(verifyContent.includes("hasTechMarquee"));
-      assert.ok(verifyContent.includes("hasProcessStep"));
-      assert.ok(verifyContent.includes("hasDifferentiatorCard"));
-      assert.ok(verifyContent.includes("hasCapabilityGrid"));
-      assert.ok(verifyContent.includes("all25TechPresent"));
-    });
-  });
-});
+      assert.match(techMarqueeContent, /export\s+const\s+TECH_STACK_ROW_1\b/);\n      assert.match(techMarqueeContent, /export\\s+const\\s+TECH_STACK_ROW_2\\b/);\n    });\n\n    test(\"contains all 25 required tools and platforms without omission\", () => {\n      const requiredTools = [\n        \"OpenAI\", \"Anthropic\", \"Claude\", \"Gemini\", \"LangChain\",\n        \"LangGraph\", \"Supabase\", \"PostgreSQL\", \"Vercel\", \"Next.js\",\n        \"React\", \"Python\", \"FastAPI\", \"n8n\", \"Make\",\n        \"Zapier\", \"HubSpot\", \"Slack\", \"Notion\", \"Airtable\",\n        \"Redis\", \"Pinecone\", \"Weaviate\", \"Stripe\", \"Twilio\"\n      ];\n\n      for (const tool of requiredTools) {\n        assert.ok(\n          techMarqueeContent.includes(`\"${tool}\"`),\n          `Expected tool \"${tool}\" to be present in TechMarquee`\n        );\n      }\n    });\n\n    test(\"renders two rows with forward (animate-marquee) and reverse (animate-marquee-reverse)\", () => {\n      assert.ok(techMarqueeContent.includes(\"animate-marquee\"));\n      assert.ok(techMarqueeContent.includes(\"animate-marquee-reverse\"));\n      assert.ok(indexCssContent.includes(\"@keyframes marquee-reverse\"));\n      assert.ok(indexCssContent.includes(\".animate-marquee-reverse\"));\n    });\n\n    test(\"edge fading uses .scroller-mask and respects prefers-reduced-motion\", () => {\n      assert.ok(techMarqueeContent.includes(\"scroller-mask\"));\n      assert.ok(indexCssContent.includes(\".scroller-mask\"));\n      assert.ok(indexCssContent.includes(\"prefers-reduced-motion\"));\n    });\n\n    test(\"marks loop duplicate items with aria-hidden for screen reader accessibility\", () => {\n      assert.ok(techMarqueeContent.includes(\"aria-hidden\"));\n      assert.ok(techMarqueeContent.includes(\"focus-within\"));\n    });\n  });\n\n  // TASK 13: ProcessStep\n  describe(\"TASK 13 - ProcessStep (src/components/ui/process-step.tsx)\", () => {\n    test(\"exports ProcessStep (named and default)\", () => {\n      assert.match(processStepContent, /export\\s+function\\s+ProcessStep\\b/);\n      assert.match(processStepContent, /export\\s+default\\s+ProcessStep\\b/);\n    });\n\n    test(\"supports required props: number, title, description, isLast, highlight\", () => {\n      assert.match(processStepContent, /number:\\s*number/);\n      assert.match(processStepContent, /title:\\s*string/);\n      assert.match(processStepContent, /description:\\s*string/);\n      assert.match(processStepContent, /isLast\\?:?\\s*boolean/);\n      assert.match(processStepContent, /highlight\\?:?\\s*string/);\n    });\n\n    test(\"features blue number badge (bg-primary text-white) and dark card styling\", () => {\n      assert.ok(processStepContent.includes(\"bg-primary text-white\"));\n      assert.ok(processStepContent.includes(\"bg-card/75\"));\n      assert.ok(processStepContent.includes(\"border border-white/5\"));\n    });\n\n    test(\"renders connecting arrow or visual indicator between steps when isLast is false\", () => {\n      assert.ok(processStepContent.includes(\"!isLast\"));\n      assert.ok(processStepContent.includes(\"ArrowRight\"));\n      assert.ok(processStepContent.includes(\"ArrowDown\"));\n    });\n  });\n\n  // TASK 14: DifferentiatorCard\n  describe(\"TASK 14 - DifferentiatorCard (src/components/ui/differentiator-card.tsx)\", () => {\n    test(\"exports DifferentiatorCard (named and default)\", () => {\n      assert.match(differentiatorCardContent, /export\\s+function\\s+DifferentiatorCard\\b/);\n      assert.match(differentiatorCardContent, /export\\s+default\\s+DifferentiatorCard\\b/);\n    });\n\n    test(\"supports required props: icon, title, description, className, badge\", () => {\n      assert.match(differentiatorCardContent, /icon:\\s*LucideIcon/);\n      assert.match(differentiatorCardContent, /title:\\s*string/);\n      assert.match(differentiatorCardContent, /description:\\s*string/);\n      assert.match(differentiatorCardContent, /badge\\?:?\\s*string/);\n      assert.match(differentiatorCardContent, /className\\?:?\\s*string/);\n    });\n\n    test(\"features dark glass styling (bg-card/80 border border-white/5), hover glow (--glow-blue), scale on hover\", () => {\n      assert.ok(differentiatorCardContent.includes(\"bg-card/80 border border-white/5\"));\n      assert.ok(differentiatorCardContent.includes(\"var(--glow-blue)\"));\n      assert.ok(differentiatorCardContent.includes(\"hover:scale-[1.02]\"));\n    });\n  });\n\n  // TASK 15: CapabilityGrid\n  describe(\"TASK 15 - CapabilityGrid (src/components/ui/capability-grid.tsx)\", () => {\n    test(\"exports CapabilityGrid (named and default)\", () => {\n      assert.match(capabilityGridContent, /export\\s+function\\s+CapabilityGrid\\b/);\n      assert.match(capabilityGridContent, /export\\s+default\\s+CapabilityGrid\\b/);\n    });\n\n    test(\"supports required props: capabilities, columns (2 | 3), className\", () => {\n      assert.match(capabilityGridContent, /capabilities:\\s*CapabilityItem\\[\\]/);\n      assert.match(capabilityGridContent, /columns\\?:?\\s*2\\s*\\|\\s*3/);\n      assert.match(capabilityGridContent, /className\\?:?\\s*string/);\n    });\n\n    test(\"supports responsive grid classes for 2 and 3 columns\", () => {\n      assert.ok(capabilityGridContent.includes(\"grid-cols-1 md:grid-cols-2\"));\n      assert.ok(capabilityGridContent.includes(\"grid-cols-1 md:grid-cols-2 lg:grid-cols-3\"));\n    });\n\n    test(\"cards have dark glass styling and hover micro-interactions\", () => {\n      assert.ok(capabilityGridContent.includes(\"bg-card/75 border border-white/5\"));\n      assert.ok(capabilityGridContent.includes(\"hover:border-primary/40\"));\n      assert.ok(capabilityGridContent.includes(\"hover:-translate-y-1\"));\n    });\n  });\n\n  // Verification helper test\n  describe(\"Verification Helper (src/phase4-verify.ts)\", () => {\n    test(\"phase4-verify.ts exists and checks all 6 atoms\", () => {\n      const verifyFile = path.resolve(__dirname, \"../src/phase4-verify.ts\");\n      const verifyContent = fs.readFileSync(verifyFile, \"utf8\");\n      assert.ok(verifyContent.includes(\"hasHeroVisual\"));\n      assert.ok(verifyContent.includes(\"hasAgentWorkflowVisual\"));\n      assert.ok(verifyContent.includes(\"hasTechMarquee\"));\n      assert.ok(verifyContent.includes(\"hasProcessStep\"));\n      assert.ok(verifyContent.includes(\"hasDifferentiatorCard\"));\n      assert.ok(verifyContent.includes(\"hasCapabilityGrid\"));\n      assert.ok(verifyContent.includes(\"all25TechPresent\"));\n    });\n  });\n});\n

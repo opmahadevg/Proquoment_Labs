@@ -182,27 +182,27 @@ export const AUDIENCE_PROFILES: AudienceProfile[] = [
   },
   {
     title: "Founders Building New Products",
-    badge: "Technical Co-Founder",
-    description: "Your fractional AI engineering team. We handle architecture, system integration, prompt engineering, and cloud deployment.",
-    focus: "Fractional AI engineering • Full-stack builds • Scalable cloud infrastructure",
+    badge: "Technical Partner",
+    description: "Your product engineering partner. We handle architecture, system integration, AI features, and cloud deployment from napkin sketch to scale.",
+    focus: "Full-stack builds • AI SaaS architecture • Scalable cloud infrastructure",
   },
   {
-    title: "Growing SMBs",
+    title: "Businesses Preparing for AI",
+    badge: "AI Readiness",
+    description: "Understand practical operational AI opportunities, evaluate feasibility, and modernize existing software and digital infrastructure.",
+    focus: "AI opportunity discovery • System modernization • Strategic engineering",
+  },
+  {
+    title: "Growing Companies Automating Operations",
     badge: "Operational Leverage",
-    description: "Eliminate repetitive operational toil across support, sales outreach, customer billing, and back-office pipelines.",
-    focus: "Workflow automation • Customer support agents • Back-office pipeline streamlining",
+    description: "Eliminate repetitive manual toil across support, sales outreach, customer billing, and back-office document pipelines.",
+    focus: "Workflow automation • Document extraction • Back-office pipeline streamlining",
   },
   {
-    title: "Professional Services",
-    badge: "Knowledge Automation",
-    description: "Transform manual document reviews, report drafting, and contract processing into sub-second autonomous workflows.",
-    focus: "Document intelligence • Research synthesis agents • Proposal automation",
-  },
-  {
-    title: "Tech Teams",
-    badge: "AI Squad Augmentation",
-    description: "Augment your existing engineers with deep specialized expertise in agent orchestration, evals, and production LLM scaling.",
-    focus: "Agent swarm design • Observability & evals • Custom tool integration",
+    title: "Established Teams Needing Engineering Muscle",
+    badge: "Specialist Squad",
+    description: "Augment your existing technical team with deep specialized expertise in agent orchestration, API integrations, and production scaling.",
+    focus: "Workflow integrations • Custom tool development • Production scaling",
   },
 ];
 
@@ -227,9 +227,9 @@ export function HomePage() {
         palette="cobalt"
         paletteSwitcher={true}
         hero={{
-          title: "Autonomous AI Systems\nBuilt for Tomorrow",
+          title: "Become AI-Ready Today.",
           subtitle:
-            "Where AI becomes your competitive advantage. Build AI-native products. Automate what slows you down. We engineer intelligent systems with master craftsman precision.",
+            "We help ambitious startups build AI-powered products and help businesses prepare for an AI-powered future through intelligent software, automation and modern engineering.",
           action: { label: "Start a Project", href: "/contact" },
           est: "Est. MMXXVI",
           edition: "Vol. I · Nº 01",
@@ -252,27 +252,27 @@ export function HomePage() {
         about={{
           kicker: "About the Studio",
           statement:
-            "We bring the patience of the old masters to the *frontier of machine intelligence*, leaving every enterprise sturdier, faster, and fully autonomous.",
-          body: "We're not a typical agency. We are an AI Product Engineering & Transformation Studio partnering with fast-moving founders and growing businesses. Designing, building, and scaling AI-native products, autonomous workflows, and intelligent software.",
+            "We combine product thinking, modern engineering, and applied intelligence to build digital platforms and make businesses AI-ready.",
+          body: "We are an AI-native Product & Engineering Studio. Whether you are an ambitious founder launching a new AI SaaS product or an established business automating operations and integrating AI into existing software, we engineer practical solutions that run reliably in production.",
           stats: [
             { value: 100, suffix: "%", label: "IP Ownership to Client" },
             { value: 99.9, suffix: "%", label: "Production Uptime SLA" },
             { value: 10, suffix: "x", label: "Operational Velocity" },
           ],
-          seal: "Proquoment Labs · Autonomous Intelligence · Est. MMXXVI · ",
+          seal: "Proquoment Labs · Est. MMXXVI · ",
         }}
         solutionsCopy={{
-          kicker: "Core Practices",
-          title: "Four practices, *one long view*",
+          kicker: "Core Pillars",
+          title: "Three core pillars, *one standard of engineering*",
           intro:
-            "Pull a bookmark from the shelf. Each is an engineering discipline we have honed for deterministic autonomous execution.",
+            "Pull a bookmark from the shelf. Each is an engineering discipline we maintain to turn product ideas and operational workflows into production software.",
         }}
         solutions={[
           {
-            kicker: "Pillar I",
-            title: "AI Product Engineering",
-            quote: "Build products that work and scale.",
-            body: "Designing and engineering AI-native applications from zero to scale. Custom dashboards, conversational copilots, SaaS MVPs, and resilient API architectures.",
+            kicker: "Pillar 01",
+            title: "AI SaaS & Digital Product Engineering",
+            quote: "Turn product ideas into production-ready digital platforms.",
+            body: "We turn product ideas into production-ready digital platforms. From architecture and engineering to deployment, we help founders move from concept to a working product.",
             points: [
               "Website & Web Apps",
               "SaaS MVP Development",
@@ -285,26 +285,26 @@ export function HomePage() {
             tone: "paper",
           },
           {
-            kicker: "Pillar II",
-            title: "AI Agents & Automation",
-            quote: "Automate what slows you down.",
-            body: "Replacing brittle manual processes with self-correcting agent swarms, document intelligence, intelligent routing, and multi-system integrations.",
+            kicker: "Pillar 02",
+            title: "Business Process Automation & Integrations",
+            quote: "Connect systems, automate repetitive operations and engineer intelligent workflows.",
+            body: "We connect systems, automate repetitive operations and engineer intelligent workflows that help businesses operate more efficiently. Event-driven pipelines, document processing, and ERP/CRM sync.",
             points: [
               "Document Processing",
               "Customer Support Agents",
-              "Data Pipeline Automation",
               "Internal Tooling",
-              "Email & Ticket Routing",
+              "Workflow Integration",
               "Multi-Agent Systems",
+              "Data Pipeline Automation",
             ],
             art: "steamer",
             tone: "ink",
           },
           {
-            kicker: "Pillar III",
-            title: "AI Transformation Partnership",
-            quote: "The strategic blueprint that turns uncertainty into enterprise leverage.",
-            body: "Collaborative advisory and technical leadership. We audit manual workflows, design phased AI roadmaps, train engineering squads, and ensure compliance.",
+            kicker: "Pillar 03",
+            title: "Web Applications & Digital Experiences",
+            quote: "Design and engineer modern digital experiences that make complex products easier to use.",
+            body: "We design and engineer modern digital experiences that make complex products and business operations easier to use. Fast, responsive web applications, customer portals, and intuitive dashboards.",
             points: [
               "Opportunity Discovery",
               "AI Roadmap Design",
@@ -316,20 +316,6 @@ export function HomePage() {
             art: "monogram",
             tone: "paper",
           },
-          {
-            kicker: "Pillar IV",
-            title: "Enterprise Systems",
-            quote: "Build the foundations first. Every scale milestone after is cheaper.",
-            body: "Enterprise vector databases, private model fine-tuning, latency optimization, SOC2-ready governance, and custom evaluation harnesses.",
-            points: [
-              "Vector DB Scaling",
-              "Evaluation Harnesses",
-              "Zero-Leakage Guardrails",
-              "SOC2 Compliance",
-            ],
-            art: "tower",
-            tone: "ink",
-          },
         ]}
         servicesCopy={{
           kicker: "The Ledger",
@@ -339,36 +325,36 @@ export function HomePage() {
         }}
         services={[
           {
-            title: "AI Product Engineering",
-            summary: "Production web and SaaS products built with AI-native architecture.",
+            title: "AI SaaS & MVP Engineering",
+            summary: "Production SaaS applications and MVP platforms engineered from concept to launch.",
             details:
               "We take your product from napkin sketch to market-ready release in weeks, not months. Complete UI/UX design, frontend engineering, streaming LLM backends, and deployment automation.",
             deliverables: ["Full-Stack App", "API Suite", "Production CI/CD"],
             duration: "4 to 8 weeks",
           },
           {
-            title: "Autonomous Workflow Automation",
-            summary: "Deterministic agentic pipelines connecting CRM, ERP, and databases.",
+            title: "Business Process Automation & Integrations",
+            summary: "Intelligent workflow automation connecting CRM, ERP, databases, and APIs.",
             details:
-              "We map your operational bottlenecks and deploy autonomous agents that execute complex multi-step workflows with human-in-the-loop verification.",
-            deliverables: ["Agent Orchestrator", "Integration Webhooks", "Monitoring Suite"],
-            duration: "6 to 12 weeks",
+              "We connect systems, map operational bottlenecks, and deploy automated pipelines that execute complex multi-step workflows with human-in-the-loop verification.",
+            deliverables: ["Workflow Orchestrator", "Integration Webhooks", "Monitoring Suite"],
+            duration: "4 to 8 weeks",
           },
           {
-            title: "AI Transformation Partnership",
-            summary: "Embedded fractional AI leadership and strategic enablement.",
+            title: "AI Integration & System Modernization",
+            summary: "Integrating AI capabilities, copilots, and modern infrastructure into existing business software.",
             details:
-              "A standing partnership with your technical leadership: we sit in on architectural reviews, benchmark competing model providers, and audit security compliance.",
-            deliverables: ["AI Opportunity Audit", "Architecture Roadmap", "Security Framework"],
+              "A practical engineering partnership: we evaluate technical feasibility, integrate custom AI copilots, connect disparate systems, and modernize digital infrastructure.",
+            deliverables: ["AI Opportunity Audit", "Architecture Blueprint", "System Integrations"],
             duration: "Ongoing Retainer",
           },
           {
-            title: "Custom Multi-Agent Deployments",
-            summary: "Specialized collaborative agent swarms for mission-critical tasks.",
+            title: "Web Applications & Digital Experiences",
+            summary: "Responsive web portals, interactive dashboards, and intuitive software interfaces.",
             details:
-              "LangGraph and native state-machine orchestrations with built-in retry mechanisms, state persistence, and real-time observability telemetry.",
-            deliverables: ["Multi-Agent Mesh", "Failure Recovery", "Evaluation Harness"],
-            duration: "8 to 16 weeks",
+              "Customer portals, administrative control rooms, and interactive dashboards engineered with modern reactive frameworks and accessible design systems.",
+            deliverables: ["Customer Portals", "Admin Workspaces", "Design Systems"],
+            duration: "4 to 8 weeks",
           },
         ]}
         notes={[

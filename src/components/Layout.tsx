@@ -16,7 +16,6 @@ export interface NavItem {
 
 export const NAV_ITEMS: readonly NavItem[] = [
   { label: "Services", href: "/services" },
-  { label: "Work", href: "/work" },
   { label: "About", href: "/about" },
   { label: "Insights", href: "/blog" },
   { label: "Contact", href: "/contact" },
@@ -182,14 +181,6 @@ export function Navbar() {
             )}
             <span className="sr-only">Toggle theme</span>
           </button>
-          <a
-            href="https://proquoment.in"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="text-xs text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] font-semibold tracking-wider uppercase transition-colors"
-          >
-            Platform &rarr;
-          </a>
           <Link
             href="/contact"
             onMouseEnter={() => prefetchRoute("/contact")}
@@ -350,14 +341,6 @@ export function Navbar() {
                     >
                       Start a Project
                     </Link>
-                    <a
-                      href="https://proquoment.in"
-                      target="_blank"
-                      rel="noopener noreferrer"
-                      className="block text-center text-xs text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] font-semibold tracking-wider uppercase transition-colors py-2"
-                    >
-                      Visit Proquoment Platform &rarr;
-                    </a>
                   </div>
                 </motion.div>,
                 document.body
@@ -439,11 +422,11 @@ export function Footer() {
             </Link>
 
             <p className="text-sm font-serif italic text-[var(--ctl-ink)]">
-              Where AI becomes your competitive advantage.
+              Build for the future. Become AI-ready today.
             </p>
 
             <p className="text-xs text-[var(--ctl-soft)] leading-relaxed max-w-sm font-sans">
-              AI Product Engineering &amp; Transformation Studio. Designing, building, and scaling AI-native products, autonomous workflows, and intelligent software.
+              AI-native Product &amp; Engineering Studio. Turning ideas into production digital platforms, automations, and modern web applications.
             </p>
 
             {/* Interactive Palette Switcher */}
@@ -483,7 +466,7 @@ export function Footer() {
                   onMouseEnter={() => prefetchRoute("/services")}
                   className="text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors"
                 >
-                  AI Product Engineering
+                  AI SaaS &amp; Product Engineering
                 </Link>
               </li>
               <li>
@@ -492,7 +475,7 @@ export function Footer() {
                   onMouseEnter={() => prefetchRoute("/services")}
                   className="text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors"
                 >
-                  AI Agents &amp; Automation
+                  Business Process Automation
                 </Link>
               </li>
               <li>
@@ -501,7 +484,7 @@ export function Footer() {
                   onMouseEnter={() => prefetchRoute("/services")}
                   className="text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors"
                 >
-                  AI Transformation Partnership
+                  Web Applications &amp; Experiences
                 </Link>
               </li>
               <li className="pt-1">
@@ -540,17 +523,6 @@ export function Footer() {
                   className="text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors flex items-center gap-1"
                 >
                   <span>Book a Consultation</span>
-                  <span aria-hidden="true">&rarr;</span>
-                </a>
-              </li>
-              <li>
-                <a
-                  href="https://proquoment.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors flex items-center gap-1"
-                >
-                  <span>Visit Proquoment Platform</span>
                   <span aria-hidden="true">&rarr;</span>
                 </a>
               </li>

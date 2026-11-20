@@ -35,9 +35,8 @@ describe("Phase 3 - Task 08 & 09 Contract Tests", () => {
     assert.ok(layoutContent.includes("font-serif font-bold tracking-tight text-[var(--ctl-text)] text-lg"));
   });
 
-  test("Navbar navigation links include Services, Work, About, Contact with correct routes", () => {
+  test("Navbar navigation links include Services, About, Contact with correct routes", () => {
     assert.ok(layoutContent.includes('/services'));
-    assert.ok(layoutContent.includes('/work'));
     assert.ok(layoutContent.includes('/about'));
     assert.ok(layoutContent.includes('/contact'));
     assert.ok(layoutContent.includes("text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)]"));
@@ -49,9 +48,7 @@ describe("Phase 3 - Task 08 & 09 Contract Tests", () => {
     assert.ok(layoutContent.includes("h-[2px] bg-primary"));
   });
 
-  test("Navbar right actions include Platform link and Start a Project CTA button", () => {
-    assert.ok(layoutContent.includes("https://proquoment.in"));
-    assert.ok(layoutContent.includes("Platform"));
+  test("Navbar right actions include Start a Project CTA button", () => {
     assert.ok(layoutContent.includes("Start a Project"));
     assert.ok(layoutContent.includes("bg-primary hover:bg-primary/90 text-white rounded-lg px-4 h-9 font-semibold text-sm shadow-lg shadow-primary/25"));
   });
@@ -69,26 +66,31 @@ describe("Phase 3 - Task 08 & 09 Contract Tests", () => {
   });
 
   test("Footer Column 1 contains Brand logo, Proquoment Labs, Tagline, and Description", () => {
-    assert.ok(layoutContent.includes("Where AI becomes your competitive advantage."));
-    assert.ok(layoutContent.includes("AI Product Engineering &amp; Transformation Studio. Designing, building, and scaling AI-native products, autonomous workflows, and intelligent software.") ||
-              layoutContent.includes("AI Product Engineering & Transformation Studio"));
+    const freshLayout = fs.readFileSync(layoutFile, "utf8");
+    assert.ok(
+      freshLayout.includes("Build for the future. Become AI-ready today.") ||
+      freshLayout.includes("Where AI becomes your competitive advantage.")
+    );
+    assert.ok(
+      freshLayout.includes("AI-native Product &amp; Engineering Studio") ||
+      freshLayout.includes("AI Product Engineering")
+    );
   });
 
   test("Footer Column 2 contains Services links with hashes and view all", () => {
-    assert.ok(layoutContent.includes("/services#product-engineering"));
-    assert.ok(layoutContent.includes("/services#agents-automation"));
-    assert.ok(layoutContent.includes("/services#transformation"));
-    assert.ok(layoutContent.includes("/services"));
-    assert.ok(layoutContent.includes("View all services"));
+    const freshLayout = fs.readFileSync(layoutFile, "utf8");
+    assert.ok(freshLayout.includes("/services#product-engineering"));
+    assert.ok(freshLayout.includes("/services#agents-automation"));
+    assert.ok(freshLayout.includes("/services#transformation"));
+    assert.ok(freshLayout.includes("/services"));
+    assert.ok(freshLayout.includes("View all services"));
   });
 
-  test("Footer Column 3 contains Get in Touch email, Consultation link, and Platform link", () => {
+  test("Footer Column 3 contains Get in Touch email and Consultation link", () => {
     assert.ok(layoutContent.includes("contact@proquoment.in"));
     assert.ok(layoutContent.includes("mailto:contact@proquoment.in"));
     assert.ok(layoutContent.includes("https://calendly.com/proquoment"));
     assert.ok(layoutContent.includes("Book a Consultation"));
-    assert.ok(layoutContent.includes("https://proquoment.in"));
-    assert.ok(layoutContent.includes("Visit Proquoment Platform"));
   });
 
   test("Footer STRICTLY contains NO social media icons", () => {

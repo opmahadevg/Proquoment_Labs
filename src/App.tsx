@@ -22,7 +22,6 @@ import { verifyPhase7Exports } from "@/phase7-verify";
 // Lazy-loaded route components for code splitting & optimal runtime performance
 const HomePage = React.lazy(() => import("@/pages/HomePage"));
 const ServicesPage = React.lazy(() => import("@/pages/ServicesPage"));
-const WorkPage = React.lazy(() => import("@/pages/WorkPage"));
 const AboutPage = React.lazy(() => import("@/pages/AboutPage"));
 const ContactPage = React.lazy(() => import("@/pages/ContactPage"));
 const BlogPage = React.lazy(() => import("@/pages/BlogPage"));
@@ -58,9 +57,9 @@ export function HomePageRoute() {
   return (
     <Layout
       seo={{
-        title: "Proquoment Labs | AI Product Engineering & Autonomous Agent Automation",
+        title: "Proquoment Labs | Become AI-Ready Today.",
         description:
-          "We help startups and growing businesses design, build and deploy AI-powered products, automation systems and intelligent workflows.",
+          "We help ambitious startups build AI-powered products and help businesses prepare for an AI-powered future through intelligent software, automation and modern engineering.",
         canonical: "https://labs.proquoment.in/",
       }}
     >
@@ -77,9 +76,9 @@ export function ServicesPageRoute() {
   return (
     <Layout
       seo={{
-        title: "Services | AI Engineering, Autonomous Agents & Transformation | Proquoment Labs",
+        title: "Services | AI SaaS, Business Automation & Digital Experiences | Proquoment Labs",
         description:
-          "Full-stack AI product engineering, autonomous multi-agent pipelines, and enterprise transformation partnerships.",
+          "AI SaaS & Digital Product Engineering, Business Process Automation & Integrations, and Web Applications & Digital Experiences.",
         canonical: "https://labs.proquoment.in/services",
       }}
     >
@@ -92,32 +91,13 @@ export function ServicesPageRoute() {
   );
 }
 
-export function WorkPageRoute() {
-  return (
-    <Layout
-      seo={{
-        title: "Work & Case Studies | Production AI Systems | Proquoment Labs",
-        description:
-          "Explore production case studies: autonomous multi-agent swarms, SaaS MVP sprints, and enterprise workflow automation.",
-        canonical: "https://labs.proquoment.in/work",
-      }}
-    >
-      <RouteErrorBoundary>
-        <React.Suspense fallback={<PageFallback />}>
-          <WorkPage />
-        </React.Suspense>
-      </RouteErrorBoundary>
-    </Layout>
-  );
-}
-
 export function AboutPageRoute() {
   return (
     <Layout
       seo={{
-        title: "About Us | The AI Engineering Studio of Proquoment | Proquoment Labs",
+        title: "About Us | AI-Native Product & Engineering Studio | Proquoment Labs",
         description:
-          "Proquoment Labs is the dedicated artificial intelligence engineering and rapid software development arm of Proquoment Private Limited.",
+          "Proquoment Labs is an AI-native Product & Engineering Studio helping ambitious founders and growing businesses turn ideas into working technology.",
         canonical: "https://labs.proquoment.in/about",
       }}
     >
@@ -265,7 +245,6 @@ export function Router() {
       <Switch>
         <Route path="/" component={HomePageRoute} />
         <Route path="/services" component={ServicesPageRoute} />
-        <Route path="/work" component={WorkPageRoute} />
         <Route path="/about" component={AboutPageRoute} />
         <Route path="/contact" component={ContactPageRoute} />
         <Route path="/blog" component={BlogPageRoute} />

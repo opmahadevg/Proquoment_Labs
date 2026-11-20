@@ -189,7 +189,7 @@ export function PrivacyPolicyPage() {
             <p>
               This Privacy Policy and any disputes arising out of the handling of personal data shall be governed by and construed in
               accordance with the laws of the Republic of India. Any legal proceedings related to this policy shall be subject to the
-              exclusive jurisdiction of the competent courts located in Bangalore, Karnataka, India.
+              exclusive jurisdiction of the competent courts located in Gurgaon, Haryana, India.
             </p>
           </section>
 
@@ -206,7 +206,7 @@ export function PrivacyPolicyPage() {
             <div className="p-6 rounded-[2px] border border-[var(--ctl-line)] bg-[var(--ctl-wash)] space-y-2 text-sm">
               <p className="font-serif font-bold text-[var(--ctl-text)] text-base">Proquoment Private Limited (Labs Division)</p>
               <p className="text-xs text-[var(--ctl-soft)]">Attn: Privacy &amp; Legal Compliance</p>
-              <p className="text-xs text-[var(--ctl-soft)]">Bangalore, Karnataka, India</p>
+              <p className="text-xs text-[var(--ctl-soft)]">Gurgaon, Haryana, India</p>
               <p className="text-xs text-[var(--ctl-text)] flex items-center gap-1.5 pt-1">
                 <Mail className="w-3.5 h-3.5 text-[var(--ctl-ink)]" />
                 <span>Email: contact@proquoment.in</span>

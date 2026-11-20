@@ -253,7 +253,7 @@ describe("Phase 5 - Headless Browser End-to-End Suite for HomePage Assembly", ()
     await assert.doesNotReject(section.waitFor({ state: "visible" }));
 
     const text = await section.textContent();
-    assert.ok(text.includes("From idea to operational AI — in weeks, not months."));
+    assert.ok(text.includes("From idea to operational AI - in weeks, not months."));
     assert.ok(text.includes("Discover"));
     assert.ok(text.includes("Design"));
     assert.ok(text.includes("Build"));

@@ -35,17 +35,16 @@ export function AboutPage() {
         <div className="max-w-7xl mx-auto px-6">
           <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
             <div className="lg:col-span-8 space-y-6">
-              <PlateKicker>ABOUT THE STUDIO</PlateKicker>
+              <PlateKicker>AI-NATIVE PRODUCT &amp; ENGINEERING STUDIO</PlateKicker>
               <h1 className="font-serif text-4xl sm:text-5xl lg:text-6xl text-[var(--ctl-text)] leading-[1.08]">
-                We Don&apos;t Just Advise on AI.{" "}
+                Build for the Future.{" "}
                 <span className="italic text-[var(--ctl-ink)] font-normal block mt-1">
-                  We Engineer Systems That Run.
+                  Become AI-Ready Today.
                 </span>
               </h1>
               <p className="text-[16px] sm:text-lg text-[var(--ctl-soft)] leading-relaxed max-w-2xl">
-                Proquoment Labs is the dedicated artificial intelligence engineering and software
-                innovation division of Proquoment Private Limited. We bridge the gap between
-                high-level AI research and mission-critical operational reality.
+                We help ambitious startups build AI-powered products and help businesses prepare for an
+                AI-powered future through intelligent software, automation and modern engineering.
               </p>
               <div className="flex flex-wrap items-center gap-4 pt-2">
                 <Link href="/contact">
@@ -54,9 +53,9 @@ export function AboutPage() {
                     <ArrowRight className="w-4 h-4" />
                   </CopperplateButton>
                 </Link>
-                <Link href="/work">
+                <Link href="/services">
                   <CopperplateButton variant="paper">
-                    <span>Explore Our Work</span>
+                    <span>Explore Services</span>
                   </CopperplateButton>
                 </Link>
               </div>
@@ -89,24 +88,24 @@ export function AboutPage() {
               </h2>
 
               <p className="text-[16px] text-[var(--ctl-soft)] leading-relaxed">
-                Proquoment began by tackling friction in enterprise procurement, supply chain
-                intelligence, and multi-vendor data synchronization. In doing so, we encountered
-                a universal truth: most businesses were drowning in manual coordination, brittle
-                spreadsheets, and fragmented enterprise software.
+                Proquoment began by tackling operational friction in enterprise workflows and business
+                systems. In doing so, we encountered a universal reality: early-stage founders struggled
+                to turn ambitious product ideas into production software, while existing businesses were
+                drowning in manual coordination, disconnected tools, and fragmented systems.
               </p>
 
               <p className="text-[16px] text-[var(--ctl-soft)] leading-relaxed">
-                When the generative AI revolution began, the market quickly flooded with superficial
-                chat wrappers and consulting firms selling speculative 100-page slide decks. We
-                recognized that founders and enterprises didn’t need more talk; they needed
-                dedicated engineers who could design and deploy operational software that actually
-                works under real production constraints.
+                When artificial intelligence advanced, the market flooded with theoretical consulting
+                and superficial chatbot demos. We recognized that founders and business operators did
+                not need more strategy decks: they needed an engineering studio that combines practical
+                product thinking, applied artificial intelligence, and hands-on software engineering.
               </p>
 
               <p className="text-[16px] text-[var(--ctl-soft)] leading-relaxed">
                 That was the genesis of <strong className="text-[var(--ctl-ink)]">Proquoment Labs</strong>:
-                an agile engineering studio combining enterprise architectural rigor with startup
-                deployment speed.
+                an AI-native product and engineering studio operating as a distinct client-services brand
+                within the Proquoment ecosystem, dedicated to building production digital platforms and
+                making businesses AI-ready.
               </p>
             </div>
 
@@ -153,7 +152,7 @@ export function AboutPage() {
 
                 <div className="pt-4 border-t border-[var(--ctl-line)] text-xs text-[var(--ctl-soft)] flex items-center gap-2">
                   <ShieldCheck className="w-4 h-4 text-[var(--ctl-ink)] shrink-0" />
-                  <span>Headquartered in Bangalore, India with global client delivery.</span>
+                  <span>Headquartered in Gurgaon, Haryana, India with global client delivery.</span>
                 </div>
               </EtchedCard>
             </div>
@@ -176,33 +175,33 @@ export function AboutPage() {
             <EtchedCard className="space-y-4">
               <span className="font-serif text-2xl font-bold text-[var(--ctl-ink)]">I.</span>
               <h3 className="font-serif text-xl sm:text-2xl text-[var(--ctl-text)]">
-                Replace Fragile Human Hand-offs
+                Build for the AI-Powered Future
               </h3>
               <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
-                Repetitive data entry, routine triaging, and manual document parsing should be
-                handled by autonomous pipelines with self-correcting validation checks.
+                We help ambitious founders turn ideas and wireframes into working, monetizable AI-powered
+                SaaS applications and digital products in rapid 4 to 6 week sprints.
               </p>
             </EtchedCard>
 
             <EtchedCard className="space-y-4">
               <span className="font-serif text-2xl font-bold text-[var(--ctl-ink)]">II.</span>
               <h3 className="font-serif text-xl sm:text-2xl text-[var(--ctl-text)]">
-                Accelerate Product Innovation
+                Become AI-Ready Today
               </h3>
               <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
-                Founders shouldn’t wait six months to find out if their product resonates. We turn
-                wireframes into production-grade, monetizable AI software in four to six weeks.
+                We help growing and established businesses automate repetitive manual workflows, connect
+                fragmented systems, and modernize software infrastructure to unlock practical AI value.
               </p>
             </EtchedCard>
 
             <EtchedCard className="space-y-4">
               <span className="font-serif text-2xl font-bold text-[var(--ctl-ink)]">III.</span>
               <h3 className="font-serif text-xl sm:text-2xl text-[var(--ctl-text)]">
-                Protect Data Sovereignty
+                Full Code Ownership &amp; Data Security
               </h3>
               <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
-                We design architectures with strict role-based controls, zero-data-leakage
-                protocols, and compliance with India&apos;s DPDP Act and international enterprise standards.
+                100% intellectual property ownership transferred upon project payment. We engineer systems
+                with strict role-based controls, zero-leakage boundaries, and statutory compliance.
               </p>
             </EtchedCard>
           </div>
@@ -251,7 +250,7 @@ export function AboutPage() {
                   &ldquo;Businesses need builders&rdquo;
                 </h3>
                 <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
-                  Consulting decks and theoretical roadmaps don’t deploy themselves. We are hands-on software
+                  Consulting decks and theoretical roadmaps do not deploy themselves. We are hands-on software
                   engineers who write production TypeScript and Python, configure containerized cloud infrastructure,
                   and remain accountable for end-to-end delivery.
                 </p>
@@ -306,32 +305,20 @@ export function AboutPage() {
                 </h3>
 
                 <p className="text-[16px] text-[var(--ctl-soft)] leading-relaxed">
-                  Proquoment Labs is the dedicated engineering, incubation, and AI transformation arm of
-                  Proquoment Private Limited. Our parent company operates the next-generation procurement
-                  and supply intelligence software at <strong className="text-[var(--ctl-ink)]">proquoment.in</strong>.
+                  Proquoment Labs is the dedicated AI product and engineering studio of
+                  Proquoment Private Limited, operating as a distinct client-services brand. Our sister
+                  venture operates the specialized procurement SaaS platform at <strong className="text-[var(--ctl-ink)]">proquoment.in</strong>.
                 </p>
 
                 <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
-                  Whether you are seeking custom AI product engineering through Labs or enterprise procurement
-                  intelligence via the main platform, our ecosystem delivers high-impact operational value.
+                  Whether you are seeking custom product engineering and AI automation through Labs or
+                  enterprise procurement intelligence via the SaaS platform, each venture focuses on its dedicated domain.
                 </p>
               </div>
 
               <div className="lg:col-span-4 flex flex-col gap-3">
-                <a
-                  href="https://proquoment.in"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="w-full"
-                >
-                  <CopperplateButton variant="deep" className="w-full">
-                    <Building2 className="w-4 h-4" />
-                    <span>Visit proquoment.in</span>
-                    <ExternalLink className="w-3.5 h-3.5" />
-                  </CopperplateButton>
-                </a>
                 <Link href="/contact" className="w-full">
-                  <CopperplateButton variant="paper" className="w-full">
+                  <CopperplateButton variant="deep" className="w-full">
                     <span>Contact Labs Team</span>
                     <ArrowRight className="w-4 h-4" />
                   </CopperplateButton>

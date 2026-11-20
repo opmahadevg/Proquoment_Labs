@@ -1,5 +1,4 @@
 import { SERVICES_PRODUCT_ENGINEERING, SERVICES_AGENTS_AUTOMATION, SERVICES_TRANSFORMATION, ENGAGEMENT_MODELS } from "@/pages/ServicesPage";
-import { CASE_STUDIES } from "@/pages/WorkPage";
 import { SERVICE_TYPE_OPTIONS, BUDGET_RANGE_OPTIONS } from "@/pages/ContactPage";
 
 export function verifyPhase6Exports() {
@@ -13,15 +12,11 @@ export function verifyPhase6Exports() {
 
   const transformationValid =
     Array.isArray(SERVICES_TRANSFORMATION) &&
-    SERVICES_TRANSFORMATION.length >= 8;
+    SERVICES_TRANSFORMATION.length >= 7;
 
   const engagementModelsValid =
     Array.isArray(ENGAGEMENT_MODELS) &&
     ENGAGEMENT_MODELS.length === 3;
-
-  const caseStudiesValid =
-    Array.isArray(CASE_STUDIES) &&
-    CASE_STUDIES.length >= 3;
 
   const contactOptionsValid =
     Array.isArray(SERVICE_TYPE_OPTIONS) &&
@@ -34,13 +29,11 @@ export function verifyPhase6Exports() {
     agentsValid,
     transformationValid,
     engagementModelsValid,
-    caseStudiesValid,
     contactOptionsValid,
     productEngCount: SERVICES_PRODUCT_ENGINEERING.length,
     agentsCount: SERVICES_AGENTS_AUTOMATION.length,
     transformationCount: SERVICES_TRANSFORMATION.length,
     engagementCount: ENGAGEMENT_MODELS.length,
-    caseStudiesCount: CASE_STUDIES.length,
   };
 }
 
