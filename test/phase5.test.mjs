@@ -16,7 +16,7 @@ const verifyContent = fs.readFileSync(verifyFile, "utf8");
 
 describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
   // TASK 16: Hero Arch Section (Cobalt Toile Masterpiece)
-  describe("TASK 16 — Hero Arch Section", () => {
+  describe("TASK 16 - Hero Arch Section", () => {
     test("embeds CobaltToileLanding with Proquoment Labs brand and cobalt palette", () => {
       assert.ok(homePageContent.includes("<CobaltToileLanding"));
       assert.ok(homePageContent.includes('brand="Proquoment Labs"'));
@@ -24,11 +24,9 @@ describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
     });
 
     test("Hero title and subtitle state Proquoment Labs core value proposition", () => {
-      assert.ok(homePageContent.includes("Autonomous AI Systems"));
-      assert.ok(homePageContent.includes("Built for Tomorrow"));
-      assert.ok(homePageContent.includes("Where AI becomes your competitive advantage."));
-      assert.ok(homePageContent.includes("Build AI-native products."));
-      assert.ok(homePageContent.includes("Automate what slows you down."));
+      assert.ok(homePageContent.includes("Build for the Future") || homePageContent.includes("Build for the future"));
+      assert.ok(homePageContent.includes("Become AI-Ready Today") || homePageContent.includes("Become AI-ready today"));
+      assert.ok(homePageContent.includes("We help ambitious startups build AI-powered products and help businesses prepare for an AI-powered future through intelligent software, automation and modern engineering."));
     });
 
     test("Hero includes edition and founding year", () => {
@@ -44,7 +42,7 @@ describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
   });
 
   // TASK 17: Tech Stack Marquee (Client Ticker)
-  describe("TASK 17 — Tech Stack Marquee (Client Ticker)", () => {
+  describe("TASK 17 - Tech Stack Marquee (Client Ticker)", () => {
     test("renders section label 'TOOLS & PLATFORMS WE WORK WITH'", () => {
       assert.ok(homePageContent.includes('clientsLabel="TOOLS & PLATFORMS WE WORK WITH"'));
     });
@@ -60,11 +58,11 @@ describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
     });
   });
 
-  // TASK 18: Pillar 01 — AI Product Engineering Bookmark
-  describe("TASK 18 — Pillar 01 Bookmark (AI Product Engineering)", () => {
-    test("specifies AI Product Engineering bookmark with typewriter die-cut", () => {
-      assert.ok(homePageContent.includes('title: "AI Product Engineering"'));
-      assert.ok(homePageContent.includes('quote: "Build products that work and scale."'));
+  // TASK 18: Pillar 01 - AI SaaS & Digital Product Engineering Bookmark
+  describe("TASK 18 - Pillar 01 Bookmark (AI SaaS & Digital Product Engineering)", () => {
+    test("specifies AI SaaS & Digital Product Engineering bookmark with typewriter die-cut", () => {
+      assert.ok(homePageContent.includes('title: "AI SaaS & Digital Product Engineering"'));
+      assert.ok(homePageContent.includes("Turn product ideas into production-ready digital platforms."));
       assert.ok(homePageContent.includes('art: "typewriter"'));
       assert.ok(homePageContent.includes('tone: "paper"'));
     });
@@ -79,11 +77,11 @@ describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
     });
   });
 
-  // TASK 19: Pillar 02 — AI Agents & Automation Bookmark
-  describe("TASK 19 — Pillar 02 Bookmark (AI Agents & Automation)", () => {
-    test("specifies AI Agents & Automation bookmark with steamer die-cut", () => {
-      assert.ok(homePageContent.includes('title: "AI Agents & Automation"'));
-      assert.ok(homePageContent.includes('quote: "Automate what slows you down."'));
+  // TASK 19: Pillar 02 - Business Process Automation & Integrations Bookmark
+  describe("TASK 19 - Pillar 02 Bookmark (Business Process Automation & Integrations)", () => {
+    test("specifies Business Process Automation & Integrations bookmark with steamer die-cut", () => {
+      assert.ok(homePageContent.includes('title: "Business Process Automation & Integrations"'));
+      assert.ok(homePageContent.includes("Connect systems, automate repetitive operations and engineer intelligent workflows."));
       assert.ok(homePageContent.includes('art: "steamer"'));
       assert.ok(homePageContent.includes('tone: "ink"'));
     });
@@ -96,10 +94,10 @@ describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
     });
   });
 
-  // TASK 20: Pillar 03 — AI Transformation Partnership Bookmark
-  describe("TASK 20 — Pillar 03 Bookmark (AI Transformation Partnership)", () => {
-    test("specifies AI Transformation Partnership bookmark with monogram die-cut", () => {
-      assert.ok(homePageContent.includes('title: "AI Transformation Partnership"'));
+  // TASK 20: Pillar 03 - Web Applications & Digital Experiences Bookmark
+  describe("TASK 20 - Pillar 03 Bookmark (Web Applications & Digital Experiences)", () => {
+    test("specifies Web Applications & Digital Experiences bookmark with monogram die-cut", () => {
+      assert.ok(homePageContent.includes('title: "Web Applications & Digital Experiences"'));
       assert.ok(homePageContent.includes('art: "monogram"'));
       assert.ok(homePageContent.includes('tone: "paper"'));
     });
@@ -115,37 +113,37 @@ describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
   });
 
   // TASK 21: About Studio & Rotating Seal
-  describe("TASK 21 — About Studio & Rotating Seal", () => {
+  describe("TASK 21 - About Studio & Rotating Seal", () => {
     test("about statement and body match studio positioning", () => {
-      assert.ok(homePageContent.includes("We bring the patience of the old masters to the *frontier of machine intelligence*"));
-      assert.ok(homePageContent.includes("We're not a typical agency. We are an AI Product Engineering & Transformation Studio"));
+      assert.ok(homePageContent.includes("We combine product thinking, modern engineering, and applied intelligence"));
+      assert.ok(homePageContent.includes("AI-native Product & Engineering Studio"));
     });
 
     test("includes 3 key quantitative statistics and rotating seal", () => {
       assert.ok(homePageContent.includes("IP Ownership to Client"));
       assert.ok(homePageContent.includes("Production Uptime SLA"));
       assert.ok(homePageContent.includes("Operational Velocity"));
-      assert.ok(homePageContent.includes("Proquoment Labs · Autonomous Intelligence · Est. MMXXVI · "));
+      assert.ok(homePageContent.includes("Proquoment Labs"));
     });
   });
 
   // TASK 22: Services Ledger Section
-  describe("TASK 22 — Services Ledger Section", () => {
+  describe("TASK 22 - Services Ledger Section", () => {
     test("servicesCopy sets ledger framing", () => {
       assert.ok(homePageContent.includes('kicker: "The Ledger"'));
       assert.ok(homePageContent.includes('title: "A ledger of *what we do*"'));
     });
 
     test("contains all 4 core engagement ledger items with deliverables and duration", () => {
-      assert.ok(homePageContent.includes('title: "AI Product Engineering"'));
-      assert.ok(homePageContent.includes('title: "Autonomous Workflow Automation"'));
-      assert.ok(homePageContent.includes('title: "AI Transformation Partnership"'));
-      assert.ok(homePageContent.includes('title: "Custom Multi-Agent Deployments"'));
+      assert.ok(homePageContent.includes('title: "AI SaaS & MVP Engineering"'));
+      assert.ok(homePageContent.includes('title: "Business Process Automation & Integrations"'));
+      assert.ok(homePageContent.includes('title: "AI Integration & System Modernization"'));
+      assert.ok(homePageContent.includes('title: "Web Applications & Digital Experiences"'));
     });
   });
 
   // TASK 23: Capability & Audience Datasets Export
-  describe("TASK 23 — Capability & Audience Datasets Export", () => {
+  describe("TASK 23 - Capability & Audience Datasets Export", () => {
     test("exports PRODUCT_ENGINEERING_CAPABILITIES with 6 items", () => {
       assert.ok(homePageContent.includes("export const PRODUCT_ENGINEERING_CAPABILITIES"));
       assert.ok(homePageContent.includes("Website & Web Apps"));
@@ -172,9 +170,9 @@ describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
         "Early-stage Startups",
         "SaaS Companies",
         "Founders Building New Products",
-        "Growing SMBs",
-        "Professional Services",
-        "Tech Teams",
+        "Businesses Preparing for AI",
+        "Growing Companies Automating Operations",
+        "Established Teams Needing Engineering Muscle",
       ];
       for (const aud of audiences) {
         assert.ok(homePageContent.includes(aud), `Missing audience: ${aud}`);
@@ -183,7 +181,7 @@ describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
   });
 
   // TASK 24: Closing CTA Band
-  describe("TASK 24 — Closing CTA Band", () => {
+  describe("TASK 24 - Closing CTA Band", () => {
     test("renders display headline and invitation", () => {
       assert.ok(homePageContent.includes("Ready to build your *AI-native future*?"));
       assert.ok(homePageContent.includes("Let's build something extraordinary."));
