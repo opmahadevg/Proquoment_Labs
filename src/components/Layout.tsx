@@ -334,4 +334,285 @@ export function Navbar() {
                       className="w-full flex items-center justify-between px-3 py-2 border border-[var(--ctl-line)] rounded-[2px] text-xs font-semibold uppercase tracking-wider text-[var(--ctl-text)] hover:text-[var(--ctl-ink)] transition-colors cursor-pointer"
                     >
                       <span className="flex items-center gap-2">
-                        {theme === "dark" ? (\n                          <Sun className=\"w-4 h-4 text-amber-300\" />\n                        ) : (\n                          <Moon className=\"w-4 h-4 text-[var(--ctl-ink)]\" />\n                        )}\n                        <span>Theme: {theme === \"dark\" ? \"Black Nocturnal\" : \"White Parchment\"}</span>\n                      </span>\n                      <span className=\"text-[10px] text-[var(--ctl-soft)]\">Tap to switch</span>\n                    </button>\n                    <Link\n                      href=\"/contact\"\n                      onClick={() => setMobileOpen(false)}\n                      className=\"w-full bg-primary hover:bg-primary/90 text-white rounded-lg px-4 h-11 font-semibold text-sm shadow-lg shadow-primary/25 flex items-center justify-center transition-colors uppercase tracking-wider text-xs\"\n                    >\n                      Start a Project\n                    </Link>\n                    <a\n                      href=\"https://proquoment.in\"\n                      target=\"_blank\"\n                      rel=\"noopener noreferrer\"\n                      className=\"block text-center text-xs text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] font-semibold tracking-wider uppercase transition-colors py-2\"\n                    >\n                      Visit Proquoment Platform &rarr;\n                    </a>\n                  </div>\n                </motion.div>,\n                document.body\n              )}\n          </>\n        )}\n      </AnimatePresence>\n    </header>\n  );\n}\n\nexport function Footer() {\n  const [currentPalette, setCurrentPalette] = useState(\"cobalt\");\n\n  const changePalette = (palKey: string) => {\n    setCurrentPalette(palKey);\n    const pal = PALETTE_CONFIGS[palKey];\n    if (pal && typeof document !== \"undefined\") {\n      document.documentElement.style.setProperty(\"--ctl-ib\", pal.ink);\n      document.documentElement.style.setProperty(\"--ctl-pb\", pal.paper);\n      document.documentElement.setAttribute(\"data-palette\", palKey);\n    }\n  };\n\n  return (\n    <footer className=\"border-t border-[var(--ctl-line)] bg-[var(--ctl-paper)] py-16 text-[var(--ctl-soft)] relative overflow-hidden transition-colors duration-500\">\n      {/* Engraved chinoiserie landscape backdrop */}\n      <div\n        className=\"absolute inset-x-0 bottom-0 h-40 pointer-events-none opacity-20 overflow-hidden\"\n        aria-hidden=\"true\"\n      >\n        <svg\n          viewBox=\"0 0 1440 160\"\n          className=\"w-full h-full text-[var(--ctl-ink)]\"\n          preserveAspectRatio=\"none\"\n          fill=\"none\"\n        >\n          <path\n            d=\"M0,130 C200,110 350,150 500,125 C650,100 800,140 950,115 C1100,90 1250,135 1440,120 L1440,160 L0,160 Z\"\n            fill=\"currentColor\"\n            opacity=\"0.2\"\n          />\n          <path\n            d=\"M0,145 C250,135 450,155 700,140 C950,125 1200,150 1440,135 L1440,160 L0,160 Z\"\n            fill=\"currentColor\"\n            opacity=\"0.3\"\n          />\n          <line\n            x1=\"0\"\n            y1=\"158\"\n            x2=\"1440\"\n            y2=\"158\"\n            stroke=\"currentColor\"\n            strokeWidth=\"0.5\"\n            strokeDasharray=\"4 4\"\n          />\n        </svg>\n      </div>\n\n      <div className=\"max-w-7xl mx-auto px-6 relative z-10\">\n        <div className=\"grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8\">\n          {/* Column 1: Brand info */}\n          <div className=\"md:col-span-5 lg:col-span-6 space-y-4\">\n            <Link\n              href=\"/\"\n              onMouseEnter={() => prefetchRoute(\"/\")}\n              className=\"flex items-center gap-2 group transition-opacity hover:opacity-90 w-fit\"\n            >\n              <img\n                src=\"/logo.png\"\n                alt=\"Proquoment Logo\"\n                width={32}\n                height={32}\n                className=\"w-8 h-8 rounded-xl object-contain shrink-0\"\n              />\n              <span className=\"font-serif font-bold tracking-tight text-[var(--ctl-text)] text-lg\">\n                Proquoment Labs\n              </span>\n            </Link>\n\n            <p className=\"text-sm font-serif italic text-[var(--ctl-ink)]\">\n              Build for the future. Become AI-ready today.\n            </p>\n\n            <p className=\"text-xs text-[var(--ctl-soft)] leading-relaxed max-w-sm font-sans\">\n              AI-native Product &amp; Engineering Studio. Turning ideas into production digital platforms, automations, and modern web applications.\n            </p>\n\n            {/* Interactive Palette Switcher */}\n            <div className=\"pt-2\">\n              <span className=\"text-[10px] font-semibold tracking-widest uppercase text-[var(--ctl-ink)] block mb-1.5\">\n                Printed in:\n              </span>\n              <div className=\"flex items-center gap-2\" role=\"group\" aria-label=\"Palette selection\">\n                {Object.entries(PALETTE_CONFIGS).map(([key, config]) => (\n                  <button\n                    key={key}\n                    type=\"button\"\n                    onClick={() => changePalette(key)}\n                    className={cn(\n                      \"px-2.5 py-1 text-[11px] font-semibold tracking-wider uppercase border rounded-[2px] transition-all\",\n                      currentPalette === key\n                        ? \"border-[var(--ctl-ink)] bg-[var(--ctl-ink)] text-[var(--ctl-ondeep)]\"\n                        : \"border-[var(--ctl-line)] text-[var(--ctl-soft)] hover:border-[var(--ctl-ink)]\"\n                    )}\n                  >\n                    {config.label}\n                  </button>\n                ))}\n              </div>\n            </div>\n          </div>\n\n          {/* Column 2: Services Quick Links */}\n          <div className=\"md:col-span-4 lg:col-span-3\">\n            <h3 className=\"text-xs font-semibold uppercase tracking-wider text-[var(--ctl-text)] mb-4\">\n              Services\n            </h3>\n            <ul className=\"space-y-3 text-sm\">\n              <li>\n                <Link\n                  href=\"/services#product-engineering\"\n                  onMouseEnter={() => prefetchRoute(\"/services\")}\n                  className=\"text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors\"\n                >\n                  AI SaaS &amp; Product Engineering\n                </Link>\n              </li>\n              <li>\n                <Link\n                  href=\"/services#agents-automation\"\n                  onMouseEnter={() => prefetchRoute(\"/services\")}\n                  className=\"text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors\"\n                >\n                  Business Process Automation\n                </Link>\n              </li>\n              <li>\n                <Link\n                  href=\"/services#transformation\"\n                  onMouseEnter={() => prefetchRoute(\"/services\")}\n                  className=\"text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors\"\n                >\n                  Web Applications &amp; Experiences\n                </Link>\n              </li>\n              <li className=\"pt-1\">\n                <Link\n                  href=\"/services\"\n                  onMouseEnter={() => prefetchRoute(\"/services\")}\n                  className=\"inline-flex items-center gap-1 text-[var(--ctl-ink)] hover:underline font-medium transition-colors text-sm\"\n                >\n                  <span>View all services</span>\n                  <span aria-hidden=\"true\">&rarr;</span>\n                </Link>\n              </li>\n            </ul>\n          </div>\n\n          {/* Column 3: Get in Touch / Network */}\n          <div className=\"md:col-span-3 lg:col-span-3\">\n            <h3 className=\"text-xs font-semibold uppercase tracking-wider text-[var(--ctl-text)] mb-4\">\n              Get in Touch\n            </h3>\n            <ul className=\"space-y-3 text-sm\">\n              <li>\n                <a\n                  href=\"mailto:contact@proquoment.in\"\n                  className=\"text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors flex items-center gap-2 group\"\n                >\n                  <Mail className=\"w-4 h-4 text-[var(--ctl-ink)] shrink-0 transition-transform group-hover:scale-110\" />\n                  <span>contact@proquoment.in</span>\n                </a>\n              </li>\n              <li>\n                <a\n                  href=\"https://calendly.com/proquoment\"\n                  target=\"_blank\"\n                  rel=\"noopener noreferrer\"\n                  className=\"text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors flex items-center gap-1\"\n                >\n                  <span>Book a Consultation</span>\n                  <span aria-hidden=\"true\">&rarr;</span>\n                </a>\n              </li>\n              <li>\n                <a\n                  href=\"https://proquoment.in\"\n                  target=\"_blank\"\n                  rel=\"noopener noreferrer\"\n                  className=\"text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors flex items-center gap-1\"\n                >\n                  <span>Visit Proquoment Platform</span>\n                  <span aria-hidden=\"true\">&rarr;</span>\n                </a>\n              </li>\n            </ul>\n          </div>\n        </div>\n\n        {/* Bottom Bar */}\n        <div className=\"mt-12 pt-8 border-t border-[var(--ctl-line)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--ctl-soft)]\">\n          <p>&copy; 2026 Proquoment Private Limited. All rights reserved.</p>\n          <div className=\"flex items-center gap-6\">\n            <Link\n              href=\"/blog\"\n              onMouseEnter={() => prefetchRoute(\"/blog\")}\n              className=\"hover:text-[var(--ctl-ink)] transition-colors\"\n            >\n              Industry Dispatches\n            </Link>\n            <Link\n              href=\"/privacy-policy\"\n              onMouseEnter={() => prefetchRoute(\"/privacy-policy\")}\n              className=\"hover:text-[var(--ctl-ink)] transition-colors\"\n            >\n              Privacy Policy\n            </Link>\n            <Link\n              href=\"/terms-of-service\"\n              onMouseEnter={() => prefetchRoute(\"/terms-of-service\")}\n              className=\"hover:text-[var(--ctl-ink)] transition-colors\"\n            >\n              Terms of Service\n            </Link>\n          </div>\n        </div>\n      </div>\n    </footer>\n  );\n}\n\nexport interface LayoutProps {\n  children: React.ReactNode;\n  seo?: SEOProps;\n  className?: string;\n}\n\nexport function Layout({ children, seo, className }: LayoutProps) {\n  const [location] = useLocation();\n\n  return (\n    <div className=\"min-h-screen flex flex-col bg-[var(--ctl-paper)] text-[var(--ctl-text)] antialiased transition-colors duration-300\">\n      <SEO {...seo} />\n      <Navbar />\n      <main className={cn(\"min-h-[calc(100vh-4rem)] flex-1\", className)}>\n        <AnimatePresence mode=\"wait\" initial={false}>\n          <PageTransition key={location}>\n            {children}\n          </PageTransition>\n        </AnimatePresence>\n      </main>\n      <Footer />\n    </div>\n  );\n}\n\nexport default Layout;\n
+                        {theme === "dark" ? (
+                          <Sun className="w-4 h-4 text-amber-300" />
+                        ) : (
+                          <Moon className="w-4 h-4 text-[var(--ctl-ink)]" />
+                        )}
+                        <span>Theme: {theme === "dark" ? "Black Nocturnal" : "White Parchment"}</span>
+                      </span>
+                      <span className="text-[10px] text-[var(--ctl-soft)]">Tap to switch</span>
+                    </button>
+                    <Link
+                      href="/contact"
+                      onClick={() => setMobileOpen(false)}
+                      className="w-full bg-primary hover:bg-primary/90 text-white rounded-lg px-4 h-11 font-semibold text-sm shadow-lg shadow-primary/25 flex items-center justify-center transition-colors uppercase tracking-wider text-xs"
+                    >
+                      Start a Project
+                    </Link>
+                    <a
+                      href="https://proquoment.in"
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block text-center text-xs text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] font-semibold tracking-wider uppercase transition-colors py-2"
+                    >
+                      Visit Proquoment Platform &rarr;
+                    </a>
+                  </div>
+                </motion.div>,
+                document.body
+              )}
+          </>
+        )}
+      </AnimatePresence>
+    </header>
+  );
+}
+
+export function Footer() {
+  const [currentPalette, setCurrentPalette] = useState("cobalt");
+
+  const changePalette = (palKey: string) => {
+    setCurrentPalette(palKey);
+    const pal = PALETTE_CONFIGS[palKey];
+    if (pal && typeof document !== "undefined") {
+      document.documentElement.style.setProperty("--ctl-ib", pal.ink);
+      document.documentElement.style.setProperty("--ctl-pb", pal.paper);
+      document.documentElement.setAttribute("data-palette", palKey);
+    }
+  };
+
+  return (
+    <footer className="border-t border-[var(--ctl-line)] bg-[var(--ctl-paper)] py-16 text-[var(--ctl-soft)] relative overflow-hidden transition-colors duration-500">
+      {/* Engraved chinoiserie landscape backdrop */}
+      <div
+        className="absolute inset-x-0 bottom-0 h-40 pointer-events-none opacity-20 overflow-hidden"
+        aria-hidden="true"
+      >
+        <svg
+          viewBox="0 0 1440 160"
+          className="w-full h-full text-[var(--ctl-ink)]"
+          preserveAspectRatio="none"
+          fill="none"
+        >
+          <path
+            d="M0,130 C200,110 350,150 500,125 C650,100 800,140 950,115 C1100,90 1250,135 1440,120 L1440,160 L0,160 Z"
+            fill="currentColor"
+            opacity="0.2"
+          />
+          <path
+            d="M0,145 C250,135 450,155 700,140 C950,125 1200,150 1440,135 L1440,160 L0,160 Z"
+            fill="currentColor"
+            opacity="0.3"
+          />
+          <line
+            x1="0"
+            y1="158"
+            x2="1440"
+            y2="158"
+            stroke="currentColor"
+            strokeWidth="0.5"
+            strokeDasharray="4 4"
+          />
+        </svg>
+      </div>
+
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-8">
+          {/* Column 1: Brand info */}
+          <div className="md:col-span-5 lg:col-span-6 space-y-4">
+            <Link
+              href="/"
+              onMouseEnter={() => prefetchRoute("/")}
+              className="flex items-center gap-2 group transition-opacity hover:opacity-90 w-fit"
+            >
+              <img
+                src="/logo.png"
+                alt="Proquoment Logo"
+                width={32}
+                height={32}
+                className="w-8 h-8 rounded-xl object-contain shrink-0"
+              />
+              <span className="font-serif font-bold tracking-tight text-[var(--ctl-text)] text-lg">
+                Proquoment Labs
+              </span>
+            </Link>
+
+            <p className="text-sm font-serif italic text-[var(--ctl-ink)]">
+              Build for the future. Become AI-ready today.
+            </p>
+
+            <p className="text-xs text-[var(--ctl-soft)] leading-relaxed max-w-sm font-sans">
+              AI-native Product &amp; Engineering Studio. Turning ideas into production digital platforms, automations, and modern web applications.
+            </p>
+
+            {/* Interactive Palette Switcher */}
+            <div className="pt-2">
+              <span className="text-[10px] font-semibold tracking-widest uppercase text-[var(--ctl-ink)] block mb-1.5">
+                Printed in:
+              </span>
+              <div className="flex items-center gap-2" role="group" aria-label="Palette selection">
+                {Object.entries(PALETTE_CONFIGS).map(([key, config]) => (
+                  <button
+                    key={key}
+                    type="button"
+                    onClick={() => changePalette(key)}
+                    className={cn(
+                      "px-2.5 py-1 text-[11px] font-semibold tracking-wider uppercase border rounded-[2px] transition-all",
+                      currentPalette === key
+                        ? "border-[var(--ctl-ink)] bg-[var(--ctl-ink)] text-[var(--ctl-ondeep)]"
+                        : "border-[var(--ctl-line)] text-[var(--ctl-soft)] hover:border-[var(--ctl-ink)]"
+                    )}
+                  >
+                    {config.label}
+                  </button>
+                ))}
+              </div>
+            </div>
+          </div>
+
+          {/* Column 2: Services Quick Links */}
+          <div className="md:col-span-4 lg:col-span-3">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-text)] mb-4">
+              Services
+            </h3>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <Link
+                  href="/services#product-engineering"
+                  onMouseEnter={() => prefetchRoute("/services")}
+                  className="text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors"
+                >
+                  AI SaaS &amp; Product Engineering
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services#agents-automation"
+                  onMouseEnter={() => prefetchRoute("/services")}
+                  className="text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors"
+                >
+                  Business Process Automation
+                </Link>
+              </li>
+              <li>
+                <Link
+                  href="/services#transformation"
+                  onMouseEnter={() => prefetchRoute("/services")}
+                  className="text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors"
+                >
+                  Web Applications &amp; Experiences
+                </Link>
+              </li>
+              <li className="pt-1">
+                <Link
+                  href="/services"
+                  onMouseEnter={() => prefetchRoute("/services")}
+                  className="inline-flex items-center gap-1 text-[var(--ctl-ink)] hover:underline font-medium transition-colors text-sm"
+                >
+                  <span>View all services</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </Link>
+              </li>
+            </ul>
+          </div>
+
+          {/* Column 3: Get in Touch / Network */}
+          <div className="md:col-span-3 lg:col-span-3">
+            <h3 className="text-xs font-semibold uppercase tracking-wider text-[var(--ctl-text)] mb-4">
+              Get in Touch
+            </h3>
+            <ul className="space-y-3 text-sm">
+              <li>
+                <a
+                  href="mailto:contact@proquoment.in"
+                  className="text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors flex items-center gap-2 group"
+                >
+                  <Mail className="w-4 h-4 text-[var(--ctl-ink)] shrink-0 transition-transform group-hover:scale-110" />
+                  <span>contact@proquoment.in</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://calendly.com/proquoment"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors flex items-center gap-1"
+                >
+                  <span>Book a Consultation</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+              <li>
+                <a
+                  href="https://proquoment.in"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)] transition-colors flex items-center gap-1"
+                >
+                  <span>Visit Proquoment Platform</span>
+                  <span aria-hidden="true">&rarr;</span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="mt-12 pt-8 border-t border-[var(--ctl-line)] flex flex-col sm:flex-row items-center justify-between gap-4 text-xs text-[var(--ctl-soft)]">
+          <p>&copy; 2026 Proquoment Private Limited. All rights reserved.</p>
+          <div className="flex items-center gap-6">
+            <Link
+              href="/blog"
+              onMouseEnter={() => prefetchRoute("/blog")}
+              className="hover:text-[var(--ctl-ink)] transition-colors"
+            >
+              Industry Dispatches
+            </Link>
+            <Link
+              href="/privacy-policy"
+              onMouseEnter={() => prefetchRoute("/privacy-policy")}
+              className="hover:text-[var(--ctl-ink)] transition-colors"
+            >
+              Privacy Policy
+            </Link>
+            <Link
+              href="/terms-of-service"
+              onMouseEnter={() => prefetchRoute("/terms-of-service")}
+              className="hover:text-[var(--ctl-ink)] transition-colors"
+            >
+              Terms of Service
+            </Link>
+          </div>
+        </div>
+      </div>
+    </footer>
+  );
+}
+
+export interface LayoutProps {
+  children: React.ReactNode;
+  seo?: SEOProps;
+  className?: string;
+}
+
+export function Layout({ children, seo, className }: LayoutProps) {
+  const [location] = useLocation();
+
+  return (
+    <div className="min-h-screen flex flex-col bg-[var(--ctl-paper)] text-[var(--ctl-text)] antialiased transition-colors duration-300">
+      <SEO {...seo} />
+      <Navbar />
+      <main className={cn("min-h-[calc(100vh-4rem)] flex-1", className)}>
+        <AnimatePresence mode="wait" initial={false}>
+          <PageTransition key={location}>
+            {children}
+          </PageTransition>
+        </AnimatePresence>
+      </main>
+      <Footer />
+    </div>
+  );
+}
+
+export default Layout;
