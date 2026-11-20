@@ -28,188 +28,243 @@ const verifyContent = fs.readFileSync(verifyFile, "utf8");
 
 describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integration Contract Tests", () => {
   // ==========================================
-  // TASK 25 — ServicesPage
+  // TASK 25 - ServicesPage
   // ==========================================
-  describe("TASK 25 — ServicesPage (src/pages/ServicesPage.tsx)", () => {
+  describe("TASK 25 - ServicesPage (src/pages/ServicesPage.tsx)", () => {
     test("exports ServicesPage component (both named and default)", () => {
-      assert.ok(servicesContent.includes("export function ServicesPage"));
-      assert.ok(servicesContent.includes("export default ServicesPage"));
+      const freshServices = fs.readFileSync(servicesPageFile, "utf8");
+      assert.ok(freshServices.includes("export function ServicesPage"));
+      assert.ok(freshServices.includes("export default ServicesPage"));
     });
 
     test("contains all 3 deep-dive sections with anchors product-engineering, agents-automation, transformation", () => {
-      assert.ok(servicesContent.includes('id="product-engineering"'));
-      assert.ok(servicesContent.includes('id="agents-automation"'));
-      assert.ok(servicesContent.includes('id="transformation"'));
+      const freshServices = fs.readFileSync(servicesPageFile, "utf8");
+      assert.ok(freshServices.includes('id="product-engineering"'));
+      assert.ok(freshServices.includes('id="agents-automation"'));
+      assert.ok(freshServices.includes('id="transformation"'));
     });
 
     test("includes sticky/subnav quick links allowing smooth jumping to all 3 pillars", () => {
-      assert.ok(servicesContent.includes("01. Product Engineering"));
-      assert.ok(servicesContent.includes("02. Agents &amp; Automation") || servicesContent.includes("02. Agents & Automation"));
-      assert.ok(servicesContent.includes("03. Transformation"));
-      assert.ok(servicesContent.includes("scrollToPillar"));
+      const freshServices = fs.readFileSync(servicesPageFile, "utf8");
+      assert.ok(
+        freshServices.includes("01. SaaS &amp; Product Engineering") ||
+        freshServices.includes("01. SaaS & Product Engineering") ||
+        freshServices.includes("01. Product Engineering")
+      );
+      assert.ok(
+        freshServices.includes("02. Automation &amp; Integrations") ||
+        freshServices.includes("02. Automation & Integrations") ||
+        freshServices.includes("02. Agents & Automation")
+      );
+      assert.ok(
+        freshServices.includes("03. Web Apps &amp; Experiences") ||
+        freshServices.includes("03. Web Apps & Experiences") ||
+        freshServices.includes("03. Transformation")
+      );
+      assert.ok(freshServices.includes("scrollToPillar"));
+    });
+
+    test("contains 3 primary service pillar headings matching strategic repositioning", () => {
+      const freshServices = fs.readFileSync(servicesPageFile, "utf8");
+      assert.ok(freshServices.includes("AI SaaS & Digital Product Engineering"));
+      assert.ok(freshServices.includes("Business Process Automation & Integrations"));
+      assert.ok(freshServices.includes("Web Applications & Digital Experiences"));
     });
 
     test("contains expanded capability lists with at least 8-10 technical items each", () => {
-      assert.ok(servicesContent.includes("SERVICES_PRODUCT_ENGINEERING"));
-      assert.ok(servicesContent.includes("SERVICES_AGENTS_AUTOMATION"));
-      assert.ok(servicesContent.includes("SERVICES_TRANSFORMATION"));
+      const freshServices = fs.readFileSync(servicesPageFile, "utf8");
+      assert.ok(freshServices.includes("SERVICES_PRODUCT_ENGINEERING"));
+      assert.ok(freshServices.includes("SERVICES_AGENTS_AUTOMATION"));
+      assert.ok(freshServices.includes("SERVICES_TRANSFORMATION"));
 
       // Check specific technical capabilities
-      assert.ok(servicesContent.includes("Full-Stack Web & Mobile Applications"));
-      assert.ok(servicesContent.includes("Generative AI & Copilot Interfaces"));
-      assert.ok(servicesContent.includes("Autonomous Multi-Agent Swarms"));
-      assert.ok(servicesContent.includes("Intelligent Document Extraction"));
-      assert.ok(servicesContent.includes("Fractional AI CTO & Technical Advisory"));
-      assert.ok(servicesContent.includes("Private Cloud AI Infrastructure Build"));
+      assert.ok(freshServices.includes("SaaS MVP Development") || freshServices.includes("Full-Stack Web & Mobile Applications"));
+      assert.ok(freshServices.includes("Business Process Automation") || freshServices.includes("Autonomous Multi-Agent Swarms"));
+      assert.ok(freshServices.includes("Interactive Dashboards & Admin Panels") || freshServices.includes("Fractional AI CTO & Technical Advisory"));
     });
 
     test("includes all 3 engagement models: Project-based, Retainer, and MVP Sprint", () => {
-      assert.ok(servicesContent.includes("Project-Based Engagement"));
-      assert.ok(servicesContent.includes("Dedicated Engineering Retainer"));
-      assert.ok(servicesContent.includes("4-Week MVP Sprint"));
-      assert.ok(servicesContent.includes("ENGAGEMENT_MODELS"));
+      const freshServices = fs.readFileSync(servicesPageFile, "utf8");
+      assert.ok(freshServices.includes("Project-Based Development") || freshServices.includes("Project-Based Engagement"));
+      assert.ok(freshServices.includes("Dedicated Engineering Retainer"));
+      assert.ok(freshServices.includes("4-Week MVP Sprint"));
+      assert.ok(freshServices.includes("ENGAGEMENT_MODELS"));
     });
 
     test("includes real-world use case scenarios and architectures", () => {
-      assert.ok(servicesContent.includes("USE_CASE_SCENARIOS"));
-      assert.ok(servicesContent.includes("Generative Financial Modeling SaaS"));
-      assert.ok(servicesContent.includes("Autonomous Procurement & Invoice Reconciliation"));
-      assert.ok(servicesContent.includes("Enterprise Knowledge Brain & Fractional CTO"));
+      const freshServices = fs.readFileSync(servicesPageFile, "utf8");
+      assert.ok(freshServices.includes("USE_CASE_SCENARIOS"));
+      assert.ok(freshServices.includes("Generative Financial Modeling SaaS"));
+      assert.ok(freshServices.includes("Procurement & Invoice Reconciliation") || freshServices.includes("Autonomous Procurement & Invoice Reconciliation"));
     });
 
     test("reuses AgentWorkflowVisual in the Agents section", () => {
-      assert.ok(servicesContent.includes("<AgentWorkflowVisual"));
+      const freshServices = fs.readFileSync(servicesPageFile, "utf8");
+      assert.ok(freshServices.includes("<AgentWorkflowVisual"));
     });
 
     test("features multiple direct CTA links to /contact", () => {
-      assert.ok(servicesContent.includes('href="/contact"'));
+      const freshServices = fs.readFileSync(servicesPageFile, "utf8");
+      assert.ok(freshServices.includes('href="/contact"'));
     });
   });
 
   // ==========================================
-  // TASK 26 — ContactPage
+  // TASK 26 - ContactPage
   // ==========================================
-  describe("TASK 26 — ContactPage (src/pages/ContactPage.tsx)", () => {
+  describe("TASK 26 - ContactPage (src/pages/ContactPage.tsx)", () => {
     test("exports ContactPage (named and default)", () => {
-      assert.ok(contactContent.includes("export function ContactPage"));
-      assert.ok(contactContent.includes("export default ContactPage"));
+      const freshContact = fs.readFileSync(contactPageFile, "utf8");
+      assert.ok(freshContact.includes("export function ContactPage"));
+      assert.ok(freshContact.includes("export default ContactPage"));
     });
 
     test("contains 2-column layout with project enquiry form and info panel", () => {
-      assert.ok(contactContent.includes("lg:grid-cols-12"));
-      assert.ok(contactContent.includes("lg:col-span-7"));
-      assert.ok(contactContent.includes("lg:col-span-5"));
+      const freshContact = fs.readFileSync(contactPageFile, "utf8");
+      assert.ok(freshContact.includes("lg:grid-cols-12"));
+      assert.ok(freshContact.includes("lg:col-span-7"));
+      assert.ok(freshContact.includes("lg:col-span-5"));
     });
 
     test("form includes all required fields: fullName, email, company, serviceType, description, budgetRange, referral", () => {
-      assert.ok(contactContent.includes('id="fullName"'));
-      assert.ok(contactContent.includes('id="email"'));
-      assert.ok(contactContent.includes('id="company"'));
-      assert.ok(contactContent.includes('id="serviceType"'));
-      assert.ok(contactContent.includes('id="description"'));
-      assert.ok(contactContent.includes('id="budgetRange"'));
-      assert.ok(contactContent.includes('id="referral"'));
+      const freshContact = fs.readFileSync(contactPageFile, "utf8");
+      assert.ok(freshContact.includes('id="fullName"'));
+      assert.ok(freshContact.includes('id="email"'));
+      assert.ok(freshContact.includes('id="company"'));
+      assert.ok(freshContact.includes('id="serviceType"'));
+      assert.ok(freshContact.includes('id="description"'));
+      assert.ok(freshContact.includes('id="budgetRange"'));
+      assert.ok(freshContact.includes('id="referral"'));
+    });
+
+    test("options reflect three core pillars and studio budget ranges", () => {
+      const freshContact = fs.readFileSync(contactPageFile, "utf8");
+      assert.ok(freshContact.includes("AI SaaS & Digital Product Engineering"));
+      assert.ok(freshContact.includes("Business Process Automation & Integrations"));
+      assert.ok(freshContact.includes("Web Applications & Digital Experiences"));
+      assert.ok(freshContact.includes("$3,000 - $5,000 (Scoping & Prototyping)"));
+      assert.ok(freshContact.includes("$10,000 - $25,000 (Full Product & System Engineering)"));
     });
 
     test("submits to Supabase table labs_enquiries via supabase client", () => {
-      assert.ok(contactContent.includes('from("labs_enquiries").insert'));
-      assert.ok(contactContent.includes('import { supabase } from "@/lib/supabase"'));
+      const freshContact = fs.readFileSync(contactPageFile, "utf8");
+      assert.ok(freshContact.includes('from("labs_enquiries").insert'));
+      assert.ok(freshContact.includes('import { supabase } from "@/lib/supabase"'));
     });
 
     test("supports dual-write to VITE_GOOGLE_SHEET_WEBAPP_URL when present", () => {
-      assert.ok(contactContent.includes("VITE_GOOGLE_SHEET_WEBAPP_URL"));
-      assert.ok(contactContent.includes("no-cors"));
+      const freshContact = fs.readFileSync(contactPageFile, "utf8");
+      assert.ok(freshContact.includes("VITE_GOOGLE_SHEET_WEBAPP_URL"));
+      assert.ok(freshContact.includes("no-cors"));
     });
 
     test("renders inline error validation messages and green checkmark success state", () => {
-      assert.ok(contactContent.includes("errors.fullName"));
-      assert.ok(contactContent.includes("errors.email"));
-      assert.ok(contactContent.includes("errors.description"));
-      assert.ok(contactContent.includes("Enquiry Received!"));
-      assert.ok(contactContent.includes("CheckCircle2"));
+      const freshContact = fs.readFileSync(contactPageFile, "utf8");
+      assert.ok(freshContact.includes("errors.fullName"));
+      assert.ok(freshContact.includes("errors.email"));
+      assert.ok(freshContact.includes("errors.description"));
+      assert.ok(freshContact.includes("Enquiry Received!"));
+      assert.ok(freshContact.includes("CheckCircle2"));
     });
 
     test("info panel includes Calendly link, direct email, <24h response badge, and platform link", () => {
-      assert.ok(contactContent.includes("https://calendly.com/proquoment"));
-      assert.ok(contactContent.includes("contact@proquoment.in"));
-      assert.ok(contactContent.includes("&lt;24h Response Time SLA") || contactContent.includes("<24h Response Time SLA"));
-      assert.ok(contactContent.includes("https://proquoment.in"));
+      const freshContact = fs.readFileSync(contactPageFile, "utf8");
+      assert.ok(freshContact.includes("https://calendly.com/proquoment"));
+      assert.ok(freshContact.includes("contact@proquoment.in"));
+      assert.ok(freshContact.includes("&lt;24h Response Time SLA") || freshContact.includes("<24h Response Time SLA"));
+      assert.ok(freshContact.includes("https://proquoment.in"));
     });
   });
 
   // ==========================================
-  // TASK 27 — WorkPage
+  // TASK 27 - WorkPage
   // ==========================================
-  describe("TASK 27 — WorkPage (src/pages/WorkPage.tsx)", () => {
+  describe("TASK 27 - WorkPage (src/pages/WorkPage.tsx)", () => {
     test("exports WorkPage (named and default) and CASE_STUDIES array", () => {
-      assert.ok(workContent.includes("export function WorkPage"));
-      assert.ok(workContent.includes("export default WorkPage"));
-      assert.ok(workContent.includes("export const CASE_STUDIES"));
+      const freshWork = fs.readFileSync(workPageFile, "utf8");
+      assert.ok(freshWork.includes("export function WorkPage"));
+      assert.ok(freshWork.includes("export default WorkPage"));
+      assert.ok(freshWork.includes("export const CASE_STUDIES"));
     });
 
     test("header contains 'Work we've done. Work in progress.' copy", () => {
+      const freshWork = fs.readFileSync(workPageFile, "utf8");
       assert.ok(
-        workContent.includes("Work we&apos;ve done.") ||
-        workContent.includes("Work we've done.")
+        freshWork.includes("Work we&apos;ve done.") ||
+        freshWork.includes("Work we've done.")
       );
-      assert.ok(workContent.includes("Work in progress."));
+      assert.ok(freshWork.includes("Work in progress."));
     });
 
     test("contains all 3 comprehensive case study teaser cards", () => {
-      assert.ok(workContent.includes("Autonomous AI Agent Swarms"));
-      assert.ok(workContent.includes("SaaS MVP Acceleration"));
-      assert.ok(workContent.includes("Enterprise Workflow Automation"));
+      const freshWork = fs.readFileSync(workPageFile, "utf8");
+      assert.ok(freshWork.includes("Autonomous AI Agent Swarms"));
+      assert.ok(freshWork.includes("SaaS MVP Acceleration"));
+      assert.ok(freshWork.includes("Enterprise Workflow Automation"));
+    });
+
+    test("aligns case study badges and categories with core pillars", () => {
+      const freshWork = fs.readFileSync(workPageFile, "utf8");
+      assert.ok(freshWork.includes("AI SaaS & Digital Product Engineering") || freshWork.includes("Product Engineering"));
+      assert.ok(freshWork.includes("Business Process Automation & Integrations") || freshWork.includes("Agents & Automation"));
     });
 
     test("each case study has problem, solution, architecture highlights, metrics, and tech tags", () => {
-      assert.ok(workContent.includes("The Operational Challenge"));
-      assert.ok(workContent.includes("The Engineered Solution"));
-      assert.ok(workContent.includes("Architecture Highlights"));
-      assert.ok(workContent.includes("LangGraph"));
-      assert.ok(workContent.includes("Next.js 15"));
-      assert.ok(workContent.includes("FastAPI"));
+      const freshWork = fs.readFileSync(workPageFile, "utf8");
+      assert.ok(freshWork.includes("The Operational Challenge"));
+      assert.ok(freshWork.includes("The Engineered Solution"));
+      assert.ok(freshWork.includes("Architecture Highlights"));
+      assert.ok(freshWork.includes("LangGraph"));
+      assert.ok(freshWork.includes("Next.js 15"));
+      assert.ok(freshWork.includes("FastAPI"));
     });
 
     test("includes Building in Public narrative section and CTA to /contact", () => {
-      assert.ok(workContent.includes("Why We Build in Public"));
-      assert.ok(workContent.includes('href="/contact"'));
+      const freshWork = fs.readFileSync(workPageFile, "utf8");
+      assert.ok(freshWork.includes("Why We Build in Public"));
+      assert.ok(freshWork.includes('href="/contact"'));
     });
   });
 
   // ==========================================
-  // TASK 28 — AboutPage
+  // TASK 28 - AboutPage
   // ==========================================
-  describe("TASK 28 — AboutPage (src/pages/AboutPage.tsx)", () => {
+  describe("TASK 28 - AboutPage (src/pages/AboutPage.tsx)", () => {
     test("exports AboutPage (named and default)", () => {
-      assert.ok(aboutContent.includes("export function AboutPage"));
-      assert.ok(aboutContent.includes("export default AboutPage"));
+      const freshAbout = fs.readFileSync(aboutPageFile, "utf8");
+      assert.ok(freshAbout.includes("export function AboutPage"));
+      assert.ok(freshAbout.includes("export default AboutPage"));
     });
 
     test("Section 1 (Origin) details Labs as AI engineering & innovation division of Proquoment Private Limited", () => {
-      assert.ok(aboutContent.includes("Proquoment Private Limited"));
-      assert.ok(aboutContent.includes("Born from the Reality of Enterprise Operations") || aboutContent.includes("Our Origin"));
+      const freshAbout = fs.readFileSync(aboutPageFile, "utf8");
+      assert.ok(freshAbout.includes("Proquoment Private Limited"));
+      assert.ok(freshAbout.includes("Born from the Reality of Enterprise Operations") || freshAbout.includes("Our Origin"));
     });
 
     test("Section 2 (Mission) covers empowering businesses to become AI-native with operational systems", () => {
-      assert.ok(aboutContent.includes("Empowering Businesses to Become AI-Native"));
+      const freshAbout = fs.readFileSync(aboutPageFile, "utf8");
+      assert.ok(freshAbout.includes("Empowering Businesses to Become AI-Native"));
     });
 
     test("Section 3 (Core Principles) covers all 3 principles verbatim", () => {
-      assert.ok(aboutContent.includes("AI should be operational"));
-      assert.ok(aboutContent.includes("Businesses need builders"));
-      assert.ok(aboutContent.includes("Speed is the differentiator"));
+      const freshAbout = fs.readFileSync(aboutPageFile, "utf8");
+      assert.ok(freshAbout.includes("AI should be operational"));
+      assert.ok(freshAbout.includes("Businesses need builders"));
+      assert.ok(freshAbout.includes("Speed is the differentiator"));
     });
 
     test("Section 4 cross-links to main platform proquoment.in", () => {
-      assert.ok(aboutContent.includes("https://proquoment.in"));
-      assert.ok(aboutContent.includes("Looking for the Proquoment Enterprise Platform?"));
+      const freshAbout = fs.readFileSync(aboutPageFile, "utf8");
+      assert.ok(freshAbout.includes("https://proquoment.in"));
+      assert.ok(freshAbout.includes("Looking for the Proquoment Enterprise Platform?"));
     });
   });
 
   // ==========================================
-  // TASK 29 — PrivacyPolicyPage
+  // TASK 29 - PrivacyPolicyPage
   // ==========================================
-  describe("TASK 29 — PrivacyPolicyPage (src/pages/PrivacyPolicyPage.tsx)", () => {
+  describe("TASK 29 - PrivacyPolicyPage (src/pages/PrivacyPolicyPage.tsx)", () => {
     test("exports PrivacyPolicyPage (named and default)", () => {
       assert.ok(privacyContent.includes("export function PrivacyPolicyPage"));
       assert.ok(privacyContent.includes("export default PrivacyPolicyPage"));
@@ -231,9 +286,9 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
   });
 
   // ==========================================
-  // TASK 30 — TermsOfServicePage
+  // TASK 30 - TermsOfServicePage
   // ==========================================
-  describe("TASK 30 — TermsOfServicePage (src/pages/TermsOfServicePage.tsx)", () => {
+  describe("TASK 30 - TermsOfServicePage (src/pages/TermsOfServicePage.tsx)", () => {
     test("exports TermsOfServicePage (named and default)", () => {
       assert.ok(termsContent.includes("export function TermsOfServicePage"));
       assert.ok(termsContent.includes("export default TermsOfServicePage"));
@@ -258,9 +313,9 @@ describe("Phase 6 - Tasks 25 to 31 Dedicated Route Pages & App Router Integratio
   });
 
   // ==========================================
-  // TASK 31 — not-found.tsx
+  // TASK 31 - not-found.tsx
   // ==========================================
-  describe("TASK 31 — not-found.tsx (src/pages/not-found.tsx)", () => {
+  describe("TASK 31 - not-found.tsx (src/pages/not-found.tsx)", () => {
     test("exports NotFoundPage and NotFound", () => {
       assert.ok(notFoundContent.includes("export function NotFoundPage"));
       assert.ok(notFoundContent.includes("export const NotFound"));

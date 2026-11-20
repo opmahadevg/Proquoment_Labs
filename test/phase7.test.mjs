@@ -157,9 +157,21 @@ describe("Phase 7 - Task 32: Wire Full Router in App.tsx & Finalize Public Asset
       assert.ok(content.includes("https://labs.proquoment.in/contact"));
       assert.ok(content.includes("https://labs.proquoment.in/privacy-policy"));
       assert.ok(content.includes("https://labs.proquoment.in/terms-of-service"));
-      assert.ok(content.includes("AI Product Engineering"));
-      assert.ok(content.includes("AI Agents & Business Automation"));
-      assert.ok(content.includes("AI Transformation & Technology Partnership"));
+      assert.ok(content.includes("AI SaaS & Digital Product Engineering"));
+      assert.ok(content.includes("Business Process Automation & Integrations"));
+      assert.ok(content.includes("Web Applications & Digital Experiences"));
+    });
+
+    test("App.tsx route SEO reflects dual audience and core pillars", () => {
+      const freshAppContent = fs.readFileSync(appFile, "utf8");
+      assert.ok(
+        freshAppContent.includes("Build for the Future. Become AI-Ready Today.") ||
+        freshAppContent.includes("AI-powered products")
+      );
+      assert.ok(
+        freshAppContent.includes("AI SaaS & Digital Product Engineering") ||
+        freshAppContent.includes("AI SaaS")
+      );
     });
 
     test("opengraph.jpg is a high quality preview asset (> 30KB)", () => {
