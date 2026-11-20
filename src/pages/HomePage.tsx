@@ -182,27 +182,27 @@ export const AUDIENCE_PROFILES: AudienceProfile[] = [
   },
   {
     title: "Founders Building New Products",
-    badge: "Technical Co-Founder",
-    description: "Your fractional AI engineering team. We handle architecture, system integration, prompt engineering, and cloud deployment.",
-    focus: "Fractional AI engineering • Full-stack builds • Scalable cloud infrastructure",
+    badge: "Technical Partner",
+    description: "Your product engineering partner. We handle architecture, system integration, AI features, and cloud deployment from napkin sketch to scale.",
+    focus: "Full-stack builds • AI SaaS architecture • Scalable cloud infrastructure",
   },
   {
-    title: "Growing SMBs",
+    title: "Businesses Preparing for AI",
+    badge: "AI Readiness",
+    description: "Understand practical operational AI opportunities, evaluate feasibility, and modernize existing software and digital infrastructure.",
+    focus: "AI opportunity discovery • System modernization • Strategic engineering",
+  },
+  {
+    title: "Growing Companies Automating Operations",
     badge: "Operational Leverage",
-    description: "Eliminate repetitive operational toil across support, sales outreach, customer billing, and back-office pipelines.",
-    focus: "Workflow automation • Customer support agents • Back-office pipeline streamlining",
+    description: "Eliminate repetitive manual toil across support, sales outreach, customer billing, and back-office document pipelines.",
+    focus: "Workflow automation • Document extraction • Back-office pipeline streamlining",
   },
   {
-    title: "Professional Services",
-    badge: "Knowledge Automation",
-    description: "Transform manual document reviews, report drafting, and contract processing into sub-second autonomous workflows.",
-    focus: "Document intelligence • Research synthesis agents • Proposal automation",
-  },
-  {
-    title: "Tech Teams",
-    badge: "AI Squad Augmentation",
-    description: "Augment your existing engineers with deep specialized expertise in agent orchestration, evals, and production LLM scaling.",
-    focus: "Agent swarm design • Observability & evals • Custom tool integration",
+    title: "Established Teams Needing Engineering Muscle",
+    badge: "Specialist Squad",
+    description: "Augment your existing technical team with deep specialized expertise in agent orchestration, API integrations, and production scaling.",
+    focus: "Workflow integrations • Custom tool development • Production scaling",
   },
 ];
 
@@ -227,9 +227,9 @@ export function HomePage() {
         palette="cobalt"
         paletteSwitcher={true}
         hero={{
-          title: "Autonomous AI Systems\nBuilt for Tomorrow",
+          title: "Build for the Future.\nBecome AI-Ready Today.",
           subtitle:
-            "Where AI becomes your competitive advantage. Build AI-native products. Automate what slows you down. We engineer intelligent systems with master craftsman precision.",
+            "We help ambitious startups build AI-powered products and help businesses prepare for an AI-powered future through intelligent software, automation and modern engineering.",
           action: { label: "Start a Project", href: "/contact" },
           est: "Est. MMXXVI",
           edition: "Vol. I · Nº 01",
@@ -252,165 +252,20 @@ export function HomePage() {
         about={{
           kicker: "About the Studio",
           statement:
-            "We bring the patience of the old masters to the *frontier of machine intelligence*, leaving every enterprise sturdier, faster, and fully autonomous.",
-          body: "We're not a typical agency. We are an AI Product Engineering & Transformation Studio partnering with fast-moving founders and growing businesses. Designing, building, and scaling AI-native products, autonomous workflows, and intelligent software.",
+            "We combine product thinking, modern engineering, and applied intelligence to build digital platforms and make businesses AI-ready.",
+          body: "We are an AI-native Product & Engineering Studio. Whether you are an ambitious founder launching a new AI SaaS product or an established business automating operations and integrating AI into existing software, we engineer practical solutions that run reliably in production.",
           stats: [
             { value: 100, suffix: "%", label: "IP Ownership to Client" },
             { value: 99.9, suffix: "%", label: "Production Uptime SLA" },
             { value: 10, suffix: "x", label: "Operational Velocity" },
           ],
-          seal: "Proquoment Labs · Autonomous Intelligence · Est. MMXXVI · ",
+          seal: "Proquoment Labs · Est. MMXXVI · ",
         }}
         solutionsCopy={{
-          kicker: "Core Practices",
-          title: "Four practices, *one long view*",
+          kicker: "Core Pillars",
+          title: "Three core pillars, *one standard of engineering*",
           intro:
-            "Pull a bookmark from the shelf. Each is an engineering discipline we have honed for deterministic autonomous execution.",
+            "Pull a bookmark from the shelf. Each is an engineering discipline we maintain to turn product ideas and operational workflows into production software.",
         }}
         solutions={[
-          {
-            kicker: "Pillar I",
-            title: "AI Product Engineering",
-            quote: "Build products that work and scale.",
-            body: "Designing and engineering AI-native applications from zero to scale. Custom dashboards, conversational copilots, SaaS MVPs, and resilient API architectures.",
-            points: [
-              "Website & Web Apps",
-              "SaaS MVP Development",
-              "Custom Dashboards",
-              "AI-Powered Features",
-              "API Development",
-              "Third-party Integrations",
-            ],
-            art: "typewriter",
-            tone: "paper",
-          },
-          {
-            kicker: "Pillar II",
-            title: "AI Agents & Automation",
-            quote: "Automate what slows you down.",
-            body: "Replacing brittle manual processes with self-correcting agent swarms, document intelligence, intelligent routing, and multi-system integrations.",
-            points: [
-              "Document Processing",
-              "Customer Support Agents",
-              "Data Pipeline Automation",
-              "Internal Tooling",
-              "Email & Ticket Routing",
-              "Multi-Agent Systems",
-            ],
-            art: "steamer",
-            tone: "ink",
-          },
-          {
-            kicker: "Pillar III",
-            title: "AI Transformation Partnership",
-            quote: "The strategic blueprint that turns uncertainty into enterprise leverage.",
-            body: "Collaborative advisory and technical leadership. We audit manual workflows, design phased AI roadmaps, train engineering squads, and ensure compliance.",
-            points: [
-              "Opportunity Discovery",
-              "AI Roadmap Design",
-              "Workflow Analysis",
-              "AI Infrastructure Build",
-              "Process Automation",
-              "Ongoing AI Partnership",
-            ],
-            art: "monogram",
-            tone: "paper",
-          },
-          {
-            kicker: "Pillar IV",
-            title: "Enterprise Systems",
-            quote: "Build the foundations first. Every scale milestone after is cheaper.",
-            body: "Enterprise vector databases, private model fine-tuning, latency optimization, SOC2-ready governance, and custom evaluation harnesses.",
-            points: [
-              "Vector DB Scaling",
-              "Evaluation Harnesses",
-              "Zero-Leakage Guardrails",
-              "SOC2 Compliance",
-            ],
-            art: "tower",
-            tone: "ink",
-          },
-        ]}
-        servicesCopy={{
-          kicker: "The Ledger",
-          title: "A ledger of *what we do*",
-          intro:
-            "Engagements are fixed in scope, transparent in pricing, and led by senior architects from first specification to production deployment.",
-        }}
-        services={[
-          {
-            title: "AI Product Engineering",
-            summary: "Production web and SaaS products built with AI-native architecture.",
-            details:
-              "We take your product from napkin sketch to market-ready release in weeks, not months. Complete UI/UX design, frontend engineering, streaming LLM backends, and deployment automation.",
-            deliverables: ["Full-Stack App", "API Suite", "Production CI/CD"],
-            duration: "4 to 8 weeks",
-          },
-          {
-            title: "Autonomous Workflow Automation",
-            summary: "Deterministic agentic pipelines connecting CRM, ERP, and databases.",
-            details:
-              "We map your operational bottlenecks and deploy autonomous agents that execute complex multi-step workflows with human-in-the-loop verification.",
-            deliverables: ["Agent Orchestrator", "Integration Webhooks", "Monitoring Suite"],
-            duration: "6 to 12 weeks",
-          },
-          {
-            title: "AI Transformation Partnership",
-            summary: "Embedded fractional AI leadership and strategic enablement.",
-            details:
-              "A standing partnership with your technical leadership: we sit in on architectural reviews, benchmark competing model providers, and audit security compliance.",
-            deliverables: ["AI Opportunity Audit", "Architecture Roadmap", "Security Framework"],
-            duration: "Ongoing Retainer",
-          },
-          {
-            title: "Custom Multi-Agent Deployments",
-            summary: "Specialized collaborative agent swarms for mission-critical tasks.",
-            details:
-              "LangGraph and native state-machine orchestrations with built-in retry mechanisms, state persistence, and real-time observability telemetry.",
-            deliverables: ["Multi-Agent Mesh", "Failure Recovery", "Evaluation Harness"],
-            duration: "8 to 16 weeks",
-          },
-        ]}
-        notes={[
-          {
-            title: "Architecture",
-            body: "Modular microservices and event-driven backends designed for sub-second agent tool execution and high concurrency.",
-          },
-          {
-            title: "Governance & Safety",
-            body: "Deterministic guardrails, prompt injection sanitization, PII redaction, and strict data sovereignty compliance.",
-          },
-          {
-            title: "Observability & Evals",
-            body: "Real-time trace logs, latency budgets, token cost accounting, and automated synthetic evaluation pipelines.",
-          },
-          {
-            title: "Resilient Infrastructure",
-            body: "Fault-tolerant agent loops, self-healing queues, vector stores, and automated failover guarantees.",
-          },
-        ]}
-        pressCopy={{
-          kicker: "Insights",
-          title: "Latest Press",
-          intro: "Real-world engineering case studies, architecture blueprints, and quantifiable business outcomes.",
-        }}
-        press={BLOG_POSTS.map((p) => ({
-          title: p.title,
-          source: p.source,
-          date: p.publishedDate,
-          category: p.category,
-          href: `/blog/${p.slug}`,
-        }))}
-        contactBand={{
-          title: "Ready to build your *AI-native future*?",
-          body:
-            "Let's build something extraordinary. Tell us about the challenge. A partner replies within two working days.",
-          action: { label: "Start a Project", href: "/contact" },
-          secondary: { label: "Book a Call", href: "https://calendly.com/proquoment" },
-        }}
-      />
-    </div>
-  );
-}
-
-export default HomePage;
+          {\n            kicker: \"Pillar 01\",\n            title: \"AI SaaS & Digital Product Engineering\",\n            quote: \"Turn product ideas into production-ready digital platforms.\",\n            body: \"We turn product ideas into production-ready digital platforms. From architecture and engineering to deployment, we help founders move from concept to a working product.\",\n            points: [\n              \"Website & Web Apps\",\n              \"SaaS MVP Development\",\n              \"Custom Dashboards\",\n              \"AI-Powered Features\",\n              \"API Development\",\n              \"Third-party Integrations\",\n            ],\n            art: \"typewriter\",\n            tone: \"paper\",\n          },\n          {\n            kicker: \"Pillar 02\",\n            title: \"Business Process Automation & Integrations\",\n            quote: \"Connect systems, automate repetitive operations and engineer intelligent workflows.\",\n            body: \"We connect systems, automate repetitive operations and engineer intelligent workflows that help businesses operate more efficiently. Event-driven pipelines, document processing, and ERP/CRM sync.\",\n            points: [\n              \"Document Processing\",\n              \"Customer Support Agents\",\n              \"Internal Tooling\",\n              \"Workflow Integration\",\n              \"Multi-Agent Systems\",\n              \"Data Pipeline Automation\",\n            ],\n            art: \"steamer\",\n            tone: \"ink\",\n          },\n          {\n            kicker: \"Pillar 03\",\n            title: \"Web Applications & Digital Experiences\",\n            quote: \"Design and engineer modern digital experiences that make complex products easier to use.\",\n            body: \"We design and engineer modern digital experiences that make complex products and business operations easier to use. Fast, responsive web applications, customer portals, and intuitive dashboards.\",\n            points: [\n              \"Opportunity Discovery\",\n              \"AI Roadmap Design\",\n              \"Workflow Analysis\",\n              \"AI Infrastructure Build\",\n              \"Process Automation\",\n              \"Ongoing AI Partnership\",\n            ],\n            art: \"monogram\",\n            tone: \"paper\",\n          },\n        ]}\n        servicesCopy={{\n          kicker: \"The Ledger\",\n          title: \"A ledger of *what we do*\",\n          intro:\n            \"Engagements are fixed in scope, transparent in pricing, and led by senior architects from first specification to production deployment.\",\n        }}\n        services={[\n          {\n            title: \"AI SaaS & MVP Engineering\",\n            summary: \"Production SaaS applications and MVP platforms engineered from concept to launch.\",\n            details:\n              \"We take your product from napkin sketch to market-ready release in weeks, not months. Complete UI/UX design, frontend engineering, streaming LLM backends, and deployment automation.\",\n            deliverables: [\"Full-Stack App\", \"API Suite\", \"Production CI/CD\"],\n            duration: \"4 to 8 weeks\",\n          },\n          {\n            title: \"Business Process Automation & Integrations\",\n            summary: \"Intelligent workflow automation connecting CRM, ERP, databases, and APIs.\",\n            details:\n              \"We connect systems, map operational bottlenecks, and deploy automated pipelines that execute complex multi-step workflows with human-in-the-loop verification.\",\n            deliverables: [\"Workflow Orchestrator\", \"Integration Webhooks\", \"Monitoring Suite\"],\n            duration: \"4 to 8 weeks\",\n          },\n          {\n            title: \"AI Integration & System Modernization\",\n            summary: \"Integrating AI capabilities, copilots, and modern infrastructure into existing business software.\",\n            details:\n              \"A practical engineering partnership: we evaluate technical feasibility, integrate custom AI copilots, connect disparate systems, and modernize digital infrastructure.\",\n            deliverables: [\"AI Opportunity Audit\", \"Architecture Blueprint\", \"System Integrations\"],\n            duration: \"Ongoing Retainer\",\n          },\n          {\n            title: \"Web Applications & Digital Experiences\",\n            summary: \"Responsive web portals, interactive dashboards, and intuitive software interfaces.\",\n            details:\n              \"Customer portals, administrative control rooms, and interactive dashboards engineered with modern reactive frameworks and accessible design systems.\",\n            deliverables: [\"Customer Portals\", \"Admin Workspaces\", \"Design Systems\"],\n            duration: \"4 to 8 weeks\",\n          },\n        ]}\n        notes={[\n          {\n            title: \"Architecture\",\n            body: \"Modular microservices and event-driven backends designed for sub-second agent tool execution and high concurrency.\",\n          },\n          {\n            title: \"Governance & Safety\",\n            body: \"Deterministic guardrails, prompt injection sanitization, PII redaction, and strict data sovereignty compliance.\",\n          },\n          {\n            title: \"Observability & Evals\",\n            body: \"Real-time trace logs, latency budgets, token cost accounting, and automated synthetic evaluation pipelines.\",\n          },\n          {\n            title: \"Resilient Infrastructure\",\n            body: \"Fault-tolerant agent loops, self-healing queues, vector stores, and automated failover guarantees.\",\n          },\n        ]}\n        pressCopy={{\n          kicker: \"Insights\",\n          title: \"Latest Press\",\n          intro: \"Real-world engineering case studies, architecture blueprints, and quantifiable business outcomes.\",\n        }}\n        press={BLOG_POSTS.map((p) => ({\n          title: p.title,\n          source: p.source,\n          date: p.publishedDate,\n          category: p.category,\n          href: `/blog/${p.slug}`,\n        }))}\n        contactBand={{\n          title: \"Ready to build your *AI-native future*?\",\n          body:\n            \"Let's build something extraordinary. Tell us about the challenge. A partner replies within two working days.\",\n          action: { label: \"Start a Project\", href: \"/contact\" },\n          secondary: { label: \"Book a Call\", href: \"https://calendly.com/proquoment\" },\n        }}\n      />\n    </div>\n  );\n}\n\nexport default HomePage;\n
