@@ -383,8 +383,8 @@ export function ServicesPage() {
   React.useEffect(() => {
     if (typeof window !== "undefined" && window.location.hash) {
       const currentHash = window.location.hash.replace(/^#/, "");
-      if (["product-engineering", "agents-automation", "transformation"].includes(currentHash)) {
-        setActivePillarTab(currentHash);
+      if (["product-engineering", "agents-automation", "transformation", "web-applications"].includes(currentHash)) {
+        setActivePillarTab(currentHash === "web-applications" ? "transformation" : currentHash);
       }
     }
 
@@ -539,8 +539,8 @@ export function ServicesPage() {
           <PlateHeader
             kicker="PILLAR · 03"
             title="Web Applications &amp; Digital Experiences"
-            italicWord="Modern, responsive interfaces."
-            description="We design and engineer modern digital experiences that make complex products intuitive, accessible and performant across devices."
+            italicWord="Craft, speed and engineering quality."
+            description="We build websites, web applications and digital interfaces that represent your company with craft, speed and engineering quality."
           />
           <CapabilityGrid
             capabilities={SERVICES_TRANSFORMATION}
