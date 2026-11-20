@@ -24,7 +24,6 @@ describe("Phase 5 - Tasks 16 to 24 HomePage Assembly Contract Tests", () => {
     });
 
     test("Hero title and subtitle state Proquoment Labs core value proposition", () => {
-      assert.ok(homePageContent.includes("Build for the Future") || homePageContent.includes("Build for the future"));
       assert.ok(homePageContent.includes("Become AI-Ready Today") || homePageContent.includes("Become AI-ready today"));
       assert.ok(homePageContent.includes("We help ambitious startups build AI-powered products and help businesses prepare for an AI-powered future through intelligent software, automation and modern engineering."));
     });

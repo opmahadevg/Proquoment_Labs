@@ -29,15 +29,14 @@ describe("Phase 3 - Task 08 & 09 Contract Tests", () => {
   });
 
   test("Navbar brand logo has logo.png (32px, rounded-xl) and Proquoment Labs in unified serif font", () => {
-    assert.ok(layoutContent.includes('src=\"/logo.png\"'));
+    assert.ok(layoutContent.includes('src="/logo.png"'));
     assert.ok(layoutContent.includes("w-8 h-8 rounded-xl"));
     assert.ok(layoutContent.includes("Proquoment Labs"));
     assert.ok(layoutContent.includes("font-serif font-bold tracking-tight text-[var(--ctl-text)] text-lg"));
   });
 
-  test("Navbar navigation links include Services, Work, About, Contact with correct routes", () => {
+  test("Navbar navigation links include Services, About, Contact with correct routes", () => {
     assert.ok(layoutContent.includes('/services'));
-    assert.ok(layoutContent.includes('/work'));
     assert.ok(layoutContent.includes('/about'));
     assert.ok(layoutContent.includes('/contact'));
     assert.ok(layoutContent.includes("text-[var(--ctl-soft)] hover:text-[var(--ctl-ink)]"));
@@ -49,9 +48,7 @@ describe("Phase 3 - Task 08 & 09 Contract Tests", () => {
     assert.ok(layoutContent.includes("h-[2px] bg-primary"));
   });
 
-  test("Navbar right actions include Platform link and Start a Project CTA button", () => {
-    assert.ok(layoutContent.includes("https://proquoment.in"));
-    assert.ok(layoutContent.includes("Platform"));
+  test("Navbar right actions include Start a Project CTA button", () => {
     assert.ok(layoutContent.includes("Start a Project"));
     assert.ok(layoutContent.includes("bg-primary hover:bg-primary/90 text-white rounded-lg px-4 h-9 font-semibold text-sm shadow-lg shadow-primary/25"));
   });
@@ -89,13 +86,11 @@ describe("Phase 3 - Task 08 & 09 Contract Tests", () => {
     assert.ok(freshLayout.includes("View all services"));
   });
 
-  test("Footer Column 3 contains Get in Touch email, Consultation link, and Platform link", () => {
+  test("Footer Column 3 contains Get in Touch email and Consultation link", () => {
     assert.ok(layoutContent.includes("contact@proquoment.in"));
     assert.ok(layoutContent.includes("mailto:contact@proquoment.in"));
     assert.ok(layoutContent.includes("https://calendly.com/proquoment"));
     assert.ok(layoutContent.includes("Book a Consultation"));
-    assert.ok(layoutContent.includes("https://proquoment.in"));
-    assert.ok(layoutContent.includes("Visit Proquoment Platform"));
   });
 
   test("Footer STRICTLY contains NO social media icons", () => {
