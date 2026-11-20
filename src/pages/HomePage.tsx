@@ -1,19 +1,15 @@
 import * as React from "react";
 import { useState } from "react";
 import { Link } from "wouter";
-import {
-  CobaltToileLanding,
-  type CobaltToileProps,
-  DEFAULT_SOLUTIONS,
-} from "@/components/ui/cobalt-toile-landing";
+import { CobaltToileLanding } from "@/components/ui/cobalt-toile-landing";
+import { BLOG_POSTS } from "@/data/blogs";
+import { PlateHeader, PlateKicker, EtchedCard, CopperplateButton, WaxSealBadge, HatchDivider } from "@/components/ui/copperplate-primitives";
+import { HeroVisual } from "@/components/ui/hero-visual";
+import { AgentWorkflowVisual } from "@/components/ui/agent-workflow-visual";
+import { TechMarquee } from "@/components/ui/tech-marquee";
+import { ProcessStep } from "@/components/ui/process-step";
+import { DifferentiatorCard } from "@/components/ui/differentiator-card";
 import { CapabilityGrid, type CapabilityItem } from "@/components/ui/capability-grid";
-import {
-  PlateHeader,
-  PlateKicker,
-  EtchedCard,
-  CopperplateButton,
-  HatchDivider,
-} from "@/components/ui/copperplate-primitives";
 import {
   Monitor,
   Layers,
@@ -65,59 +61,20 @@ export const PRODUCT_ENGINEERING_CAPABILITIES: CapabilityItem[] = [
   {
     icon: Bot,
     title: "AI-Powered Features",
-    description: "Custom copilots, dynamic contextual search, automated content intelligence, and fine-tuned domain-specific agent graphs.",
-    tag: "AI Integration",
-  },
-  {
-    icon: Plug,
-    title: "API Development",
-    description: "High-throughput REST and streaming endpoints engineered with OpenAPI standards, rate limiting, and zero-trust authentication.",
-    tag: "APIs & Auth",
+    description: "Conversational copilots, intelligent search, automated summarization, and generative user interfaces embedded natively.",
+    tag: "AI Features",
   },
   {
     icon: LinkIcon,
+    title: "API Development",
+    description: "High-throughput REST and streaming backends engineered for resilience, sub-second latency, and strict schema validation.",
+    tag: "Backend APIs",
+  },
+  {
+    icon: Plug,
     title: "Third-party Integrations",
-    description: "Seamless connectivity with CRM, ERP, payment gateways, vector databases, and cloud service ecosystems.",
+    description: "Seamless synchronization with enterprise CRMs, payment gateways, messaging tools, databases, and custom webhooks.",
     tag: "Integrations",
-  },
-];
-
-export const AGENTS_AUTOMATION_CAPABILITIES: CapabilityItem[] = [
-  {
-    icon: Database,
-    title: "Document Processing",
-    description: "Automated extraction, classification, and validation of invoices, legal contracts, and unstructured business documents.",
-    tag: "Doc Intelligence",
-  },
-  {
-    icon: Bot,
-    title: "Customer Support Agents",
-    description: "Tier-1 and Tier-2 autonomous triage, support resolution, and human-in-the-loop escalation workflows with CRM sync.",
-    tag: "Support Agents",
-  },
-  {
-    icon: Settings2,
-    title: "Internal Tooling",
-    description: "Tailored operational consoles, approval workspaces, and automated reconciliation systems to accelerate back-office velocity.",
-    tag: "Internal Tools",
-  },
-  {
-    icon: Workflow,
-    title: "Workflow Integration",
-    description: "Event-driven automation connecting isolated cloud services, webhooks, database queues, and enterprise message buses.",
-    tag: "Event-Driven",
-  },
-  {
-    icon: Cpu,
-    title: "Multi-Agent Systems",
-    description: "Stateful agent graphs collaborating to validate intermediate reasoning steps, route exceptions, and handle complex operational tasks.",
-    tag: "Agent Swarms",
-  },
-  {
-    icon: Server,
-    title: "Data Pipeline Automation",
-    description: "Continuous ETL pipelines, embeddings synchronization, and relational database migrations with complete audit logs.",
-    tag: "Data Pipelines",
   },
 ];
 
@@ -125,107 +82,128 @@ export const TRANSFORMATION_CAPABILITIES: CapabilityItem[] = [
   {
     icon: Search,
     title: "Opportunity Discovery",
-    description: "Detailed operational audit to identify bottleneck workflows where intelligent software and automation deliver clear ROI.",
-    tag: "Audit & Scoping",
+    description: "Comprehensive operational audits to identify manual friction points and pinpoint highest-ROI AI interventions.",
+    tag: "Discovery",
   },
   {
     icon: Map,
     title: "AI Roadmap Design",
-    description: "Architectural blueprints, technology stack selection, and milestone roadmaps for production-grade AI adoption.",
-    tag: "System Design",
+    description: "Phased architecture blueprints, technology stack selection, and milestone roadmaps aligned to measurable business outcomes.",
+    tag: "Strategy",
+  },
+  {
+    icon: Settings2,
+    title: "Workflow Analysis",
+    description: "Detailed mapping of operational data flows, manual handoffs, and bottlenecks to engineer autonomous automation pipelines.",
+    tag: "Analysis",
+  },
+  {
+    icon: Server,
+    title: "AI Infrastructure Build",
+    description: "Enterprise vector stores, private model deployments, evaluation harness pipelines, and secure cloud environments.",
+    tag: "Infrastructure",
   },
   {
     icon: RefreshCw,
-    title: "Workflow Analysis",
-    description: "Deep examination of human-in-the-loop processes to engineer deterministic fallbacks and high-accuracy automation pipelines.",
-    tag: "Workflow Audit",
-  },
-  {
-    icon: Rocket,
-    title: "AI Infrastructure Build",
-    description: "Configuring production vector stores, serverless compute, containerized services, and automated CI/CD deployment pipelines.",
-    tag: "Cloud & Devops",
-  },
-  {
-    icon: Zap,
     title: "Process Automation",
-    description: "Replacing error-prone manual touchpoints with fault-tolerant background microservices and real-time observability telemetry.",
+    description: "Replacing brittle manual processes with self-healing, monitored agent loops that operate reliably around the clock.",
     tag: "Automation",
   },
   {
     icon: Handshake,
     title: "Ongoing AI Partnership",
-    description: "Dedicated founder-led technical capacity, bi-weekly delivery sprints, and continuous improvements to keep your software ahead.",
-    tag: "Retainer Sprints",
+    description: "Embedded fractional AI leadership, continuous system optimization, model evaluation monitoring, and team upskilling.",
+    tag: "Partnership",
+  },
+];
+
+export const CORE_ENGINE_CAPABILITIES: CapabilityItem[] = [
+  {
+    icon: Bot,
+    title: "Autonomous Agents",
+    description: "Self-correcting agent swarms executing multi-step business logic across databases and APIs.",
+    tag: "Agents",
+  },
+  {
+    icon: Database,
+    title: "Intelligent Document RAG",
+    description: "Sub-second hybrid vector search with reranking across millions of internal enterprise documents.",
+    tag: "RAG",
+  },
+  {
+    icon: Workflow,
+    title: "Workflow Automation",
+    description: "Event-driven pipelines connecting CRM, ERP, Slack, and cloud storage without manual friction.",
+    tag: "Automation",
+  },
+  {
+    icon: Rocket,
+    title: "AI Product Engineering",
+    description: "Production web and mobile applications with bespoke generative AI and conversational UX.",
+    tag: "Full-Stack",
+  },
+  {
+    icon: Search,
+    title: "Evals & Observability",
+    description: "Comprehensive LLM observability, trace latency, cost tracking, and hallucination safeguards.",
+    tag: "Observability",
+  },
+  {
+    icon: Code,
+    title: "Fractional AI CTO",
+    description: "Strategic guidance, architectural reviews, team upskilling, and vendor evaluation for founders.",
+    tag: "Advisory",
   },
 ];
 
 // ==========================================
-// TARGET AUDIENCES (TWO DISTINCT PROFILES)
+// AUDIENCE TARGETS
 // ==========================================
 
 export interface AudienceProfile {
-  id: "startups" | "businesses";
-  label: string;
-  tagline: string;
+  title: string;
+  badge: string;
   description: string;
-  needs: string[];
-  engagement: string;
-  ctaText: string;
+  focus: string;
 }
 
 export const AUDIENCE_PROFILES: AudienceProfile[] = [
   {
-    id: "startups",
-    label: "For Startups Building the Future",
-    tagline: "Turn ambitious product ideas into production AI SaaS.",
-    description:
-      "For venture-backed and bootstrapped founders who need an agile engineering partner to architect, prototype, and ship new AI-powered products in weeks.",
-    needs: [
-      "Rapid concept-to-working-software delivery",
-      "Full-stack web and mobile application engineering",
-      "Native AI model integration, prompt pipelines, and structured outputs",
-      "Production-ready auth, billing, multi-tenancy, and cloud infrastructure",
-      "100% intellectual property ownership from day one",
-    ],
-    engagement: "Fixed-Scope MVP Sprints (4-6 weeks) & Founder-Led Product Pods",
-    ctaText: "Build Your Startup",
+    title: "Early-stage Startups",
+    badge: "Speed to MVP",
+    description: "Go from concept to production-ready MVP in weeks. We build your AI core from day one so you validate product-market fit fast.",
+    focus: "Rapid prototyping • Venture-ready architectures • Lean MVP sprints",
   },
   {
-    id: "businesses",
-    label: "For Existing Businesses Becoming AI-Ready",
-    tagline: "Prepare your business for the AI era through practical automation.",
-    description:
-      "For growing and established companies looking to eliminate repetitive workflows, integrate intelligent capabilities into existing software, and modernize systems.",
-    needs: [
-      "AI opportunity identification and workflow discovery",
-      "Automating repetitive back-office and operational bottlenecks",
-      "Integrating AI copilots and document intelligence into existing tools",
-      "Connecting disconnected CRM, ERP, and database systems",
-      "Modernizing legacy software and engineering reliable infrastructure",
-    ],
-    engagement: "System Modernization Projects & Ongoing Engineering Retainers",
-    ctaText: "Get AI-Ready",
+    title: "SaaS Companies",
+    badge: "AI Product Features",
+    description: "Supercharge your existing platform with intelligent copilot features, automated summarization, and vector search that retain users.",
+    focus: "In-app copilot layers • Intelligent RAG search • Automated retention features",
   },
-];
-
-// ==========================================
-// CLIENT MARQUEE / TECH STACK LOGOS
-// ==========================================
-
-export const TECH_STACK = [
-  "OpenAI",
-  "Anthropic",
-  "LangGraph",
-  "Supabase",
-  "Neon",
-  "Pinecone",
-  "Vercel",
-  "Docker",
-  "Fastify",
-  "Python",
-  "React",
-  "PostgreSQL",
+  {
+    title: "Founders Building New Products",
+    badge: "Technical Partner",
+    description: "Your product engineering partner. We handle architecture, system integration, AI features, and cloud deployment from napkin sketch to scale.",
+    focus: "Full-stack builds • AI SaaS architecture • Scalable cloud infrastructure",
+  },
+  {
+    title: "Businesses Preparing for AI",
+    badge: "AI Readiness",
+    description: "Understand practical operational AI opportunities, evaluate feasibility, and modernize existing software and digital infrastructure.",
+    focus: "AI opportunity discovery • System modernization • Strategic engineering",
+  },
+  {
+    title: "Growing Companies Automating Operations",
+    badge: "Operational Leverage",
+    description: "Eliminate repetitive manual toil across support, sales outreach, customer billing, and back-office document pipelines.",
+    focus: "Workflow automation • Document extraction • Back-office pipeline streamlining",
+  },
+  {
+    title: "Established Teams Needing Engineering Muscle",
+    badge: "Specialist Squad",
+    description: "Augment your existing technical team with deep specialized expertise in agent orchestration, API integrations, and production scaling.",
+    focus: "Workflow integrations • Custom tool development • Production scaling",
+  },
 ];
 
 // ==========================================
@@ -340,96 +318,83 @@ export function HomePage() {
           },
         ]}
         servicesCopy={{
-          kicker: "Service Catalog",
-          title: "Engineered for speed, built for scale",
-          action: { label: "Explore full service breakdown", href: "/services" },
+          kicker: "The Ledger",
+          title: "A ledger of *what we do*",
+          intro:
+            "Engagements are fixed in scope, transparent in pricing, and led by senior architects from first specification to production deployment.",
         }}
+        services={[
+          {
+            title: "AI SaaS & MVP Engineering",
+            summary: "Production SaaS applications and MVP platforms engineered from concept to launch.",
+            details:
+              "We take your product from napkin sketch to market-ready release in weeks, not months. Complete UI/UX design, frontend engineering, streaming LLM backends, and deployment automation.",
+            deliverables: ["Full-Stack App", "API Suite", "Production CI/CD"],
+            duration: "4 to 8 weeks",
+          },
+          {
+            title: "Business Process Automation & Integrations",
+            summary: "Intelligent workflow automation connecting CRM, ERP, databases, and APIs.",
+            details:
+              "We connect systems, map operational bottlenecks, and deploy automated pipelines that execute complex multi-step workflows with human-in-the-loop verification.",
+            deliverables: ["Workflow Orchestrator", "Integration Webhooks", "Monitoring Suite"],
+            duration: "4 to 8 weeks",
+          },
+          {
+            title: "AI Integration & System Modernization",
+            summary: "Integrating AI capabilities, copilots, and modern infrastructure into existing business software.",
+            details:
+              "A practical engineering partnership: we evaluate technical feasibility, integrate custom AI copilots, connect disparate systems, and modernize digital infrastructure.",
+            deliverables: ["AI Opportunity Audit", "Architecture Blueprint", "System Integrations"],
+            duration: "Ongoing Retainer",
+          },
+          {
+            title: "Web Applications & Digital Experiences",
+            summary: "Responsive web portals, interactive dashboards, and intuitive software interfaces.",
+            details:
+              "Customer portals, administrative control rooms, and interactive dashboards engineered with modern reactive frameworks and accessible design systems.",
+            deliverables: ["Customer Portals", "Admin Workspaces", "Design Systems"],
+            duration: "4 to 8 weeks",
+          },
+        ]}
+        notes={[
+          {
+            title: "Architecture",
+            body: "Modular microservices and event-driven backends designed for sub-second agent tool execution and high concurrency.",
+          },
+          {
+            title: "Governance & Safety",
+            body: "Deterministic guardrails, prompt injection sanitization, PII redaction, and strict data sovereignty compliance.",
+          },
+          {
+            title: "Observability & Evals",
+            body: "Real-time trace logs, latency budgets, token cost accounting, and automated synthetic evaluation pipelines.",
+          },
+          {
+            title: "Resilient Infrastructure",
+            body: "Fault-tolerant agent loops, self-healing queues, vector stores, and automated failover guarantees.",
+          },
+        ]}
         pressCopy={{
-          kicker: "Strategic Principles",
-          title: "How we engineer intelligent systems",
+          kicker: "Insights",
+          title: "Latest Press",
+          intro: "Real-world engineering case studies, architecture blueprints, and quantifiable business outcomes.",
         }}
+        press={BLOG_POSTS.map((p) => ({
+          title: p.title,
+          source: p.source,
+          date: p.publishedDate,
+          category: p.category,
+          href: `/blog/${p.slug}`,
+        }))}
         contactBand={{
           title: "Ready to build your *AI-native future*?",
           body:
-            "Tell us what you're building or what operations you need to automate. We'll outline how we'd architect the solution and deliver a working prototype.",
-          actions: [
-            { label: "Start a Project", href: "/contact", primary: true },
-            { label: "Book a Call", href: "https://calendly.com/proquoment" },
-          ],
+            "Let's build something extraordinary. Tell us about the challenge. A partner replies within two working days.",
+          action: { label: "Start a Project", href: "/contact" },
+          secondary: { label: "Book a Call", href: "https://calendly.com/proquoment" },
         }}
       />
-
-      {/* ============================================================
-          SECTION: TWO DISTINCT AUDIENCE PATHWAYS
-          ============================================================ */}
-      <section className="py-24 border-t border-[var(--ctl-line)] bg-[var(--ctl-paper)]">
-        <div className="max-w-7xl mx-auto px-6 space-y-12">
-          <PlateHeader
-            kicker="WHO WE SERVE"
-            title="Engineered for Founders &amp; Business Operators"
-            italicWord="Two pathways to transformation."
-            description="Whether launching a venture-scale AI product or making an established business AI-ready, we tailor our engineering engagement to your operational reality."
-          />
-
-          <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
-            {AUDIENCE_PROFILES.map((profile, idx) => (
-              <EtchedCard
-                key={profile.id}
-                className="flex flex-col justify-between space-y-6"
-              >
-                <div className="space-y-4">
-                  <div className="border-b border-[var(--ctl-line)] pb-3 flex items-center justify-between">
-                    <span className="text-[11px] font-semibold tracking-wider uppercase text-[var(--ctl-ink)]">
-                      {idx === 0 ? "STARTUP COHORT" : "ENTERPRISE COHORT"}
-                    </span>
-                    <span className="text-xs font-serif text-[var(--ctl-soft)]">
-                      Pathway 0{idx + 1}
-                    </span>
-                  </div>
-
-                  <h3 className="font-serif text-2xl text-[var(--ctl-text)]">
-                    {profile.label}
-                  </h3>
-
-                  <p className="font-serif italic text-sm text-[var(--ctl-ink)]">
-                    &ldquo;{profile.tagline}&rdquo;
-                  </p>
-
-                  <p className="text-sm text-[var(--ctl-soft)] leading-relaxed">
-                    {profile.description}
-                  </p>
-
-                  <div className="space-y-2 pt-2">
-                    <span className="text-[11px] font-semibold uppercase tracking-wider text-[var(--ctl-ink)] block">
-                      Core Needs Addressed:
-                    </span>
-                    <ul className="space-y-2 text-sm text-[var(--ctl-text)]">
-                      {profile.needs.map((need, nIdx) => (
-                        <li key={nIdx} className="flex items-start gap-2">
-                          <CheckCircle2 className="w-4 h-4 text-[var(--ctl-ink)] shrink-0 mt-0.5" />
-                          <span>{need}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-                </div>
-
-                <div className="pt-4 border-t border-[var(--ctl-line)] flex items-center justify-between">
-                  <span className="text-xs text-[var(--ctl-soft)] font-serif">
-                    {profile.engagement}
-                  </span>
-                  <Link href="/contact">
-                    <CopperplateButton variant="deep" className="h-9 text-xs px-4">
-                      <span>{profile.ctaText}</span>
-                      <ArrowRight className="w-3.5 h-3.5" />
-                    </CopperplateButton>
-                  </Link>
-                </div>
-              </EtchedCard>
-            ))}
-          </div>
-        </div>
-      </section>
     </div>
   );
 }
