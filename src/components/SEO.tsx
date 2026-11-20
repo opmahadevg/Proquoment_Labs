@@ -9,9 +9,9 @@ export interface SEOProps {
   noindex?: boolean;
 }
 
-const DEFAULT_TITLE = "Proquoment Labs | AI Innovation, Product Engineering & Autonomous Systems";
+const DEFAULT_TITLE = "Proquoment Labs | Build for the Future. Become AI-Ready Today.";
 const DEFAULT_DESCRIPTION =
-  "Proquoment Labs builds production AI systems, autonomous agents, and enterprise workflows for ambitious companies and venture-backed startups.";
+  "We help ambitious startups build AI-powered products and help businesses prepare for an AI-powered future through intelligent software, automation, and modern engineering.";
 const DEFAULT_CANONICAL = "https://labs.proquoment.in";
 const DEFAULT_IMAGE = "https://labs.proquoment.in/opengraph.jpg";
 const SITE_NAME = "Proquoment Labs";
