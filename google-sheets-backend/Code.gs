@@ -18,8 +18,8 @@
 // ============================================================================
 
 const CONFIG = {
-  // Paste your Google Sheet ID here (from https://docs.google.com/spreadsheets/d/SHEET_ID/edit)
-  SHEET_ID: 'YOUR_PROQUOMENT_LABS_SHEET_ID_HERE',
+  // Proquoment Labs Enquiries Google Sheet ID
+  SHEET_ID: '12xfOb3uGBZxnP2YjxwaNwyQIho7BsP99BR7irUcy88Y',
 
   // Tab name inside spreadsheet
   SHEET_NAME: 'Enquiries',
