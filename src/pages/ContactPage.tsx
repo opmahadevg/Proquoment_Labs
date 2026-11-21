@@ -217,9 +217,9 @@ export function ContactPage() {
         }
       }
 
-      if (supabaseErrorOccurred && !googleSheetUrl) {
+      if (supabaseErrorOccurred) {
         setErrorMessage(
-          supabaseErrorMessage || "Failed to submit enquiry. Please email us directly."
+          supabaseErrorMessage || "Failed to submit enquiry to database. Please email us directly."
         );
         setIsSubmitting(false);
         return;
@@ -482,9 +482,10 @@ export function ContactPage() {
 
                   <div className="pt-4 border-t border-[var(--ctl-line)]">
                     <CopperplateButton
+                      type="submit"
+                      disabled={isSubmitting}
                       variant="deep"
                       className="w-full h-12 text-sm"
-                      onClick={() => {}}
                     >
                       {isSubmitting ? (
                         <>

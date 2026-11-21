@@ -112,12 +112,16 @@ export function CopperplateButton({
   onClick,
   variant = "deep",
   className,
+  type = "button",
+  disabled = false,
 }: {
   children: React.ReactNode;
   href?: string;
   onClick?: () => void;
   variant?: "deep" | "paper" | "ghost";
   className?: string;
+  type?: "button" | "submit" | "reset";
+  disabled?: boolean;
 }) {
   const baseClasses =
     "relative inline-flex items-center justify-center gap-2.5 h-11 px-6 font-sans font-semibold text-[13px] tracking-[0.05em] uppercase rounded-[2px] overflow-hidden transition-all duration-300 group";
@@ -150,9 +154,15 @@ export function CopperplateButton({
 
   return (
     <button
-      type="button"
+      type={type}
       onClick={onClick}
-      className={cn(baseClasses, variantClasses, className)}
+      disabled={disabled}
+      className={cn(
+        baseClasses,
+        variantClasses,
+        disabled && "opacity-70 cursor-not-allowed",
+        className
+      )}
     >
       {content}
     </button>
