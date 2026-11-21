@@ -2,6 +2,7 @@ import * as React from "react";
 import { useState } from "react";
 import { Link } from "wouter";
 import { CobaltToileLanding } from "@/components/ui/cobalt-toile-landing";
+import { supabase } from "@/lib/supabase";
 import { BLOG_POSTS } from "@/data/blogs";
 import { PlateHeader, PlateKicker, EtchedCard, CopperplateButton, WaxSealBadge, HatchDivider } from "@/components/ui/copperplate-primitives";
 import { HeroVisual } from "@/components/ui/hero-visual";
@@ -393,6 +394,24 @@ export function HomePage() {
             "Let's build something extraordinary. Tell us about the challenge. A partner replies within two working days.",
           action: { label: "Start a Project", href: "/contact" },
           secondary: { label: "Book a Call", href: "https://calendly.com/proquoment" },
+        }}
+        onSubscribe={async (email: string) => {
+          try {
+            await supabase.from("labs_enquiries").insert([
+              {
+                full_name: "Newsletter Subscriber",
+                email: email.trim(),
+                service_type: "Newsletter Subscription",
+                description: "Subscribed to Proquoment Labs newsletter from homepage footer.",
+                source_url:
+                  typeof window !== "undefined"
+                    ? window.location.href
+                    : "https://labs.proquoment.in/",
+              },
+            ]);
+          } catch (err) {
+            console.warn("Newsletter subscription non-blocking err:", err);
+          }
         }}
       />
     </div>
